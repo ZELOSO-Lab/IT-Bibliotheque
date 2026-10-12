@@ -1,0 +1,88 @@
+{
+  "groups": [
+    {
+      "title": "基本操作（Win / Mac）",
+      "items": [
+        {
+          "label": "ファイルを開く",
+          "code": "Ctrl+P / Cmd+P"
+        },
+        {
+          "label": "コマンドパレット",
+          "code": "Ctrl+Shift+P / Cmd+Shift+P"
+        },
+        {
+          "label": "サイドバー切替",
+          "code": "Ctrl+B / Cmd+B"
+        },
+        {
+          "label": "ターミナル",
+          "code": "Ctrl+@ / Ctrl+`"
+        }
+      ]
+    },
+    {
+      "title": "編集",
+      "items": [
+        {
+          "label": "行の複製",
+          "code": "Shift+Alt+↓ / Shift+Option+↓"
+        },
+        {
+          "label": "行の移動",
+          "code": "Alt+↑↓ / Option+↑↓"
+        },
+        {
+          "label": "マルチカーソル",
+          "code": "Alt+クリック / Option+クリック"
+        },
+        {
+          "label": "同じ語を選択追加",
+          "code": "Ctrl+D / Cmd+D"
+        }
+      ]
+    },
+    {
+      "title": "検索・移動",
+      "items": [
+        {
+          "label": "全体検索",
+          "code": "Ctrl+Shift+F / Cmd+Shift+F"
+        },
+        {
+          "label": "定義へ移動",
+          "code": "F12"
+        },
+        {
+          "label": "シンボル名変更",
+          "code": "F2"
+        },
+        {
+          "label": "行へ移動",
+          "code": "Ctrl+G"
+        }
+      ]
+    },
+    {
+      "title": "CLI・設定",
+      "items": [
+        {
+          "label": "フォルダを開く",
+          "code": "code ."
+        },
+        {
+          "label": "差分表示",
+          "code": "code --diff a.txt b.txt"
+        },
+        {
+          "label": "拡張機能を入れる",
+          "code": "code --install-extension <id>"
+        },
+        {
+          "label": "保存時に整形",
+          "code": "\"editor.formatOnSave\": true"
+        }
+      ]
+    }
+  ]
+}

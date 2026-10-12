@@ -1,0 +1,88 @@
+{
+  "groups": [
+    {
+      "title": "デバッグ",
+      "items": [
+        {
+          "label": "デバッグ開始",
+          "code": "F5"
+        },
+        {
+          "label": "デバッグなし実行",
+          "code": "Ctrl+F5"
+        },
+        {
+          "label": "ステップオーバー / イン",
+          "code": "F10 / F11"
+        },
+        {
+          "label": "ブレークポイント",
+          "code": "F9"
+        }
+      ]
+    },
+    {
+      "title": "編集",
+      "items": [
+        {
+          "label": "コメント",
+          "code": "Ctrl+K, Ctrl+C（解除 Ctrl+K, Ctrl+U）"
+        },
+        {
+          "label": "整形",
+          "code": "Ctrl+K, Ctrl+D"
+        },
+        {
+          "label": "クイック修正",
+          "code": "Ctrl+."
+        },
+        {
+          "label": "名前の変更",
+          "code": "Ctrl+R, Ctrl+R"
+        }
+      ]
+    },
+    {
+      "title": "移動・検索",
+      "items": [
+        {
+          "label": "定義へ移動",
+          "code": "F12"
+        },
+        {
+          "label": "すべての参照",
+          "code": "Shift+F12"
+        },
+        {
+          "label": "どこでも検索",
+          "code": "Ctrl+T"
+        },
+        {
+          "label": "ソリューション内検索",
+          "code": "Ctrl+Shift+F"
+        }
+      ]
+    },
+    {
+      "title": "ビルド・パッケージ",
+      "items": [
+        {
+          "label": "ソリューションのビルド",
+          "code": "Ctrl+Shift+B"
+        },
+        {
+          "label": "NuGet（PMC）",
+          "code": "Install-Package Newtonsoft.Json"
+        },
+        {
+          "label": "コマンドラインビルド",
+          "code": "msbuild App.sln /p:Configuration=Release"
+        },
+        {
+          "label": "出力ウィンドウ",
+          "code": "Ctrl+Alt+O"
+        }
+      ]
+    }
+  ]
+}

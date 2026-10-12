@@ -1,0 +1,71 @@
+/* デザイントークン。色はすべてここで管理する */
+:root {
+  --font-sans:
+    system-ui, -apple-system, 'Segoe UI', 'Hiragino Sans', 'Noto Sans JP', 'Yu Gothic UI', Meiryo, sans-serif;
+  --font-mono: ui-monospace, 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
+
+  --radius-sm: 6px;
+  --radius: 10px;
+  --radius-lg: 16px;
+  --container: 1200px;
+  --header-h: 64px;
+  --transition: 150ms ease;
+
+  /* Light */
+  --color-bg: #ffffff;
+  --color-bg-subtle: #f6f8fb;
+  --color-surface: #ffffff;
+  --color-border: #e2e8f0;
+  --color-border-strong: #cbd5e1;
+  --color-text: #0f172a;
+  --color-text-muted: #475569;
+  --color-primary: #1d4ed8;
+  --color-primary-hover: #1e40af;
+  --color-primary-soft: #eff6ff;
+  --color-on-primary: #ffffff;
+  --color-focus: #2563eb;
+  --color-hero-from: #eff6ff;
+  --color-hero-to: #ffffff;
+  --color-code-bg: #f8fafc;
+  --color-code-text: #1e293b;
+  --shadow-sm: 0 1px 2px rgb(15 23 42 / 6%);
+  --shadow: 0 6px 20px rgb(15 23 42 / 10%);
+
+  /* カテゴリ別アクセントカラー（テキストにも使えるコントラストを確保） */
+  --cat-programming: #2563eb;
+  --cat-web: #0e7490;
+  --cat-database: #15803d;
+  --cat-cloud: #c2410c;
+  --cat-devtools: #7c3aed;
+  --cat-terminal: #475569;
+  --cat-pm: #be185d;
+}
+
+:root[data-theme='dark'] {
+  --color-bg: #0b1120;
+  --color-bg-subtle: #111827;
+  --color-surface: #151e2e;
+  --color-border: #263042;
+  --color-border-strong: #374357;
+  --color-text: #e5e7eb;
+  --color-text-muted: #9ca3af;
+  --color-primary: #60a5fa;
+  --color-primary-hover: #93c5fd;
+  --color-primary-soft: #172554;
+  --color-on-primary: #0b1120;
+  --color-focus: #93c5fd;
+  --color-hero-from: #0f1b33;
+  --color-hero-to: #0b1120;
+  --color-code-bg: #0d1424;
+  --color-code-text: #e2e8f0;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 40%);
+  --shadow: 0 8px 24px rgb(0 0 0 / 45%);
+
+  --cat-programming: #60a5fa;
+  --cat-web: #22d3ee;
+  --cat-database: #4ade80;
+  --cat-cloud: #fb923c;
+  --cat-devtools: #a78bfa;
+  --cat-terminal: #94a3b8;
+  --cat-pm: #f472b6;
+}

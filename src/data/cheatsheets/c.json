@@ -1,0 +1,109 @@
+{
+  "groups": [
+    {
+      "title": "基本",
+      "items": [
+        {
+          "label": "コンパイル",
+          "code": "gcc -Wall -O2 -o app main.c"
+        },
+        {
+          "label": "デバッグ情報付き",
+          "code": "gcc -g -O0 -o app main.c"
+        },
+        {
+          "label": "複数ファイル",
+          "code": "gcc -o app main.c util.c"
+        },
+        {
+          "label": "Hello, World",
+          "code": "printf(\"Hello\\n\");"
+        }
+      ]
+    },
+    {
+      "title": "型と変数",
+      "items": [
+        {
+          "label": "整数・小数",
+          "code": "int n = 10;\ndouble d = 3.14;"
+        },
+        {
+          "label": "配列",
+          "code": "int a[5] = {1, 2, 3, 4, 5};"
+        },
+        {
+          "label": "文字列",
+          "code": "char s[] = \"abc\";"
+        },
+        {
+          "label": "構造体",
+          "code": "struct Point { int x; int y; };"
+        }
+      ]
+    },
+    {
+      "title": "制御構文",
+      "items": [
+        {
+          "label": "if",
+          "code": "if (x > 0) { ... } else { ... }"
+        },
+        {
+          "label": "for",
+          "code": "for (int i = 0; i < n; i++) { ... }"
+        },
+        {
+          "label": "while",
+          "code": "while (cond) { ... }"
+        },
+        {
+          "label": "switch",
+          "code": "switch (c) { case 1: ...; break; default: ...; }"
+        }
+      ]
+    },
+    {
+      "title": "ポインタ・メモリ",
+      "items": [
+        {
+          "label": "アドレスと参照",
+          "code": "int *p = &n;\n*p = 20;"
+        },
+        {
+          "label": "動的確保",
+          "code": "int *p = malloc(sizeof(int) * n);"
+        },
+        {
+          "label": "解放",
+          "code": "free(p);\np = NULL;"
+        },
+        {
+          "label": "文字列コピー",
+          "code": "strncpy(dst, src, sizeof(dst) - 1);"
+        }
+      ]
+    },
+    {
+      "title": "入出力",
+      "items": [
+        {
+          "label": "書式付き出力",
+          "code": "printf(\"%d %s %.2f\\n\", n, s, d);"
+        },
+        {
+          "label": "ファイルを開く",
+          "code": "FILE *fp = fopen(\"a.txt\", \"r\");"
+        },
+        {
+          "label": "1行読む",
+          "code": "fgets(buf, sizeof(buf), fp);"
+        },
+        {
+          "label": "閉じる",
+          "code": "fclose(fp);"
+        }
+      ]
+    }
+  ]
+}

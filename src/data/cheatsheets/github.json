@@ -1,0 +1,88 @@
+{
+  "groups": [
+    {
+      "title": "リポジトリ",
+      "items": [
+        {
+          "label": "クローン",
+          "code": "git clone https://github.com/owner/repo.git"
+        },
+        {
+          "label": "フォーク後の上流追加",
+          "code": "git remote add upstream https://github.com/owner/repo.git"
+        },
+        {
+          "label": "SSH 確認",
+          "code": "ssh -T git@github.com"
+        },
+        {
+          "label": "Issue を閉じる",
+          "code": "git commit -m \"Fix bug (fixes #12)\""
+        }
+      ]
+    },
+    {
+      "title": "GitHub CLI",
+      "items": [
+        {
+          "label": "ログイン",
+          "code": "gh auth login"
+        },
+        {
+          "label": "PR 作成",
+          "code": "gh pr create --fill"
+        },
+        {
+          "label": "PR 一覧・取得",
+          "code": "gh pr list\ngh pr checkout 34"
+        },
+        {
+          "label": "リポジトリ作成",
+          "code": "gh repo create my-app --private"
+        }
+      ]
+    },
+    {
+      "title": "Actions",
+      "items": [
+        {
+          "label": "トリガー",
+          "code": "on:\n  push:\n    branches: [main]"
+        },
+        {
+          "label": "ジョブ",
+          "code": "jobs:\n  test:\n    runs-on: ubuntu-latest"
+        },
+        {
+          "label": "チェックアウト",
+          "code": "- uses: actions/checkout@v4"
+        },
+        {
+          "label": "シークレット",
+          "code": "${{ secrets.API_KEY }}"
+        }
+      ]
+    },
+    {
+      "title": "Markdown",
+      "items": [
+        {
+          "label": "コード",
+          "code": "```js\nconsole.log(1);\n```"
+        },
+        {
+          "label": "チェックリスト",
+          "code": "- [ ] 未完了\n- [x] 完了"
+        },
+        {
+          "label": "メンション・参照",
+          "code": "@user  #12  owner/repo#34"
+        },
+        {
+          "label": "折りたたみ",
+          "code": "<details><summary>詳細</summary>…</details>"
+        }
+      ]
+    }
+  ]
+}

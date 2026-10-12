@@ -1,0 +1,88 @@
+{
+  "groups": [
+    {
+      "title": "起動",
+      "items": [
+        {
+          "label": "ファイル比較",
+          "code": "WinMergeU.exe a.txt b.txt"
+        },
+        {
+          "label": "フォルダ比較",
+          "code": "WinMergeU.exe /r C:\\old C:\\new"
+        },
+        {
+          "label": "片側読み取り専用",
+          "code": "WinMergeU.exe /wl old.txt new.txt"
+        },
+        {
+          "label": "レポート出力",
+          "code": "WinMergeU.exe /r old new /minimize /noninteractive /or report.html"
+        }
+      ]
+    },
+    {
+      "title": "差分移動",
+      "items": [
+        {
+          "label": "次の差分",
+          "code": "Alt+↓"
+        },
+        {
+          "label": "前の差分",
+          "code": "Alt+↑"
+        },
+        {
+          "label": "最初 / 最後",
+          "code": "Alt+Home / Alt+End"
+        },
+        {
+          "label": "再比較",
+          "code": "F5"
+        }
+      ]
+    },
+    {
+      "title": "マージ",
+      "items": [
+        {
+          "label": "右へコピー",
+          "code": "Alt+→"
+        },
+        {
+          "label": "左へコピー",
+          "code": "Alt+←"
+        },
+        {
+          "label": "すべて右へ",
+          "code": "マージ → すべて右へコピー"
+        },
+        {
+          "label": "元に戻す",
+          "code": "Ctrl+Z"
+        }
+      ]
+    },
+    {
+      "title": "設定",
+      "items": [
+        {
+          "label": "空白を無視",
+          "code": "編集 → 設定 → 比較 → 空白: 無視"
+        },
+        {
+          "label": "大文字小文字無視",
+          "code": "比較 → 大文字と小文字を区別しない"
+        },
+        {
+          "label": "改行コード無視",
+          "code": "比較 → 改行コードの違いを無視"
+        },
+        {
+          "label": "フィルタ",
+          "code": "ツール → フィルター（*.class などを除外）"
+        }
+      ]
+    }
+  ]
+}

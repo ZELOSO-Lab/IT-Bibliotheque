@@ -1,0 +1,88 @@
+{
+  "groups": [
+    {
+      "title": "接続",
+      "items": [
+        {
+          "label": "SSH 接続（CLI）",
+          "code": "ttermpro.exe host:22 /ssh2 /auth=password /user=admin"
+        },
+        {
+          "label": "鍵認証",
+          "code": "/auth=publickey /keyfile=C:\\keys\\id_rsa"
+        },
+        {
+          "label": "シリアル接続",
+          "code": "ttermpro.exe /C=3 /BAUD=9600"
+        },
+        {
+          "label": "複製",
+          "code": "ファイル → セッションの複製（Alt+D）"
+        }
+      ]
+    },
+    {
+      "title": "ログ",
+      "items": [
+        {
+          "label": "ログ開始",
+          "code": "ファイル → ログ"
+        },
+        {
+          "label": "自動ログ",
+          "code": "設定 → その他の設定 → ログ → 標準のログファイル名"
+        },
+        {
+          "label": "タイムスタンプ",
+          "code": "ログ ダイアログで「タイムスタンプ」をオン"
+        },
+        {
+          "label": "ファイル名の日時",
+          "code": "teraterm_&h_%Y%m%d_%H%M%S.log"
+        }
+      ]
+    },
+    {
+      "title": "マクロ（TTL）",
+      "items": [
+        {
+          "label": "接続",
+          "code": "connect 'host:22 /ssh2 /auth=password /user=admin /ask4passwd'"
+        },
+        {
+          "label": "待機",
+          "code": "wait '$'"
+        },
+        {
+          "label": "送信",
+          "code": "sendln 'ls -l'"
+        },
+        {
+          "label": "ログ開始",
+          "code": "logopen 'C:\\log\\a.log' 0 0"
+        }
+      ]
+    },
+    {
+      "title": "便利操作",
+      "items": [
+        {
+          "label": "コピー",
+          "code": "範囲選択で自動コピー"
+        },
+        {
+          "label": "貼り付け",
+          "code": "右クリック / Alt+V"
+        },
+        {
+          "label": "ファイル送信（SCP）",
+          "code": "ファイル → SSH SCP"
+        },
+        {
+          "label": "設定保存",
+          "code": "設定 → 設定の保存（TERATERM.INI）"
+        }
+      ]
+    }
+  ]
+}

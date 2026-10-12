@@ -1,0 +1,88 @@
+{
+  "groups": [
+    {
+      "title": "取得・更新",
+      "items": [
+        {
+          "label": "チェックアウト",
+          "code": "svn checkout URL/trunk work"
+        },
+        {
+          "label": "更新",
+          "code": "svn update"
+        },
+        {
+          "label": "リビジョン指定",
+          "code": "svn update -r 1234"
+        },
+        {
+          "label": "情報",
+          "code": "svn info"
+        }
+      ]
+    },
+    {
+      "title": "変更・コミット",
+      "items": [
+        {
+          "label": "状態",
+          "code": "svn status"
+        },
+        {
+          "label": "差分",
+          "code": "svn diff"
+        },
+        {
+          "label": "追加・削除",
+          "code": "svn add file.txt\nsvn delete old.txt"
+        },
+        {
+          "label": "コミット",
+          "code": "svn commit -m \"メッセージ\""
+        }
+      ]
+    },
+    {
+      "title": "履歴・取り消し",
+      "items": [
+        {
+          "label": "ログ",
+          "code": "svn log -l 10"
+        },
+        {
+          "label": "誰が変更したか",
+          "code": "svn blame file.txt"
+        },
+        {
+          "label": "変更を戻す",
+          "code": "svn revert file.txt"
+        },
+        {
+          "label": "競合解決済み",
+          "code": "svn resolve --accept working file.txt"
+        }
+      ]
+    },
+    {
+      "title": "ブランチ",
+      "items": [
+        {
+          "label": "ブランチ作成",
+          "code": "svn copy URL/trunk URL/branches/feature -m \"branch\""
+        },
+        {
+          "label": "切り替え",
+          "code": "svn switch URL/branches/feature"
+        },
+        {
+          "label": "マージ",
+          "code": "svn merge URL/branches/feature"
+        },
+        {
+          "label": "タグ",
+          "code": "svn copy URL/trunk URL/tags/v1.0 -m \"release\""
+        }
+      ]
+    }
+  ]
+}

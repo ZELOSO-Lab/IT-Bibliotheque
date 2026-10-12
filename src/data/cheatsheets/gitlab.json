@@ -1,0 +1,88 @@
+{
+  "groups": [
+    {
+      "title": "リポジトリ",
+      "items": [
+        {
+          "label": "クローン",
+          "code": "git clone git@gitlab.com:group/project.git"
+        },
+        {
+          "label": "リモート追加",
+          "code": "git remote add origin git@gitlab.com:group/project.git"
+        },
+        {
+          "label": "SSH 確認",
+          "code": "ssh -T git@gitlab.com"
+        },
+        {
+          "label": "MR 作成付き push",
+          "code": "git push -o merge_request.create origin feature/x"
+        }
+      ]
+    },
+    {
+      "title": ".gitlab-ci.yml",
+      "items": [
+        {
+          "label": "ステージ",
+          "code": "stages: [build, test, deploy]"
+        },
+        {
+          "label": "ジョブ",
+          "code": "test:\n  stage: test\n  script:\n    - npm test"
+        },
+        {
+          "label": "ブランチ限定",
+          "code": "rules:\n  - if: $CI_COMMIT_BRANCH == \"main\""
+        },
+        {
+          "label": "成果物",
+          "code": "artifacts:\n  paths: [dist/]"
+        }
+      ]
+    },
+    {
+      "title": "CI 変数",
+      "items": [
+        {
+          "label": "ブランチ名",
+          "code": "$CI_COMMIT_BRANCH"
+        },
+        {
+          "label": "コミット SHA",
+          "code": "$CI_COMMIT_SHORT_SHA"
+        },
+        {
+          "label": "プロジェクト",
+          "code": "$CI_PROJECT_NAME"
+        },
+        {
+          "label": "MR 判定",
+          "code": "$CI_PIPELINE_SOURCE == \"merge_request_event\""
+        }
+      ]
+    },
+    {
+      "title": "コミット連携",
+      "items": [
+        {
+          "label": "Issue を閉じる",
+          "code": "git commit -m \"Fix login (closes #12)\""
+        },
+        {
+          "label": "Issue 参照",
+          "code": "#12"
+        },
+        {
+          "label": "MR 参照",
+          "code": "!34"
+        },
+        {
+          "label": "メンション",
+          "code": "@username"
+        }
+      ]
+    }
+  ]
+}

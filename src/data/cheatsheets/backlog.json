@@ -1,0 +1,88 @@
+{
+  "groups": [
+    {
+      "title": "課題操作",
+      "items": [
+        {
+          "label": "課題キー",
+          "code": "PROJ-123"
+        },
+        {
+          "label": "コミット連携",
+          "code": "git commit -m \"PROJ-123 ログイン画面修正\""
+        },
+        {
+          "label": "完了させる",
+          "code": "git commit -m \"PROJ-123 #fix 修正完了\""
+        },
+        {
+          "label": "メンション",
+          "code": "@ユーザー名"
+        }
+      ]
+    },
+    {
+      "title": "ショートカット",
+      "items": [
+        {
+          "label": "課題追加",
+          "code": "C"
+        },
+        {
+          "label": "検索",
+          "code": "/"
+        },
+        {
+          "label": "課題一覧",
+          "code": "G → I"
+        },
+        {
+          "label": "ヘルプ",
+          "code": "?"
+        }
+      ]
+    },
+    {
+      "title": "Markdown 記法",
+      "items": [
+        {
+          "label": "見出し",
+          "code": "## 見出し"
+        },
+        {
+          "label": "チェックリスト",
+          "code": "- [ ] タスク"
+        },
+        {
+          "label": "課題リンク",
+          "code": "PROJ-123"
+        },
+        {
+          "label": "コード",
+          "code": "```\nコード\n```"
+        }
+      ]
+    },
+    {
+      "title": "API",
+      "items": [
+        {
+          "label": "課題一覧",
+          "code": "GET /api/v2/issues?projectId[]=1&apiKey=<APIキー>"
+        },
+        {
+          "label": "課題取得",
+          "code": "GET /api/v2/issues/PROJ-123"
+        },
+        {
+          "label": "課題追加",
+          "code": "POST /api/v2/issues"
+        },
+        {
+          "label": "コメント追加",
+          "code": "POST /api/v2/issues/PROJ-123/comments"
+        }
+      ]
+    }
+  ]
+}

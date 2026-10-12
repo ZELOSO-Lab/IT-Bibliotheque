@@ -1,0 +1,109 @@
+{
+  "groups": [
+    {
+      "title": "接続・SQL*Plus",
+      "items": [
+        {
+          "label": "接続",
+          "code": "sqlplus user/pass@//host:1521/service"
+        },
+        {
+          "label": "管理者で接続",
+          "code": "sqlplus / as sysdba"
+        },
+        {
+          "label": "スクリプト実行",
+          "code": "@script.sql"
+        },
+        {
+          "label": "表示整形",
+          "code": "SET LINESIZE 200\nSET PAGESIZE 100"
+        }
+      ]
+    },
+    {
+      "title": "ディクショナリ",
+      "items": [
+        {
+          "label": "テーブル一覧",
+          "code": "SELECT table_name FROM user_tables;"
+        },
+        {
+          "label": "列定義",
+          "code": "DESC employees"
+        },
+        {
+          "label": "インデックス",
+          "code": "SELECT * FROM user_indexes WHERE table_name = 'EMP';"
+        },
+        {
+          "label": "セッション",
+          "code": "SELECT sid, serial#, username, status FROM v$session;"
+        }
+      ]
+    },
+    {
+      "title": "SQL（Oracle 特有）",
+      "items": [
+        {
+          "label": "先頭N件",
+          "code": "SELECT * FROM t ORDER BY id FETCH FIRST 10 ROWS ONLY;"
+        },
+        {
+          "label": "NULL 置換",
+          "code": "NVL(col, 0)"
+        },
+        {
+          "label": "日付書式",
+          "code": "TO_CHAR(SYSDATE, 'YYYY/MM/DD HH24:MI:SS')"
+        },
+        {
+          "label": "ダミー表",
+          "code": "SELECT SYSDATE FROM dual;"
+        }
+      ]
+    },
+    {
+      "title": "PL/SQL",
+      "items": [
+        {
+          "label": "無名ブロック",
+          "code": "BEGIN\n  DBMS_OUTPUT.PUT_LINE('Hello');\nEND;\n/"
+        },
+        {
+          "label": "出力を有効化",
+          "code": "SET SERVEROUTPUT ON"
+        },
+        {
+          "label": "例外処理",
+          "code": "EXCEPTION WHEN NO_DATA_FOUND THEN ..."
+        },
+        {
+          "label": "コンパイルエラー確認",
+          "code": "SHOW ERRORS"
+        }
+      ]
+    },
+    {
+      "title": "よくあるエラー",
+      "items": [
+        {
+          "label": "ORA-00942",
+          "code": "表またはビューが存在しない（権限・スキーマ名を確認）"
+        },
+        {
+          "label": "ORA-00001",
+          "code": "一意制約違反（重複キー）"
+        },
+        {
+          "label": "ORA-01017",
+          "code": "ユーザー名/パスワードが無効"
+        },
+        {
+          "label": "ORA-12541",
+          "code": "リスナーが起動していない（lsnrctl status）"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.logo:hover {
+  color: var(--color-text);
+}
+
+.mark {
+  width: 32px;
+  height: 32px;
+}
+
+.bg {
+  fill: #1d4ed8;
+}

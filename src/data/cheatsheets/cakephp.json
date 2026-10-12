@@ -1,0 +1,88 @@
+{
+  "groups": [
+    {
+      "title": "bin/cake",
+      "items": [
+        {
+          "label": "サーバ起動",
+          "code": "bin/cake server"
+        },
+        {
+          "label": "Bake 一式",
+          "code": "bin/cake bake all Articles"
+        },
+        {
+          "label": "マイグレーション作成",
+          "code": "bin/cake bake migration CreateArticles"
+        },
+        {
+          "label": "マイグレーション実行",
+          "code": "bin/cake migrations migrate"
+        }
+      ]
+    },
+    {
+      "title": "ルーティング",
+      "items": [
+        {
+          "label": "ルート定義",
+          "code": "$builder->connect('/articles', ['controller' => 'Articles', 'action' => 'index']);"
+        },
+        {
+          "label": "リソース",
+          "code": "$builder->resources('Articles');"
+        },
+        {
+          "label": "URL 生成",
+          "code": "$this->Url->build(['action' => 'view', $id])"
+        },
+        {
+          "label": "リダイレクト",
+          "code": "return $this->redirect(['action' => 'index']);"
+        }
+      ]
+    },
+    {
+      "title": "ORM",
+      "items": [
+        {
+          "label": "全件",
+          "code": "$this->Articles->find()->all();"
+        },
+        {
+          "label": "条件",
+          "code": "->find()->where(['published' => true])"
+        },
+        {
+          "label": "1件取得",
+          "code": "$this->Articles->get($id);"
+        },
+        {
+          "label": "保存",
+          "code": "$entity = $this->Articles->newEntity($data);\n$this->Articles->save($entity);"
+        }
+      ]
+    },
+    {
+      "title": "ビュー",
+      "items": [
+        {
+          "label": "変数を渡す",
+          "code": "$this->set(compact('articles'));"
+        },
+        {
+          "label": "エスケープ出力",
+          "code": "<?= h($article->title) ?>"
+        },
+        {
+          "label": "フォーム",
+          "code": "<?= $this->Form->create($article) ?>"
+        },
+        {
+          "label": "Flash",
+          "code": "$this->Flash->success('保存しました');"
+        }
+      ]
+    }
+  ]
+}

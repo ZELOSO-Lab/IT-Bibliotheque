@@ -1,0 +1,109 @@
+{
+  "groups": [
+    {
+      "title": "JDK コマンド",
+      "items": [
+        {
+          "label": "コンパイル",
+          "code": "javac Main.java"
+        },
+        {
+          "label": "実行",
+          "code": "java Main"
+        },
+        {
+          "label": "jar 実行",
+          "code": "java -jar app.jar"
+        },
+        {
+          "label": "バージョン確認",
+          "code": "java -version"
+        }
+      ]
+    },
+    {
+      "title": "基本構文",
+      "items": [
+        {
+          "label": "変数（型推論）",
+          "code": "var list = new ArrayList<String>();"
+        },
+        {
+          "label": "拡張for",
+          "code": "for (String s : list) { ... }"
+        },
+        {
+          "label": "switch式",
+          "code": "var r = switch (n) { case 1 -> \"A\"; default -> \"B\"; };"
+        },
+        {
+          "label": "文字列比較",
+          "code": "s1.equals(s2)"
+        }
+      ]
+    },
+    {
+      "title": "コレクション",
+      "items": [
+        {
+          "label": "List",
+          "code": "List<String> list = List.of(\"a\", \"b\");"
+        },
+        {
+          "label": "Map",
+          "code": "Map<String, Integer> m = new HashMap<>();\nm.put(\"a\", 1);"
+        },
+        {
+          "label": "Map 走査",
+          "code": "m.forEach((k, v) -> System.out.println(k + v));"
+        },
+        {
+          "label": "ソート",
+          "code": "list.sort(Comparator.comparing(User::getName));"
+        }
+      ]
+    },
+    {
+      "title": "Stream API",
+      "items": [
+        {
+          "label": "絞り込み",
+          "code": "list.stream().filter(x -> x > 0).toList()"
+        },
+        {
+          "label": "変換",
+          "code": "list.stream().map(String::trim).toList()"
+        },
+        {
+          "label": "集計",
+          "code": "list.stream().mapToInt(Integer::intValue).sum()"
+        },
+        {
+          "label": "グループ化",
+          "code": "Collectors.groupingBy(User::getDept)"
+        }
+      ]
+    },
+    {
+      "title": "例外・I/O",
+      "items": [
+        {
+          "label": "try-with-resources",
+          "code": "try (var br = Files.newBufferedReader(path)) { ... }"
+        },
+        {
+          "label": "ファイル全行",
+          "code": "List<String> lines = Files.readAllLines(path);"
+        },
+        {
+          "label": "例外を投げる",
+          "code": "throw new IllegalArgumentException(\"invalid\");"
+        },
+        {
+          "label": "Optional",
+          "code": "opt.orElse(defaultValue)"
+        }
+      ]
+    }
+  ]
+}

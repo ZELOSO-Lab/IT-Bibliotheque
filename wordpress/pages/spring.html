@@ -1,0 +1,147 @@
+<!-- wp:paragraph -->
+<p>Spring / Spring Framework / Spring Bootの設定、DI、Web開発、エラー対応などの技術情報をまとめています。<br>カテゴリ：Web / <a href="https://zeloso-lab.github.io/IT-Bibliotheque/technology/spring/">IT Bibliotheque!でSpring Frameworkを見る</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"toc"} -->
+<h2 class="wp-block-heading" id="toc">目次</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><a href="#basics">基礎</a></li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><a href="#setup">環境構築</a></li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><a href="#commands">コマンド</a></li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><a href="#samples">サンプル</a></li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><a href="#errors">エラー対応</a></li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><a href="#tips">実務Tips</a></li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><a href="#links">関連リンク</a></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading {"anchor":"basics"} -->
+<h2 class="wp-block-heading" id="basics">基礎</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>JavaのアプリケーションフレームワークSpring / Spring Boot。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">主な用途</h3>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>業務Webシステム</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>REST API</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>マイクロサービス</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>バッチ（Spring Batch）</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p><em>（執筆予定）Spring Frameworkの概要・基本文法・用語を記載します。</em></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"setup"} -->
+<h2 class="wp-block-heading" id="setup">環境構築</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p><em>（執筆予定）インストール手順・初期設定・動作確認の方法を記載します。</em></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"commands"} -->
+<h2 class="wp-block-heading" id="commands">コマンド</h2>
+<!-- /wp:heading -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Spring Boot起動（Maven）</h3>
+<!-- /wp:heading -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>./mvnw spring-boot:run</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Spring Boot起動（Gradle）</h3>
+<!-- /wp:heading -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>./gradlew bootRun</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">RESTコントローラ</h3>
+<!-- /wp:heading -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>@RestController
+@RequestMapping(&quot;/api/users&quot;)
+public class UserController {
+    @GetMapping(&quot;/{id}&quot;)
+    public User get(@PathVariable Long id) { ... }
+}</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph -->
+<p><em>（執筆予定）よく使うコマンド・操作を追記します。</em></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"samples"} -->
+<h2 class="wp-block-heading" id="samples">サンプル</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p><em>（執筆予定）サンプルコード・設定例を記載します。</em></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"errors"} -->
+<h2 class="wp-block-heading" id="errors">エラー対応</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p><em>（執筆予定）よくあるエラーメッセージと原因・対処法を記載します。</em></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"tips"} -->
+<h2 class="wp-block-heading" id="tips">実務Tips</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p><em>（執筆予定）現場で役立つノウハウ・注意点を記載します。</em></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"links"} -->
+<h2 class="wp-block-heading" id="links">関連リンク</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><a href="https://spring.io/projects/spring-framework">Spring Framework 公式ドキュメント</a></li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><a href="https://zeloso-lab.github.io/IT-Bibliotheque/technology/spring/">IT Bibliotheque!：Spring Framework</a></li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><a href="https://zeloso-lab.github.io/IT-Bibliotheque/">IT Bibliotheque! トップ（技術一覧）</a></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->

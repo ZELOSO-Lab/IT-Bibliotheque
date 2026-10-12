@@ -1,0 +1,88 @@
+{
+  "groups": [
+    {
+      "title": "接続・確認",
+      "items": [
+        {
+          "label": "接続",
+          "code": "mysql -u root -p -h localhost db"
+        },
+        {
+          "label": "DB 一覧",
+          "code": "SHOW DATABASES;"
+        },
+        {
+          "label": "テーブル定義",
+          "code": "SHOW CREATE TABLE users\\G"
+        },
+        {
+          "label": "実行中の処理",
+          "code": "SHOW PROCESSLIST;"
+        }
+      ]
+    },
+    {
+      "title": "ユーザー・権限",
+      "items": [
+        {
+          "label": "ユーザー作成",
+          "code": "CREATE USER 'app'@'%' IDENTIFIED BY 'pass';"
+        },
+        {
+          "label": "権限付与",
+          "code": "GRANT ALL ON db.* TO 'app'@'%';"
+        },
+        {
+          "label": "権限確認",
+          "code": "SHOW GRANTS FOR 'app'@'%';"
+        },
+        {
+          "label": "パスワード変更",
+          "code": "ALTER USER 'app'@'%' IDENTIFIED BY 'new';"
+        }
+      ]
+    },
+    {
+      "title": "SQL（MySQL 特有）",
+      "items": [
+        {
+          "label": "先頭N件",
+          "code": "SELECT * FROM t ORDER BY id LIMIT 10 OFFSET 20;"
+        },
+        {
+          "label": "NULL 置換",
+          "code": "IFNULL(col, 0)"
+        },
+        {
+          "label": "日付書式",
+          "code": "DATE_FORMAT(NOW(), '%Y-%m-%d')"
+        },
+        {
+          "label": "UPSERT",
+          "code": "INSERT ... ON DUPLICATE KEY UPDATE name = VALUES(name);"
+        }
+      ]
+    },
+    {
+      "title": "バックアップ・性能",
+      "items": [
+        {
+          "label": "ダンプ",
+          "code": "mysqldump -u root -p db > backup.sql"
+        },
+        {
+          "label": "リストア",
+          "code": "mysql -u root -p db < backup.sql"
+        },
+        {
+          "label": "実行計画",
+          "code": "EXPLAIN SELECT ...;"
+        },
+        {
+          "label": "インデックス作成",
+          "code": "CREATE INDEX idx_name ON users(name);"
+        }
+      ]
+    }
+  ]
+}

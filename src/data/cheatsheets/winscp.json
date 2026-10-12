@@ -1,0 +1,88 @@
+{
+  "groups": [
+    {
+      "title": "GUI 操作",
+      "items": [
+        {
+          "label": "新しいセッション",
+          "code": "Ctrl+N"
+        },
+        {
+          "label": "同期",
+          "code": "コマンド → 同期（Ctrl+S）"
+        },
+        {
+          "label": "ディレクトリ比較",
+          "code": "コマンド → ディレクトリの比較"
+        },
+        {
+          "label": "リモートで編集",
+          "code": "ファイルを右クリック → 編集"
+        }
+      ]
+    },
+    {
+      "title": "スクリプト",
+      "items": [
+        {
+          "label": "接続",
+          "code": "open sftp://user@host/ -hostkey=\"ssh-ed25519 ...\""
+        },
+        {
+          "label": "アップロード",
+          "code": "put C:\\work\\app.zip /home/user/"
+        },
+        {
+          "label": "ダウンロード",
+          "code": "get /var/log/app.log C:\\logs\\"
+        },
+        {
+          "label": "終了",
+          "code": "exit"
+        }
+      ]
+    },
+    {
+      "title": "実行",
+      "items": [
+        {
+          "label": "スクリプト実行",
+          "code": "winscp.com /script=upload.txt"
+        },
+        {
+          "label": "ログ出力",
+          "code": "winscp.com /script=upload.txt /log=winscp.log"
+        },
+        {
+          "label": "ワンライナー",
+          "code": "winscp.com /command \"open sftp://user@host/\" \"put a.txt\" \"exit\""
+        },
+        {
+          "label": "戻り値",
+          "code": "成功 0 / 失敗 1（バッチで %ERRORLEVEL% を確認）"
+        }
+      ]
+    },
+    {
+      "title": "同期・オプション",
+      "items": [
+        {
+          "label": "リモートへ同期",
+          "code": "synchronize remote C:\\dist /var/www/html"
+        },
+        {
+          "label": "ミラー（削除含む）",
+          "code": "synchronize remote -delete C:\\dist /var/www/html"
+        },
+        {
+          "label": "除外",
+          "code": "option exclude \"*.tmp; .git/\""
+        },
+        {
+          "label": "確認を無効化",
+          "code": "option confirm off"
+        }
+      ]
+    }
+  ]
+}

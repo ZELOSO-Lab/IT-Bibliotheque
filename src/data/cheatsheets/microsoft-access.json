@@ -1,0 +1,88 @@
+{
+  "groups": [
+    {
+      "title": "クエリ（SQL）",
+      "items": [
+        {
+          "label": "選択",
+          "code": "SELECT * FROM 顧客 WHERE 都道府県 = \"東京\";"
+        },
+        {
+          "label": "パラメータ",
+          "code": "WHERE 日付 BETWEEN [開始日] AND [終了日]"
+        },
+        {
+          "label": "あいまい検索",
+          "code": "WHERE 氏名 LIKE \"*田*\""
+        },
+        {
+          "label": "NULL 置換",
+          "code": "Nz([売上], 0)"
+        }
+      ]
+    },
+    {
+      "title": "関数",
+      "items": [
+        {
+          "label": "条件",
+          "code": "IIf([点数] >= 80, \"合格\", \"不合格\")"
+        },
+        {
+          "label": "日付書式",
+          "code": "Format(Date(), \"yyyy/mm/dd\")"
+        },
+        {
+          "label": "集計",
+          "code": "DSum(\"金額\", \"売上\", \"顧客ID = 1\")"
+        },
+        {
+          "label": "検索",
+          "code": "DLookup(\"氏名\", \"顧客\", \"ID = 1\")"
+        }
+      ]
+    },
+    {
+      "title": "VBA",
+      "items": [
+        {
+          "label": "フォームを開く",
+          "code": "DoCmd.OpenForm \"F_顧客\""
+        },
+        {
+          "label": "クエリ実行",
+          "code": "CurrentDb.Execute \"DELETE FROM 一時表\", dbFailOnError"
+        },
+        {
+          "label": "レコードセット",
+          "code": "Set rs = CurrentDb.OpenRecordset(\"顧客\")"
+        },
+        {
+          "label": "警告を止める",
+          "code": "DoCmd.SetWarnings False"
+        }
+      ]
+    },
+    {
+      "title": "メンテナンス",
+      "items": [
+        {
+          "label": "最適化/修復",
+          "code": "ファイル → 情報 → データベースの最適化/修復"
+        },
+        {
+          "label": "分割",
+          "code": "データベースツール → Access データベース（フロント/バックエンド分割）"
+        },
+        {
+          "label": "リンクテーブル更新",
+          "code": "外部データ → リンク テーブル マネージャー"
+        },
+        {
+          "label": "サイズ上限",
+          "code": "1ファイル 2GB まで"
+        }
+      ]
+    }
+  ]
+}
