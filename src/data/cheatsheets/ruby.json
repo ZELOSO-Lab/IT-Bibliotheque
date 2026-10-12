@@ -1,0 +1,88 @@
+{
+  "groups": [
+    {
+      "title": "コマンド",
+      "items": [
+        {
+          "label": "実行",
+          "code": "ruby app.rb"
+        },
+        {
+          "label": "対話環境",
+          "code": "irb"
+        },
+        {
+          "label": "gem 追加",
+          "code": "bundle add rails"
+        },
+        {
+          "label": "依存インストール",
+          "code": "bundle install"
+        }
+      ]
+    },
+    {
+      "title": "基本構文",
+      "items": [
+        {
+          "label": "文字列展開",
+          "code": "\"Hello #{name}\""
+        },
+        {
+          "label": "配列・ハッシュ",
+          "code": "a = [1, 2, 3]\nh = { name: \"Taro\", age: 20 }"
+        },
+        {
+          "label": "条件",
+          "code": "puts \"OK\" if x > 0"
+        },
+        {
+          "label": "メソッド",
+          "code": "def add(a, b) = a + b"
+        }
+      ]
+    },
+    {
+      "title": "Enumerable",
+      "items": [
+        {
+          "label": "変換",
+          "code": "a.map { |x| x * 2 }"
+        },
+        {
+          "label": "絞り込み",
+          "code": "a.select(&:even?)"
+        },
+        {
+          "label": "合計",
+          "code": "a.sum"
+        },
+        {
+          "label": "グループ化",
+          "code": "users.group_by(&:dept)"
+        }
+      ]
+    },
+    {
+      "title": "Rails",
+      "items": [
+        {
+          "label": "新規作成",
+          "code": "rails new myapp"
+        },
+        {
+          "label": "サーバ起動",
+          "code": "bin/rails server"
+        },
+        {
+          "label": "scaffold",
+          "code": "bin/rails g scaffold Post title:string body:text"
+        },
+        {
+          "label": "マイグレーション",
+          "code": "bin/rails db:migrate"
+        }
+      ]
+    }
+  ]
+}

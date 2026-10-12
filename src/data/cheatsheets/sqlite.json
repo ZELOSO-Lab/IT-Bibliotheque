@@ -1,0 +1,88 @@
+{
+  "groups": [
+    {
+      "title": "CLI",
+      "items": [
+        {
+          "label": "開く・作成",
+          "code": "sqlite3 app.db"
+        },
+        {
+          "label": "テーブル一覧",
+          "code": ".tables"
+        },
+        {
+          "label": "定義表示",
+          "code": ".schema users"
+        },
+        {
+          "label": "終了",
+          "code": ".quit"
+        }
+      ]
+    },
+    {
+      "title": "表示設定",
+      "items": [
+        {
+          "label": "見出し表示",
+          "code": ".headers on"
+        },
+        {
+          "label": "表形式",
+          "code": ".mode table"
+        },
+        {
+          "label": "CSV 取込",
+          "code": ".mode csv\n.import data.csv users"
+        },
+        {
+          "label": "結果をファイルへ",
+          "code": ".output result.txt"
+        }
+      ]
+    },
+    {
+      "title": "SQL",
+      "items": [
+        {
+          "label": "テーブル作成",
+          "code": "CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT);"
+        },
+        {
+          "label": "自動採番",
+          "code": "INTEGER PRIMARY KEY は ROWID の別名"
+        },
+        {
+          "label": "UPSERT",
+          "code": "INSERT INTO t ... ON CONFLICT(id) DO UPDATE SET name = excluded.name;"
+        },
+        {
+          "label": "日時",
+          "code": "datetime('now', 'localtime')"
+        }
+      ]
+    },
+    {
+      "title": "運用",
+      "items": [
+        {
+          "label": "バックアップ",
+          "code": ".backup backup.db"
+        },
+        {
+          "label": "ダンプ",
+          "code": "sqlite3 app.db .dump > dump.sql"
+        },
+        {
+          "label": "最適化",
+          "code": "VACUUM;"
+        },
+        {
+          "label": "外部キー有効化",
+          "code": "PRAGMA foreign_keys = ON;"
+        }
+      ]
+    }
+  ]
+}

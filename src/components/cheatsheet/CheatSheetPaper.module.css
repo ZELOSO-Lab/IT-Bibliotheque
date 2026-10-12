@@ -1,0 +1,98 @@
+/* 紙面はテーマに関係なく常に白背景・濃色文字（印刷前提） */
+.paper {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 26px 28px 16px;
+  background: #ffffff;
+  color: #0f172a;
+  font-family: var(--font-sans);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 8px;
+  border-bottom: 3px solid var(--cs-color);
+}
+
+.kicker {
+  margin: 0;
+  color: var(--cs-color);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  font-size: 22px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.brand {
+  margin: 0;
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.grid {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(var(--cs-columns), minmax(0, 1fr));
+  grid-template-rows: repeat(var(--cs-rows), minmax(0, 1fr));
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.cell {
+  overflow: hidden;
+  padding: 0.45em 0.6em 0.5em;
+  border: 1px solid #e2e8f0;
+  border-top: 2px solid var(--cs-color);
+  border-radius: 4px;
+  font-size: var(--cs-font, 12px);
+  line-height: 1.4;
+}
+
+.group {
+  margin: 0;
+  color: var(--cs-color);
+  font-size: 0.72em;
+  font-weight: 700;
+}
+
+.label {
+  margin: 0.05em 0 0.3em;
+  font-size: 0.95em;
+  line-height: 1.35;
+}
+
+.code {
+  margin: 0;
+  padding: 0.3em 0.45em;
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--cs-color) 6%, #f8fafc);
+  color: #0f172a;
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  color: #94a3b8;
+  font-size: 9px;
+}

@@ -1,0 +1,109 @@
+{
+  "groups": [
+    {
+      "title": "dotnet CLI",
+      "items": [
+        {
+          "label": "新規作成",
+          "code": "dotnet new console -n MyApp"
+        },
+        {
+          "label": "実行",
+          "code": "dotnet run"
+        },
+        {
+          "label": "ビルド",
+          "code": "dotnet build -c Release"
+        },
+        {
+          "label": "パッケージ追加",
+          "code": "dotnet add package Newtonsoft.Json"
+        }
+      ]
+    },
+    {
+      "title": "基本構文",
+      "items": [
+        {
+          "label": "変数（型推論）",
+          "code": "var name = \"Taro\";"
+        },
+        {
+          "label": "文字列補間",
+          "code": "$\"Hello {name}\""
+        },
+        {
+          "label": "null許容",
+          "code": "string? s = null;\nvar len = s?.Length ?? 0;"
+        },
+        {
+          "label": "foreach",
+          "code": "foreach (var x in list) { ... }"
+        }
+      ]
+    },
+    {
+      "title": "クラス",
+      "items": [
+        {
+          "label": "プロパティ",
+          "code": "public string Name { get; set; }"
+        },
+        {
+          "label": "record",
+          "code": "public record User(int Id, string Name);"
+        },
+        {
+          "label": "コンストラクタ",
+          "code": "public User(int id) { Id = id; }"
+        },
+        {
+          "label": "インターフェース",
+          "code": "public interface IRepo { User Find(int id); }"
+        }
+      ]
+    },
+    {
+      "title": "LINQ",
+      "items": [
+        {
+          "label": "絞り込み",
+          "code": "list.Where(x => x.Age >= 20)"
+        },
+        {
+          "label": "変換",
+          "code": "list.Select(x => x.Name)"
+        },
+        {
+          "label": "並べ替え",
+          "code": "list.OrderBy(x => x.Id)"
+        },
+        {
+          "label": "先頭1件",
+          "code": "list.FirstOrDefault(x => x.Id == id)"
+        }
+      ]
+    },
+    {
+      "title": "非同期・例外",
+      "items": [
+        {
+          "label": "async/await",
+          "code": "var s = await client.GetStringAsync(url);"
+        },
+        {
+          "label": "try-catch",
+          "code": "try { ... } catch (IOException ex) { ... }"
+        },
+        {
+          "label": "using",
+          "code": "using var fs = File.OpenRead(path);"
+        },
+        {
+          "label": "ファイル読込",
+          "code": "var text = File.ReadAllText(path);"
+        }
+      ]
+    }
+  ]
+}

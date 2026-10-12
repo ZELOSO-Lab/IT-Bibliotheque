@@ -1,0 +1,68 @@
+/* ページ共通スタイル */
+.section {
+  padding-top: 56px;
+}
+
+.toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 28px 0 24px;
+}
+
+.resultInfo {
+  margin-bottom: 16px;
+  color: var(--color-text-muted);
+  font-size: 14px;
+}
+
+.empty {
+  padding: 40px 20px;
+  border: 1px dashed var(--color-border-strong);
+  border-radius: var(--radius);
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+.empty p + p {
+  margin-top: 8px;
+}
+
+.prose {
+  max-width: 760px;
+  padding-top: 40px;
+}
+
+.prose h2 {
+  margin: 32px 0 12px;
+  font-size: 22px;
+}
+
+.prose p + p,
+.prose p + ul,
+.prose ul + p {
+  margin-top: 12px;
+}
+
+.prose ul {
+  padding-left: 1.4em;
+}
+
+.grid2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (max-width: 599px) {
+  .grid2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.sectionTight {
+  padding-top: 32px;
+}

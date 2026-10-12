@@ -1,0 +1,109 @@
+{
+  "groups": [
+    {
+      "title": "起動・ビルド",
+      "items": [
+        {
+          "label": "Maven 起動",
+          "code": "./mvnw spring-boot:run"
+        },
+        {
+          "label": "Gradle 起動",
+          "code": "./gradlew bootRun"
+        },
+        {
+          "label": "jar 作成",
+          "code": "./mvnw clean package"
+        },
+        {
+          "label": "プロファイル指定",
+          "code": "java -jar app.jar --spring.profiles.active=prod"
+        }
+      ]
+    },
+    {
+      "title": "Web（MVC）",
+      "items": [
+        {
+          "label": "REST コントローラ",
+          "code": "@RestController\n@RequestMapping(\"/api/users\")"
+        },
+        {
+          "label": "GET",
+          "code": "@GetMapping(\"/{id}\")\nUser get(@PathVariable Long id)"
+        },
+        {
+          "label": "POST",
+          "code": "@PostMapping\nUser create(@RequestBody @Valid UserForm form)"
+        },
+        {
+          "label": "クエリパラメータ",
+          "code": "@RequestParam(defaultValue = \"1\") int page"
+        }
+      ]
+    },
+    {
+      "title": "DI",
+      "items": [
+        {
+          "label": "サービス",
+          "code": "@Service\npublic class UserService { ... }"
+        },
+        {
+          "label": "コンストラクタ注入",
+          "code": "public UserController(UserService service) { ... }"
+        },
+        {
+          "label": "設定値",
+          "code": "@Value(\"${app.name}\") String appName"
+        },
+        {
+          "label": "Bean 定義",
+          "code": "@Bean\nRestClient restClient() { ... }"
+        }
+      ]
+    },
+    {
+      "title": "データアクセス",
+      "items": [
+        {
+          "label": "Repository",
+          "code": "interface UserRepository extends JpaRepository<User, Long> {}"
+        },
+        {
+          "label": "メソッド名クエリ",
+          "code": "List<User> findByNameContaining(String name);"
+        },
+        {
+          "label": "トランザクション",
+          "code": "@Transactional"
+        },
+        {
+          "label": "エンティティ",
+          "code": "@Entity\npublic class User { @Id @GeneratedValue Long id; }"
+        }
+      ]
+    },
+    {
+      "title": "application.yml",
+      "items": [
+        {
+          "label": "ポート",
+          "code": "server:\n  port: 8080"
+        },
+        {
+          "label": "DB 接続",
+          "code": "spring:\n  datasource:\n    url: jdbc:mysql://localhost/db"
+        },
+        {
+          "label": "SQL ログ",
+          "code": "spring.jpa.show-sql: true"
+        },
+        {
+          "label": "ログレベル",
+          "code": "logging.level.root: INFO"
+        }
+      ]
+    }
+  ]
+}

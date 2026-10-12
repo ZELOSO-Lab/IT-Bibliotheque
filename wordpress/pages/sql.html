@@ -1,0 +1,145 @@
+<!-- wp:paragraph -->
+<p>SQLの基本構文、SELECT、JOIN、集計、サブクエリ、パフォーマンスなどの技術情報をまとめています。<br>カテゴリ：Database / <a href="https://zeloso-lab.github.io/IT-Bibliotheque/technology/sql/">IT Bibliotheque!でSQLを見る</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"toc"} -->
+<h2 class="wp-block-heading" id="toc">目次</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><a href="#basics">基礎</a></li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><a href="#setup">環境構築</a></li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><a href="#commands">コマンド</a></li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><a href="#samples">サンプル</a></li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><a href="#errors">エラー対応</a></li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><a href="#tips">実務Tips</a></li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><a href="#links">関連リンク</a></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading {"anchor":"basics"} -->
+<h2 class="wp-block-heading" id="basics">基礎</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>データベースを操作する問い合わせ言語。SELECT / JOIN / 集計など。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">主な用途</h3>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>データ抽出</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>集計・レポート</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>データ移行</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>パフォーマンス調査</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p><em>（執筆予定）SQLの概要・基本文法・用語を記載します。</em></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"setup"} -->
+<h2 class="wp-block-heading" id="setup">環境構築</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p><em>（執筆予定）インストール手順・初期設定・動作確認の方法を記載します。</em></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"commands"} -->
+<h2 class="wp-block-heading" id="commands">コマンド</h2>
+<!-- /wp:heading -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">JOIN</h3>
+<!-- /wp:heading -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>SELECT o.id, c.name
+FROM orders o
+INNER JOIN customers c ON c.id = o.customer_id;</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">グループ集計</h3>
+<!-- /wp:heading -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>SELECT category, COUNT(*), SUM(amount)
+FROM sales
+GROUP BY category
+HAVING SUM(amount) &gt; 10000;</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">更新前に件数確認</h3>
+<!-- /wp:heading -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>SELECT COUNT(*) FROM users WHERE status = 'old';
+UPDATE users SET status = 'archived' WHERE status = 'old';</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph -->
+<p><em>（執筆予定）よく使うコマンド・操作を追記します。</em></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"samples"} -->
+<h2 class="wp-block-heading" id="samples">サンプル</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p><em>（執筆予定）サンプルコード・設定例を記載します。</em></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"errors"} -->
+<h2 class="wp-block-heading" id="errors">エラー対応</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p><em>（執筆予定）よくあるエラーメッセージと原因・対処法を記載します。</em></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"tips"} -->
+<h2 class="wp-block-heading" id="tips">実務Tips</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p><em>（執筆予定）現場で役立つノウハウ・注意点を記載します。</em></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"links"} -->
+<h2 class="wp-block-heading" id="links">関連リンク</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><a href="https://zeloso-lab.github.io/IT-Bibliotheque/technology/sql/">IT Bibliotheque!：SQL</a></li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><a href="https://zeloso-lab.github.io/IT-Bibliotheque/">IT Bibliotheque! トップ（技術一覧）</a></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->

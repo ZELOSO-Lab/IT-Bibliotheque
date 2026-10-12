@@ -1,0 +1,29 @@
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 24px;
+  letter-spacing: -0.01em;
+}
+
+.description {
+  margin-top: 4px;
+  color: var(--color-text-muted);
+  font-size: 14px;
+}
+
+.more {
+  flex: none;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.more:hover {
+  text-decoration: underline;
+}

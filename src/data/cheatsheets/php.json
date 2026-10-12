@@ -1,0 +1,109 @@
+{
+  "groups": [
+    {
+      "title": "CLI",
+      "items": [
+        {
+          "label": "バージョン",
+          "code": "php -v"
+        },
+        {
+          "label": "組込みサーバ",
+          "code": "php -S localhost:8000"
+        },
+        {
+          "label": "構文チェック",
+          "code": "php -l index.php"
+        },
+        {
+          "label": "設定確認",
+          "code": "php -i | grep memory_limit"
+        }
+      ]
+    },
+    {
+      "title": "基本構文",
+      "items": [
+        {
+          "label": "変数・出力",
+          "code": "$name = \"Taro\";\necho \"Hello {$name}\";"
+        },
+        {
+          "label": "配列",
+          "code": "$a = [1, 2, 3];\n$m = [\"key\" => \"value\"];"
+        },
+        {
+          "label": "foreach",
+          "code": "foreach ($m as $k => $v) { ... }"
+        },
+        {
+          "label": "null合体",
+          "code": "$v = $_GET[\"q\"] ?? \"\";"
+        }
+      ]
+    },
+    {
+      "title": "関数・クラス",
+      "items": [
+        {
+          "label": "関数",
+          "code": "function add(int $a, int $b): int { return $a + $b; }"
+        },
+        {
+          "label": "クラス",
+          "code": "class User { public function __construct(public string $name) {} }"
+        },
+        {
+          "label": "アロー関数",
+          "code": "$f = fn($x) => $x * 2;"
+        },
+        {
+          "label": "名前空間",
+          "code": "namespace App\\Models;\nuse App\\Models\\User;"
+        }
+      ]
+    },
+    {
+      "title": "配列関数",
+      "items": [
+        {
+          "label": "変換",
+          "code": "array_map(fn($x) => $x * 2, $a)"
+        },
+        {
+          "label": "絞り込み",
+          "code": "array_filter($a, fn($x) => $x > 0)"
+        },
+        {
+          "label": "キー存在",
+          "code": "array_key_exists(\"key\", $m)"
+        },
+        {
+          "label": "JSON",
+          "code": "json_encode($m);\njson_decode($json, true);"
+        }
+      ]
+    },
+    {
+      "title": "DB・Composer",
+      "items": [
+        {
+          "label": "PDO 接続",
+          "code": "$pdo = new PDO($dsn, $user, $pass);"
+        },
+        {
+          "label": "プリペアド",
+          "code": "$st = $pdo->prepare(\"SELECT * FROM t WHERE id = ?\");\n$st->execute([$id]);"
+        },
+        {
+          "label": "Composer 追加",
+          "code": "composer require monolog/monolog"
+        },
+        {
+          "label": "オートロード",
+          "code": "require __DIR__ . \"/vendor/autoload.php\";"
+        }
+      ]
+    }
+  ]
+}

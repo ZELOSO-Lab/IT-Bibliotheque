@@ -1,0 +1,142 @@
+<!-- wp:paragraph -->
+<p>Microsoft SQL Serverの基本操作、T-SQL、SSMS、バックアップ、エラー対応などの技術情報をまとめています。<br>カテゴリ：Database / <a href="https://zeloso-lab.github.io/IT-Bibliotheque/technology/sql-server/">IT Bibliotheque!でMicrosoft SQL Serverを見る</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"toc"} -->
+<h2 class="wp-block-heading" id="toc">目次</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><a href="#basics">基礎</a></li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><a href="#setup">環境構築</a></li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><a href="#commands">コマンド</a></li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><a href="#samples">サンプル</a></li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><a href="#errors">エラー対応</a></li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><a href="#tips">実務Tips</a></li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><a href="#links">関連リンク</a></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading {"anchor":"basics"} -->
+<h2 class="wp-block-heading" id="basics">基礎</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Microsoft製のRDBMS。T-SQLで操作する。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">主な用途</h3>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>業務システム</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>.NETアプリのDB</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>BI・レポート</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Azure SQLへの移行</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p><em>（執筆予定）Microsoft SQL Serverの概要・基本文法・用語を記載します。</em></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"setup"} -->
+<h2 class="wp-block-heading" id="setup">環境構築</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p><em>（執筆予定）インストール手順・初期設定・動作確認の方法を記載します。</em></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"commands"} -->
+<h2 class="wp-block-heading" id="commands">コマンド</h2>
+<!-- /wp:heading -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">sqlcmdで接続</h3>
+<!-- /wp:heading -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>sqlcmd -S localhost -U sa -d mydb</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">先頭N件の取得</h3>
+<!-- /wp:heading -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>SELECT TOP 10 * FROM orders ORDER BY created_at DESC;</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">バックアップ</h3>
+<!-- /wp:heading -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>BACKUP DATABASE mydb TO DISK = 'C:\backup\mydb.bak';</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph -->
+<p><em>（執筆予定）よく使うコマンド・操作を追記します。</em></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"samples"} -->
+<h2 class="wp-block-heading" id="samples">サンプル</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p><em>（執筆予定）サンプルコード・設定例を記載します。</em></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"errors"} -->
+<h2 class="wp-block-heading" id="errors">エラー対応</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p><em>（執筆予定）よくあるエラーメッセージと原因・対処法を記載します。</em></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"tips"} -->
+<h2 class="wp-block-heading" id="tips">実務Tips</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p><em>（執筆予定）現場で役立つノウハウ・注意点を記載します。</em></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"anchor":"links"} -->
+<h2 class="wp-block-heading" id="links">関連リンク</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><a href="https://learn.microsoft.com/ja-jp/sql/sql-server/">Microsoft SQL Server 公式ドキュメント</a></li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><a href="https://zeloso-lab.github.io/IT-Bibliotheque/technology/sql-server/">IT Bibliotheque!：Microsoft SQL Server</a></li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><a href="https://zeloso-lab.github.io/IT-Bibliotheque/">IT Bibliotheque! トップ（技術一覧）</a></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->

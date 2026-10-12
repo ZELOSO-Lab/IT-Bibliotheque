@@ -1,0 +1,109 @@
+{
+  "groups": [
+    {
+      "title": "基本",
+      "items": [
+        {
+          "label": "状態確認",
+          "code": "git status"
+        },
+        {
+          "label": "ステージ",
+          "code": "git add ."
+        },
+        {
+          "label": "コミット",
+          "code": "git commit -m \"メッセージ\""
+        },
+        {
+          "label": "プッシュ",
+          "code": "git push origin main"
+        }
+      ]
+    },
+    {
+      "title": "ブランチ",
+      "items": [
+        {
+          "label": "作成して切替",
+          "code": "git switch -c feature/x"
+        },
+        {
+          "label": "切替",
+          "code": "git switch main"
+        },
+        {
+          "label": "一覧",
+          "code": "git branch -a"
+        },
+        {
+          "label": "マージ",
+          "code": "git merge feature/x"
+        }
+      ]
+    },
+    {
+      "title": "履歴・差分",
+      "items": [
+        {
+          "label": "ログ",
+          "code": "git log --oneline --graph -20"
+        },
+        {
+          "label": "差分",
+          "code": "git diff\ngit diff --staged"
+        },
+        {
+          "label": "変更者",
+          "code": "git blame file.txt"
+        },
+        {
+          "label": "特定コミット",
+          "code": "git show <hash>"
+        }
+      ]
+    },
+    {
+      "title": "取り消し",
+      "items": [
+        {
+          "label": "作業変更を破棄",
+          "code": "git restore file.txt"
+        },
+        {
+          "label": "ステージ解除",
+          "code": "git restore --staged file.txt"
+        },
+        {
+          "label": "直前コミット修正",
+          "code": "git commit --amend"
+        },
+        {
+          "label": "打ち消しコミット",
+          "code": "git revert <hash>"
+        }
+      ]
+    },
+    {
+      "title": "リモート・退避",
+      "items": [
+        {
+          "label": "取得",
+          "code": "git fetch origin\ngit pull"
+        },
+        {
+          "label": "クローン",
+          "code": "git clone URL"
+        },
+        {
+          "label": "一時退避",
+          "code": "git stash\ngit stash pop"
+        },
+        {
+          "label": "リモート確認",
+          "code": "git remote -v"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,152 @@
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.field {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+
+.legend {
+  display: block;
+  margin-bottom: 8px;
+  padding: 0;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-text-muted);
+}
+
+.swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.swatch {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+}
+
+.swatch[aria-pressed='true'] {
+  border-color: var(--color-text);
+}
+
+.swatchColor {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+}
+
+/* カテゴリ色はカテゴリ7色のグラデーションで表現 */
+.swatchColor[data-category-swatch] {
+  background: conic-gradient(#2563eb, #0e7490, #15803d, #c2410c, #7c3aed, #475569, #be185d, #2563eb);
+}
+
+.custom {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px dashed var(--color-border-strong);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.custom input {
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  cursor: pointer;
+}
+
+.custom input::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.custom input::-webkit-color-swatch {
+  border: 0;
+  border-radius: 50%;
+}
+
+.segmented {
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-auto-flow: column;
+  overflow: hidden;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+}
+
+.segmented button {
+  min-height: 38px;
+  padding: 0 8px;
+  border: 0;
+  background: var(--color-surface);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.segmented button + button {
+  border-left: 1px solid var(--color-border-strong);
+}
+
+.segmented button[aria-pressed='true'] {
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+.select {
+  width: 100%;
+  height: 40px;
+  padding: 0 10px;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  font: inherit;
+  font-size: 14px;
+}
+
+.groups {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 32px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.check input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--color-primary);
+}
+
+.count {
+  margin-left: auto;
+  color: var(--color-text-muted);
+  font-size: 12px;
+}

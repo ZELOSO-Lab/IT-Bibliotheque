@@ -1,0 +1,109 @@
+{
+  "groups": [
+    {
+      "title": "SELECT",
+      "items": [
+        {
+          "label": "基本",
+          "code": "SELECT id, name FROM users WHERE age >= 20 ORDER BY name;"
+        },
+        {
+          "label": "重複排除",
+          "code": "SELECT DISTINCT dept FROM users;"
+        },
+        {
+          "label": "あいまい検索",
+          "code": "WHERE name LIKE '%田%'"
+        },
+        {
+          "label": "範囲・複数",
+          "code": "WHERE price BETWEEN 100 AND 500\n  AND status IN ('A', 'B')"
+        }
+      ]
+    },
+    {
+      "title": "JOIN",
+      "items": [
+        {
+          "label": "内部結合",
+          "code": "SELECT * FROM a INNER JOIN b ON b.a_id = a.id;"
+        },
+        {
+          "label": "左外部結合",
+          "code": "SELECT * FROM a LEFT JOIN b ON b.a_id = a.id;"
+        },
+        {
+          "label": "存在チェック",
+          "code": "WHERE EXISTS (SELECT 1 FROM b WHERE b.a_id = a.id)"
+        },
+        {
+          "label": "自己結合",
+          "code": "FROM emp e JOIN emp m ON m.id = e.manager_id"
+        }
+      ]
+    },
+    {
+      "title": "集計",
+      "items": [
+        {
+          "label": "件数・合計",
+          "code": "SELECT COUNT(*), SUM(amount), AVG(amount) FROM sales;"
+        },
+        {
+          "label": "グループ化",
+          "code": "SELECT dept, COUNT(*) FROM users GROUP BY dept;"
+        },
+        {
+          "label": "集計後の絞り込み",
+          "code": "GROUP BY dept HAVING COUNT(*) >= 5"
+        },
+        {
+          "label": "ウィンドウ関数",
+          "code": "ROW_NUMBER() OVER (PARTITION BY dept ORDER BY salary DESC)"
+        }
+      ]
+    },
+    {
+      "title": "更新系",
+      "items": [
+        {
+          "label": "INSERT",
+          "code": "INSERT INTO users (id, name) VALUES (1, 'Taro');"
+        },
+        {
+          "label": "UPDATE",
+          "code": "UPDATE users SET name = 'Jiro' WHERE id = 1;"
+        },
+        {
+          "label": "DELETE",
+          "code": "DELETE FROM users WHERE id = 1;"
+        },
+        {
+          "label": "トランザクション",
+          "code": "BEGIN; ... COMMIT;  -- 失敗時 ROLLBACK;"
+        }
+      ]
+    },
+    {
+      "title": "定義（DDL）",
+      "items": [
+        {
+          "label": "テーブル作成",
+          "code": "CREATE TABLE users (\n  id INT PRIMARY KEY,\n  name VARCHAR(100) NOT NULL\n);"
+        },
+        {
+          "label": "列追加",
+          "code": "ALTER TABLE users ADD email VARCHAR(255);"
+        },
+        {
+          "label": "インデックス",
+          "code": "CREATE INDEX idx_users_name ON users(name);"
+        },
+        {
+          "label": "CASE 式",
+          "code": "CASE WHEN score >= 80 THEN 'A' ELSE 'B' END"
+        }
+      ]
+    }
+  ]
+}

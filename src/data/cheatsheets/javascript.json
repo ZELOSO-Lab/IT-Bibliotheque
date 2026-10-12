@@ -1,0 +1,109 @@
+{
+  "groups": [
+    {
+      "title": "変数・構文",
+      "items": [
+        {
+          "label": "定数・変数",
+          "code": "const a = 1;\nlet b = 2;"
+        },
+        {
+          "label": "テンプレート文字列",
+          "code": "`Hello ${name}`"
+        },
+        {
+          "label": "分割代入",
+          "code": "const { id, name } = user;"
+        },
+        {
+          "label": "スプレッド",
+          "code": "const merged = { ...a, ...b };"
+        }
+      ]
+    },
+    {
+      "title": "配列",
+      "items": [
+        {
+          "label": "変換",
+          "code": "arr.map((x) => x * 2)"
+        },
+        {
+          "label": "絞り込み",
+          "code": "arr.filter((x) => x > 0)"
+        },
+        {
+          "label": "集計",
+          "code": "arr.reduce((sum, x) => sum + x, 0)"
+        },
+        {
+          "label": "検索",
+          "code": "arr.find((x) => x.id === id)"
+        }
+      ]
+    },
+    {
+      "title": "DOM",
+      "items": [
+        {
+          "label": "要素取得",
+          "code": "document.querySelector('#id')"
+        },
+        {
+          "label": "イベント",
+          "code": "el.addEventListener('click', handler);"
+        },
+        {
+          "label": "クラス操作",
+          "code": "el.classList.toggle('active');"
+        },
+        {
+          "label": "テキスト設定",
+          "code": "el.textContent = \"Hello\";"
+        }
+      ]
+    },
+    {
+      "title": "非同期",
+      "items": [
+        {
+          "label": "fetch",
+          "code": "const res = await fetch('/api');\nconst data = await res.json();"
+        },
+        {
+          "label": "Promise.all",
+          "code": "await Promise.all([p1, p2]);"
+        },
+        {
+          "label": "タイマー",
+          "code": "setTimeout(() => { ... }, 1000);"
+        },
+        {
+          "label": "例外処理",
+          "code": "try { ... } catch (e) { console.error(e); }"
+        }
+      ]
+    },
+    {
+      "title": "Node.js / npm",
+      "items": [
+        {
+          "label": "プロジェクト作成",
+          "code": "npm init -y"
+        },
+        {
+          "label": "パッケージ追加",
+          "code": "npm install axios"
+        },
+        {
+          "label": "スクリプト実行",
+          "code": "npm run build"
+        },
+        {
+          "label": "実行",
+          "code": "node app.js"
+        }
+      ]
+    }
+  ]
+}

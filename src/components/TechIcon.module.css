@@ -1,0 +1,45 @@
+.icon {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  color: var(--accent);
+}
+
+.sm {
+  width: 28px;
+  height: 28px;
+}
+.md {
+  width: 40px;
+  height: 40px;
+}
+.lg {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius);
+}
+
+.svg {
+  width: 58%;
+  height: 58%;
+  fill: currentColor;
+}
+
+.text {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.sm .text {
+  font-size: 11px;
+}
+.md .text {
+  font-size: 14px;
+}
+.lg .text {
+  font-size: 22px;
+}

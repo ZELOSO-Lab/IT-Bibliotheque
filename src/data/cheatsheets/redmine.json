@@ -1,0 +1,88 @@
+{
+  "groups": [
+    {
+      "title": "チケット操作",
+      "items": [
+        {
+          "label": "参照（コミット）",
+          "code": "git commit -m \"ログイン修正 refs #123\""
+        },
+        {
+          "label": "完了（コミット）",
+          "code": "git commit -m \"不具合修正 fixes #123\""
+        },
+        {
+          "label": "チケットリンク",
+          "code": "#123"
+        },
+        {
+          "label": "関連付け",
+          "code": "関連するチケット → 関連している / ブロックしている"
+        }
+      ]
+    },
+    {
+      "title": "Textile 記法",
+      "items": [
+        {
+          "label": "見出し",
+          "code": "h2. 見出し"
+        },
+        {
+          "label": "太字・リンク",
+          "code": "*太字*  \"表示\":https://example.com"
+        },
+        {
+          "label": "リスト",
+          "code": "* 箇条書き\n# 番号付き"
+        },
+        {
+          "label": "コード",
+          "code": "<pre><code class=\"sql\">SELECT 1;</code></pre>"
+        }
+      ]
+    },
+    {
+      "title": "REST API",
+      "items": [
+        {
+          "label": "チケット一覧",
+          "code": "GET /issues.json?project_id=1&status_id=open"
+        },
+        {
+          "label": "チケット取得",
+          "code": "GET /issues/123.json"
+        },
+        {
+          "label": "チケット作成",
+          "code": "POST /issues.json  {\"issue\": {\"project_id\": 1, \"subject\": \"...\"}}"
+        },
+        {
+          "label": "認証",
+          "code": "X-Redmine-API-Key: <APIキー>"
+        }
+      ]
+    },
+    {
+      "title": "運用",
+      "items": [
+        {
+          "label": "フィルタ保存",
+          "code": "チケット一覧 → 条件指定 → 保存"
+        },
+        {
+          "label": "ガントチャート",
+          "code": "プロジェクト → ガントチャート"
+        },
+        {
+          "label": "Wiki リンク",
+          "code": "[[ページ名]]"
+        },
+        {
+          "label": "ウォッチ",
+          "code": "チケット右上「ウォッチ」で通知"
+        }
+      ]
+    }
+  ]
+}

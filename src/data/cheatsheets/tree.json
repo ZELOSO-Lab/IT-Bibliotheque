@@ -1,0 +1,88 @@
+{
+  "groups": [
+    {
+      "title": "Windows",
+      "items": [
+        {
+          "label": "フォルダのみ",
+          "code": "tree"
+        },
+        {
+          "label": "ファイルも表示",
+          "code": "tree /F"
+        },
+        {
+          "label": "ASCII 罫線",
+          "code": "tree /F /A"
+        },
+        {
+          "label": "ファイルへ出力",
+          "code": "tree /F /A > tree.txt"
+        }
+      ]
+    },
+    {
+      "title": "Linux / macOS",
+      "items": [
+        {
+          "label": "基本",
+          "code": "tree"
+        },
+        {
+          "label": "階層を制限",
+          "code": "tree -L 2"
+        },
+        {
+          "label": "除外",
+          "code": "tree -I 'node_modules|dist'"
+        },
+        {
+          "label": "隠しファイルも",
+          "code": "tree -a"
+        }
+      ]
+    },
+    {
+      "title": "Linux オプション",
+      "items": [
+        {
+          "label": "ディレクトリのみ",
+          "code": "tree -d"
+        },
+        {
+          "label": "サイズ表示",
+          "code": "tree -h"
+        },
+        {
+          "label": "フルパス",
+          "code": "tree -f"
+        },
+        {
+          "label": "パターン一致のみ",
+          "code": "tree -P '*.ts'"
+        }
+      ]
+    },
+    {
+      "title": "インストール",
+      "items": [
+        {
+          "label": "Ubuntu / Debian",
+          "code": "sudo apt install tree"
+        },
+        {
+          "label": "RHEL / CentOS",
+          "code": "sudo dnf install tree"
+        },
+        {
+          "label": "macOS",
+          "code": "brew install tree"
+        },
+        {
+          "label": "Markdown 用",
+          "code": "tree -L 2 --charset=ascii"
+        }
+      ]
+    }
+  ]
+}

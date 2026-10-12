@@ -1,0 +1,109 @@
+{
+  "groups": [
+    {
+      "title": "文書構造",
+      "items": [
+        {
+          "label": "基本",
+          "code": "<!doctype html>\n<html lang=\"ja\">"
+        },
+        {
+          "label": "文字コード",
+          "code": "<meta charset=\"UTF-8\">"
+        },
+        {
+          "label": "ビューポート",
+          "code": "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">"
+        },
+        {
+          "label": "CSS 読込",
+          "code": "<link rel=\"stylesheet\" href=\"style.css\">"
+        }
+      ]
+    },
+    {
+      "title": "セマンティクス",
+      "items": [
+        {
+          "label": "ページ構造",
+          "code": "<header> <nav> <main> <footer>"
+        },
+        {
+          "label": "記事・節",
+          "code": "<article> <section> <aside>"
+        },
+        {
+          "label": "見出し",
+          "code": "<h1>…</h1> ～ <h6>…</h6>"
+        },
+        {
+          "label": "リスト",
+          "code": "<ul><li>…</li></ul>"
+        }
+      ]
+    },
+    {
+      "title": "リンク・画像",
+      "items": [
+        {
+          "label": "リンク",
+          "code": "<a href=\"/about\">About</a>"
+        },
+        {
+          "label": "新しいタブ",
+          "code": "<a href=\"…\" target=\"_blank\" rel=\"noopener\">"
+        },
+        {
+          "label": "画像",
+          "code": "<img src=\"a.png\" alt=\"説明\" width=\"200\" height=\"100\">"
+        },
+        {
+          "label": "遅延読込",
+          "code": "<img src=\"a.png\" alt=\"\" loading=\"lazy\">"
+        }
+      ]
+    },
+    {
+      "title": "フォーム",
+      "items": [
+        {
+          "label": "入力欄",
+          "code": "<label for=\"email\">メール</label>\n<input id=\"email\" type=\"email\" required>"
+        },
+        {
+          "label": "選択",
+          "code": "<select name=\"pref\"><option>東京</option></select>"
+        },
+        {
+          "label": "チェック",
+          "code": "<input type=\"checkbox\" name=\"agree\">"
+        },
+        {
+          "label": "送信",
+          "code": "<button type=\"submit\">送信</button>"
+        }
+      ]
+    },
+    {
+      "title": "テーブル",
+      "items": [
+        {
+          "label": "基本",
+          "code": "<table><thead>…</thead><tbody>…</tbody></table>"
+        },
+        {
+          "label": "見出しセル",
+          "code": "<th scope=\"col\">名前</th>"
+        },
+        {
+          "label": "結合",
+          "code": "<td colspan=\"2\">  <td rowspan=\"2\">"
+        },
+        {
+          "label": "キャプション",
+          "code": "<caption>売上一覧</caption>"
+        }
+      ]
+    }
+  ]
+}

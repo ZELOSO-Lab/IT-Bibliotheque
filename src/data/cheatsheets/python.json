@@ -1,0 +1,109 @@
+{
+  "groups": [
+    {
+      "title": "環境",
+      "items": [
+        {
+          "label": "仮想環境",
+          "code": "python -m venv .venv"
+        },
+        {
+          "label": "有効化",
+          "code": "source .venv/bin/activate\n# Windows: .venv\\Scripts\\activate"
+        },
+        {
+          "label": "パッケージ",
+          "code": "pip install requests"
+        },
+        {
+          "label": "依存の書き出し",
+          "code": "pip freeze > requirements.txt"
+        }
+      ]
+    },
+    {
+      "title": "基本構文",
+      "items": [
+        {
+          "label": "f文字列",
+          "code": "f\"Hello {name}\""
+        },
+        {
+          "label": "リスト・辞書",
+          "code": "a = [1, 2, 3]\nd = {\"key\": \"value\"}"
+        },
+        {
+          "label": "内包表記",
+          "code": "[x * 2 for x in a if x > 0]"
+        },
+        {
+          "label": "関数",
+          "code": "def add(a: int, b: int) -> int:\n    return a + b"
+        }
+      ]
+    },
+    {
+      "title": "文字列・リスト",
+      "items": [
+        {
+          "label": "分割・結合",
+          "code": "s.split(\",\")\n\",\".join(items)"
+        },
+        {
+          "label": "スライス",
+          "code": "a[1:3]  a[-1]  a[::-1]"
+        },
+        {
+          "label": "ソート",
+          "code": "sorted(users, key=lambda u: u.age)"
+        },
+        {
+          "label": "enumerate",
+          "code": "for i, x in enumerate(a): ..."
+        }
+      ]
+    },
+    {
+      "title": "ファイル・例外",
+      "items": [
+        {
+          "label": "読み込み",
+          "code": "with open(\"a.txt\", encoding=\"utf-8\") as f:\n    text = f.read()"
+        },
+        {
+          "label": "CSV",
+          "code": "import csv\nrows = list(csv.reader(f))"
+        },
+        {
+          "label": "JSON",
+          "code": "import json\ndata = json.load(f)"
+        },
+        {
+          "label": "例外処理",
+          "code": "try:\n    ...\nexcept ValueError as e:\n    print(e)"
+        }
+      ]
+    },
+    {
+      "title": "よく使う標準ライブラリ",
+      "items": [
+        {
+          "label": "パス操作",
+          "code": "from pathlib import Path\nPath(\"dir\").glob(\"*.txt\")"
+        },
+        {
+          "label": "日時",
+          "code": "from datetime import datetime\ndatetime.now().strftime(\"%Y-%m-%d\")"
+        },
+        {
+          "label": "コマンド実行",
+          "code": "subprocess.run([\"ls\", \"-l\"], check=True)"
+        },
+        {
+          "label": "HTTP",
+          "code": "requests.get(url, timeout=10).json()"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+.nav {
+  font-size: 14px;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--color-text-muted);
+}
+
+.item + .item::before {
+  content: '/';
+  margin: 0 8px;
+  color: var(--color-border-strong);
+}
+
+.item a {
+  color: var(--color-text-muted);
+}
+
+.item a:hover {
+  color: var(--color-primary);
+}

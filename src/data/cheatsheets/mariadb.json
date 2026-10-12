@@ -1,0 +1,88 @@
+{
+  "groups": [
+    {
+      "title": "接続・確認",
+      "items": [
+        {
+          "label": "接続",
+          "code": "mariadb -u root -p db"
+        },
+        {
+          "label": "バージョン",
+          "code": "SELECT VERSION();"
+        },
+        {
+          "label": "DB 一覧",
+          "code": "SHOW DATABASES;"
+        },
+        {
+          "label": "テーブル一覧",
+          "code": "SHOW TABLES;"
+        }
+      ]
+    },
+    {
+      "title": "サービス",
+      "items": [
+        {
+          "label": "起動",
+          "code": "sudo systemctl start mariadb"
+        },
+        {
+          "label": "自動起動",
+          "code": "sudo systemctl enable mariadb"
+        },
+        {
+          "label": "初期セキュリティ設定",
+          "code": "sudo mariadb-secure-installation"
+        },
+        {
+          "label": "状態確認",
+          "code": "systemctl status mariadb"
+        }
+      ]
+    },
+    {
+      "title": "ユーザー・権限",
+      "items": [
+        {
+          "label": "ユーザー作成",
+          "code": "CREATE USER 'app'@'localhost' IDENTIFIED BY 'pass';"
+        },
+        {
+          "label": "権限付与",
+          "code": "GRANT ALL ON db.* TO 'app'@'localhost';"
+        },
+        {
+          "label": "反映",
+          "code": "FLUSH PRIVILEGES;"
+        },
+        {
+          "label": "ユーザー一覧",
+          "code": "SELECT user, host FROM mysql.user;"
+        }
+      ]
+    },
+    {
+      "title": "バックアップ",
+      "items": [
+        {
+          "label": "ダンプ",
+          "code": "mariadb-dump -u root -p db > backup.sql"
+        },
+        {
+          "label": "全DB",
+          "code": "mariadb-dump -u root -p --all-databases > all.sql"
+        },
+        {
+          "label": "リストア",
+          "code": "mariadb -u root -p db < backup.sql"
+        },
+        {
+          "label": "文字コード確認",
+          "code": "SHOW VARIABLES LIKE 'character_set%';"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "groups": [
+    {
+      "title": "CLI 設定",
+      "items": [
+        {
+          "label": "初期設定",
+          "code": "aws configure"
+        },
+        {
+          "label": "プロファイル指定",
+          "code": "aws s3 ls --profile prod"
+        },
+        {
+          "label": "認証確認",
+          "code": "aws sts get-caller-identity"
+        },
+        {
+          "label": "リージョン指定",
+          "code": "--region ap-northeast-1"
+        }
+      ]
+    },
+    {
+      "title": "S3",
+      "items": [
+        {
+          "label": "一覧",
+          "code": "aws s3 ls s3://bucket/path/"
+        },
+        {
+          "label": "アップロード",
+          "code": "aws s3 cp ./file.txt s3://bucket/path/"
+        },
+        {
+          "label": "同期",
+          "code": "aws s3 sync ./dist s3://bucket/ --delete"
+        },
+        {
+          "label": "署名付き URL",
+          "code": "aws s3 presign s3://bucket/file --expires-in 3600"
+        }
+      ]
+    },
+    {
+      "title": "EC2",
+      "items": [
+        {
+          "label": "一覧",
+          "code": "aws ec2 describe-instances --output table"
+        },
+        {
+          "label": "起動",
+          "code": "aws ec2 start-instances --instance-ids i-xxxx"
+        },
+        {
+          "label": "停止",
+          "code": "aws ec2 stop-instances --instance-ids i-xxxx"
+        },
+        {
+          "label": "SSH",
+          "code": "ssh -i key.pem ec2-user@<public-ip>"
+        }
+      ]
+    },
+    {
+      "title": "その他のサービス",
+      "items": [
+        {
+          "label": "Lambda 実行",
+          "code": "aws lambda invoke --function-name fn out.json"
+        },
+        {
+          "label": "CloudWatch Logs",
+          "code": "aws logs tail /aws/lambda/fn --follow"
+        },
+        {
+          "label": "RDS 一覧",
+          "code": "aws rds describe-db-instances"
+        },
+        {
+          "label": "IAM ユーザー",
+          "code": "aws iam list-users"
+        }
+      ]
+    },
+    {
+      "title": "主要サービス早見",
+      "items": [
+        {
+          "label": "サーバ",
+          "code": "EC2 / Lightsail / ECS / Lambda"
+        },
+        {
+          "label": "ストレージ",
+          "code": "S3 / EBS / EFS"
+        },
+        {
+          "label": "データベース",
+          "code": "RDS / Aurora / DynamoDB"
+        },
+        {
+          "label": "ネットワーク",
+          "code": "VPC / Route 53 / CloudFront / ALB"
+        }
+      ]
+    }
+  ]
+}

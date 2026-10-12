@@ -1,0 +1,88 @@
+{
+  "groups": [
+    {
+      "title": "接続・確認",
+      "items": [
+        {
+          "label": "sqlcmd 接続",
+          "code": "sqlcmd -S localhost -U sa -d db"
+        },
+        {
+          "label": "Windows 認証",
+          "code": "sqlcmd -S localhost -E"
+        },
+        {
+          "label": "バージョン",
+          "code": "SELECT @@VERSION;"
+        },
+        {
+          "label": "DB 一覧",
+          "code": "SELECT name FROM sys.databases;"
+        }
+      ]
+    },
+    {
+      "title": "T-SQL（特有）",
+      "items": [
+        {
+          "label": "先頭N件",
+          "code": "SELECT TOP 10 * FROM t ORDER BY id DESC;"
+        },
+        {
+          "label": "ページング",
+          "code": "ORDER BY id OFFSET 20 ROWS FETCH NEXT 10 ROWS ONLY"
+        },
+        {
+          "label": "NULL 置換",
+          "code": "ISNULL(col, 0)"
+        },
+        {
+          "label": "日付書式",
+          "code": "FORMAT(GETDATE(), 'yyyy/MM/dd')"
+        }
+      ]
+    },
+    {
+      "title": "メタ情報",
+      "items": [
+        {
+          "label": "テーブル一覧",
+          "code": "SELECT * FROM INFORMATION_SCHEMA.TABLES;"
+        },
+        {
+          "label": "列定義",
+          "code": "EXEC sp_help 'dbo.users';"
+        },
+        {
+          "label": "実行中の処理",
+          "code": "EXEC sp_who2;"
+        },
+        {
+          "label": "バッチ区切り",
+          "code": "GO"
+        }
+      ]
+    },
+    {
+      "title": "バックアップ",
+      "items": [
+        {
+          "label": "バックアップ",
+          "code": "BACKUP DATABASE db TO DISK = 'C:\\bk\\db.bak';"
+        },
+        {
+          "label": "リストア",
+          "code": "RESTORE DATABASE db FROM DISK = 'C:\\bk\\db.bak';"
+        },
+        {
+          "label": "トランザクション",
+          "code": "BEGIN TRAN; ... COMMIT; / ROLLBACK;"
+        },
+        {
+          "label": "例外処理",
+          "code": "BEGIN TRY ... END TRY BEGIN CATCH ... END CATCH"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "groups": [
+    {
+      "title": "VBA 基本",
+      "items": [
+        {
+          "label": "変数宣言",
+          "code": "Dim i As Long\nDim s As String"
+        },
+        {
+          "label": "メッセージ",
+          "code": "MsgBox \"完了しました\""
+        },
+        {
+          "label": "If",
+          "code": "If x > 0 Then\n  ...\nElse\n  ...\nEnd If"
+        },
+        {
+          "label": "For",
+          "code": "For i = 1 To 10\n  ...\nNext i"
+        }
+      ]
+    },
+    {
+      "title": "Excel 操作",
+      "items": [
+        {
+          "label": "セル",
+          "code": "Range(\"A1\").Value = 100"
+        },
+        {
+          "label": "最終行",
+          "code": "lastRow = Cells(Rows.Count, 1).End(xlUp).Row"
+        },
+        {
+          "label": "シート指定",
+          "code": "Worksheets(\"Sheet1\").Activate"
+        },
+        {
+          "label": "画面更新停止",
+          "code": "Application.ScreenUpdating = False"
+        }
+      ]
+    },
+    {
+      "title": "VB.NET 基本",
+      "items": [
+        {
+          "label": "変数",
+          "code": "Dim name As String = \"Taro\""
+        },
+        {
+          "label": "For Each",
+          "code": "For Each x In list\n  ...\nNext"
+        },
+        {
+          "label": "関数",
+          "code": "Function Add(a As Integer, b As Integer) As Integer\n  Return a + b\nEnd Function"
+        },
+        {
+          "label": "文字列補間",
+          "code": "$\"Hello {name}\""
+        }
+      ]
+    },
+    {
+      "title": "エラー処理",
+      "items": [
+        {
+          "label": "VBA",
+          "code": "On Error GoTo ErrHandler\n...\nErrHandler:\n  MsgBox Err.Description"
+        },
+        {
+          "label": "VB.NET",
+          "code": "Try\n  ...\nCatch ex As Exception\n  ...\nEnd Try"
+        },
+        {
+          "label": "エラー無視（VBA）",
+          "code": "On Error Resume Next"
+        },
+        {
+          "label": "元に戻す（VBA）",
+          "code": "On Error GoTo 0"
+        }
+      ]
+    }
+  ]
+}

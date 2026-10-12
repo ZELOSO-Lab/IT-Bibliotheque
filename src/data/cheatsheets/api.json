@@ -1,0 +1,88 @@
+{
+  "groups": [
+    {
+      "title": "HTTP メソッド",
+      "items": [
+        {
+          "label": "取得",
+          "code": "GET /users/1"
+        },
+        {
+          "label": "作成",
+          "code": "POST /users"
+        },
+        {
+          "label": "更新",
+          "code": "PUT /users/1   PATCH /users/1"
+        },
+        {
+          "label": "削除",
+          "code": "DELETE /users/1"
+        }
+      ]
+    },
+    {
+      "title": "ステータスコード",
+      "items": [
+        {
+          "label": "成功",
+          "code": "200 OK / 201 Created / 204 No Content"
+        },
+        {
+          "label": "クライアントエラー",
+          "code": "400 Bad Request / 404 Not Found"
+        },
+        {
+          "label": "認証・権限",
+          "code": "401 Unauthorized / 403 Forbidden"
+        },
+        {
+          "label": "サーバエラー",
+          "code": "500 Internal Server Error / 503 Service Unavailable"
+        }
+      ]
+    },
+    {
+      "title": "curl",
+      "items": [
+        {
+          "label": "GET",
+          "code": "curl -s https://api.example.com/users"
+        },
+        {
+          "label": "JSON を POST",
+          "code": "curl -X POST URL -H \"Content-Type: application/json\" -d '{\"name\":\"Taro\"}'"
+        },
+        {
+          "label": "ヘッダ表示",
+          "code": "curl -i URL"
+        },
+        {
+          "label": "認証トークン",
+          "code": "curl -H \"Authorization: Bearer <token>\" URL"
+        }
+      ]
+    },
+    {
+      "title": "設計の基本",
+      "items": [
+        {
+          "label": "リソース名",
+          "code": "/users  /users/{id}/orders（複数形の名詞）"
+        },
+        {
+          "label": "ページング",
+          "code": "GET /users?page=2&limit=20"
+        },
+        {
+          "label": "バージョン",
+          "code": "/v1/users"
+        },
+        {
+          "label": "エラー形式",
+          "code": "{\"error\": {\"code\": \"NOT_FOUND\", \"message\": \"...\"}}"
+        }
+      ]
+    }
+  ]
+}
