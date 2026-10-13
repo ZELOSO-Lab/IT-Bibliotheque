@@ -1,0 +1,88 @@
+{
+  "groups": [
+    {
+      "title": "置換（正規表現）",
+      "items": [
+        {
+          "label": "行頭に付ける",
+          "code": "^  →  -- "
+        },
+        {
+          "label": "行末に付ける",
+          "code": "$  →  ,"
+        },
+        {
+          "label": "囲んでカンマ（IN句）",
+          "code": "^(.*)$  →  '$1',"
+        },
+        {
+          "label": "タブ → カンマ",
+          "code": "\\t  →  ,"
+        }
+      ]
+    },
+    {
+      "title": "矩形選択",
+      "items": [
+        {
+          "label": "マウス",
+          "code": "Alt + ドラッグ"
+        },
+        {
+          "label": "キーボード",
+          "code": "Shift+Alt+矢印キー"
+        },
+        {
+          "label": "選択開始",
+          "code": "Shift+F6 → カーソル移動"
+        },
+        {
+          "label": "列を削除 / コピー",
+          "code": "矩形選択 → Delete / Ctrl+C"
+        }
+      ]
+    },
+    {
+      "title": "検索・移動",
+      "items": [
+        {
+          "label": "検索 / 置換",
+          "code": "Ctrl+F / Ctrl+R"
+        },
+        {
+          "label": "次 / 前を検索",
+          "code": "F3 / Shift+F3"
+        },
+        {
+          "label": "Grep（複数ファイル）",
+          "code": "Ctrl+G"
+        },
+        {
+          "label": "指定行へジャンプ",
+          "code": "Ctrl+J"
+        }
+      ]
+    },
+    {
+      "title": "変換・編集",
+      "items": [
+        {
+          "label": "小文字 / 大文字",
+          "code": "Ctrl+U / Ctrl+Shift+U"
+        },
+        {
+          "label": "行のソート",
+          "code": "編集 → 高度な操作 → 昇順ソート"
+        },
+        {
+          "label": "重複行の削除",
+          "code": "編集 → 高度な操作 → uniq"
+        },
+        {
+          "label": "文字コード指定で開き直す",
+          "code": "ファイル → 開き直す"
+        }
+      ]
+    }
+  ]
+}

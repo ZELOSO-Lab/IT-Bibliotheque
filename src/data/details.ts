@@ -285,6 +285,29 @@ export const technologyDetails: Record<string, TechnologyDetail> = {
       { title: 'コマンドラインでビルド', code: 'msbuild MySolution.sln /p:Configuration=Release' },
     ],
   },
+  'sakura-editor': {
+    officialUrl: 'https://sakura-editor.github.io/',
+    useCases: [
+      'ソース・SQLの整形',
+      'Excelから貼り付けたデータの変換',
+      'ログの調査（Grep）',
+      '文字コード・改行コードの確認',
+    ],
+    quickRefs: [
+      {
+        title: '置換（Ctrl+R・正規表現にチェック）',
+        code: "^       →  --      行頭に付ける\n$       →  ,       行末に付ける\n^(.*)$  →  '$1',   囲んでカンマ",
+      },
+      {
+        title: '矩形選択',
+        code: 'Alt+ドラッグ        矩形選択\nShift+Alt+矢印      キーボードで矩形選択\nShift+F6            矩形範囲選択開始',
+      },
+      {
+        title: 'よく使うショートカット',
+        code: 'Ctrl+F  検索    Ctrl+R  置換\nCtrl+G  Grep    Ctrl+J  指定行へ\nCtrl+U  小文字  Ctrl+Shift+U  大文字',
+      },
+    ],
+  },
   svn: {
     officialUrl: 'https://subversion.apache.org/docs/',
     useCases: ['ソース管理', '既存プロジェクトの保守', 'ドキュメント管理', 'Gitへの移行前提の運用'],
