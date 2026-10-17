@@ -2,6 +2,7 @@ import { lazy } from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { Layout } from './components/Layout';
 import { About } from './pages/About';
+import { Articles } from './pages/Articles';
 import { Categories } from './pages/Categories';
 import { CheatSheets } from './pages/CheatSheets';
 import { Home } from './pages/Home';
@@ -14,6 +15,9 @@ import { Terms } from './pages/Terms';
 
 // 技術ページは補足データ（クイックリファレンス等）を含むため分割して読み込む
 const TechnologyDetail = lazy(() => import('./pages/TechnologyDetail').then((m) => ({ default: m.TechnologyDetail })));
+
+// 記事本文は記事を開いたときだけ読み込む
+const ArticleDetail = lazy(() => import('./pages/ArticleDetail').then((m) => ({ default: m.ArticleDetail })));
 
 const CheatSheetTool = lazy(() => import('./pages/CheatSheetTool').then((m) => ({ default: m.CheatSheetTool })));
 
@@ -30,6 +34,8 @@ export function App() {
           <Route path="technology/:slug" element={<TechnologyDetail />} />
           <Route path="technology/:slug/cheatsheet" element={<CheatSheetTool />} />
           <Route path="cheatsheets" element={<CheatSheets />} />
+          <Route path="articles" element={<Articles />} />
+          <Route path="articles/:slug" element={<ArticleDetail />} />
           <Route path="search" element={<Search />} />
           <Route path="about" element={<About />} />
           <Route path="links" element={<Links />} />

@@ -4,6 +4,7 @@ export const mainNav = [
   { to: '/categories', label: 'カテゴリ' },
   { to: '/technologies', label: '技術一覧' },
   { to: '/cheatsheets', label: 'チートシート' },
+  { to: '/articles', label: '記事' },
   { to: '/about', label: 'About' },
 ] as const;
 
@@ -12,6 +13,7 @@ export const footerNav = [
   { to: '/technologies', label: '技術一覧' },
   { to: '/categories', label: 'カテゴリ' },
   { to: '/cheatsheets', label: 'チートシート' },
+  { to: '/articles', label: '記事' },
   { to: '/links', label: '関連リンク' },
   { to: '/privacy', label: 'プライバシーポリシー' },
   { to: '/terms', label: '利用規約' },
