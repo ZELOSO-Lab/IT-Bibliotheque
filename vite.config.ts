@@ -1,4 +1,4 @@
-import { existsSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import react from '@vitejs/plugin-react';
@@ -11,6 +11,8 @@ import { getCategory } from './src/data/categories';
 import { technologies } from './src/data/technologies';
 import { CHEATSHEET_SCHEMA_VERSION, type CheatSheetData, type CheatSheetIndex } from './src/types/cheatsheetData';
 import type { CheatSheet } from './src/types/technology';
+import type { ArticleMeta } from './src/types/article';
+import { parseArticleSource, renderArticle } from './src/utils/articleSource';
 import { CATEGORY_PRINT_COLORS } from './src/utils/cheatsheetLayout';
 
 const HEAD_PLACEHOLDER = '<!--seo-head-->';
@@ -18,7 +20,45 @@ const HEAD_PLACEHOLDER = '<!--seo-head-->';
 /** チートシートの有無はファイルの存在で判定（src/data/cheatsheets/{slug}.ts） */
 const cheatSheetFile = (slug: string) => path.resolve('src/data/cheatsheets', `${slug}.json`);
 const hasCheatSheetFile = (slug: string) => existsSync(cheatSheetFile(slug));
-const routes = () => staticRoutes(hasCheatSheetFile);
+
+/** 記事（content/articles/{シリーズ}/*.md）の front matter。sitemap と記事ページの静的HTMLに使う */
+const ARTICLES_DIR = path.resolve('content/articles');
+const readArticles = (): ArticleMeta[] =>
+  existsSync(ARTICLES_DIR)
+    ? readdirSync(ARTICLES_DIR, { withFileTypes: true, recursive: true })
+        .filter((e) => e.isFile() && e.name.endsWith('.md') && path.resolve(e.parentPath, '..') === ARTICLES_DIR)
+        .map((e) => {
+          const file = path.join(e.parentPath, e.name);
+          return parseArticleSource(readFileSync(file, 'utf8'), file).meta;
+        })
+    : [];
+
+const routes = () => staticRoutes(hasCheatSheetFile, readArticles());
+
+/**
+ * 記事Markdownをモジュールに変換する。
+ * - `xxx.md?meta` … front matter のみ（一覧用。全記事分をまとめて読み込む）
+ * - `xxx.md` … 本文HTMLと目次（記事を開いたときだけ読み込む）
+ */
+const articles = (): Plugin => {
+  let base = '/';
+  return {
+    name: 'itb-articles',
+    enforce: 'pre',
+    configResolved(config) {
+      base = config.base;
+    },
+    async load(id) {
+      const [file = '', query] = id.split('?');
+      if (!file.endsWith('.md')) return null;
+      this.addWatchFile(file);
+      const { meta, markdown } = parseArticleSource(await readFile(file, 'utf8'), file);
+      if (query === 'meta') return `export const meta = ${JSON.stringify(meta)};`;
+      const { html, headings } = renderArticle(markdown, (slug) => `${base}articles/${slug}/`);
+      return `export const html = ${JSON.stringify(html)};\nexport const headings = ${JSON.stringify(headings)};`;
+    },
+  };
+};
 
 /**
  * ビルド後に各ルートの index.html（ページ固有の title / description / OGP / canonical 入り）と
@@ -108,5 +148,5 @@ const writeCheatSheetData = async (outDir: string) => {
 export default defineConfig({
   // 配信パスは公開URL（site.url）から決める（例: https://zeloso-lab.github.io/IT-Bibliotheque → /IT-Bibliotheque/）。BASE_PATH で上書き可
   base: process.env.BASE_PATH ?? `${new URL(site.url).pathname.replace(/\/$/, '')}/`,
-  plugins: [react(), staticPages()],
+  plugins: [articles(), react(), staticPages()],
 });

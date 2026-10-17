@@ -18,6 +18,7 @@ npm run preview    # ビルド結果の確認
 
 - ポータル（このリポジトリ）: GitHub Pages などの静的ホスティング。`.github/workflows/deploy.yml` で main への push 時に自動公開
 - 技術まとめページ: WordPress.com（https://itbibliotheque.wordpress.com/{slug}/）。雛形と手順は [`wordpress/`](wordpress/README.md)
+- 記事（シリーズ「現場の声」など）: ポータル内の `/articles/` と `/articles/{slug}/`。原稿は `content/articles/`。WordPress.com にも同じ原稿から投稿できる
 - 公開URLが決まったら `src/config/site.ts` の `url` を更新する（canonical・OGP・sitemap に反映）
 
 サブパスで公開する場合（例: GitHub Pages のプロジェクトサイト）: `BASE_PATH=/repo-name/ npm run build`
@@ -32,9 +33,20 @@ npm run preview    # ビルド結果の確認
 | 「よく使う技術」と並び順            | 各技術の `featured` / `featuredOrder`                                                                  |
 | カテゴリ追加                        | `src/types/technology.ts` の `CategoryId` と `src/data/categories.ts`、色は `src/styles/variables.css` |
 | 技術ページの項目（基礎・環境構築…） | `src/data/sections.ts`                                                                                 |
+| 記事を追加                          | `content/articles/{シリーズ}/{連番4桁}-{slug}.md` を置く（下記「記事」）                               |
 | ナビ・検索例                        | `src/data/navigation.ts`                                                                               |
 | アイコン追加                        | `src/utils/icons.ts`（Simple Icons から個別 import）                                                   |
 | 色                                  | `src/styles/variables.css`（ライト / ダーク / カテゴリ色）                                             |
+
+## 記事
+
+`content/articles/{シリーズ}/{連番4桁}-{slug}.md` を置いて main に push すると、記事一覧・記事ページ・sitemap に反映される。
+
+- 先頭の front matter: `series` `no` `title` `slug` `category` `tags` `excerpt` `created` は必須（欠けているとビルドが止まる）
+- 関連する技術は `category`・`tags` を技術名と照合して自動で決まる。明示する場合は `technologies: [c, oracle-database]`（技術の slug）
+- 本文は GitHub 互換の Markdown。ビルド時に HTML 化するのでブラウザに Markdown パーサーは載らない
+- 本文の先頭 H1 はタイトルと重複するため表示しない。H2 が目次になる
+- WordPress 用の記事間リンク `https://itbibliotheque.wordpress.com/?name={slug}` は、ポータルでは `/articles/{slug}/` に自動で置き換わる
 
 ## 技術データの例
 

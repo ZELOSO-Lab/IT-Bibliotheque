@@ -107,3 +107,18 @@
     padding: 24px 20px;
   }
 }
+
+.articles {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (max-width: 959px) {
+  .articles {
+    grid-template-columns: 1fr;
+  }
+}
