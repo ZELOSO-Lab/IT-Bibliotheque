@@ -25,5 +25,5 @@
     "src/utils/cheatsheetLayout.ts",
     "src/utils/articleSource.ts"
   ],
-  "exclude": ["src/data/cheatsheets/index.ts", "src/data/articles.ts"]
+  "exclude": ["src/data/cheatsheets/index.ts", "src/data/articles.ts", "src/data/guides.ts"]
 }

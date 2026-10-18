@@ -19,6 +19,8 @@ const TechnologyDetail = lazy(() => import('./pages/TechnologyDetail').then((m) 
 // 記事本文は記事を開いたときだけ読み込む
 const ArticleDetail = lazy(() => import('./pages/ArticleDetail').then((m) => ({ default: m.ArticleDetail })));
 
+const GuideDetail = lazy(() => import('./pages/GuideDetail').then((m) => ({ default: m.GuideDetail })));
+
 const CheatSheetTool = lazy(() => import('./pages/CheatSheetTool').then((m) => ({ default: m.CheatSheetTool })));
 
 /** ルーティング。ページ追加時はここに1行追加し、seo/meta.ts と seo/routes.ts にも登録する */
@@ -32,6 +34,7 @@ export function App() {
           <Route path="technologies" element={<Technologies />} />
           <Route path="technology" element={<Navigate to="/technologies" replace />} />
           <Route path="technology/:slug" element={<TechnologyDetail />} />
+          <Route path="technology/:slug/guide" element={<GuideDetail />} />
           <Route path="technology/:slug/cheatsheet" element={<CheatSheetTool />} />
           <Route path="cheatsheets" element={<CheatSheets />} />
           <Route path="articles" element={<Articles />} />

@@ -12,7 +12,8 @@ import { technologies } from './src/data/technologies';
 import { CHEATSHEET_SCHEMA_VERSION, type CheatSheetData, type CheatSheetIndex } from './src/types/cheatsheetData';
 import type { CheatSheet } from './src/types/technology';
 import type { ArticleMeta } from './src/types/article';
-import { parseArticleSource, renderArticle } from './src/utils/articleSource';
+import { sections } from './src/data/sections';
+import { parseArticleSource, parseGuideSource, renderArticle } from './src/utils/articleSource';
 import { CATEGORY_PRINT_COLORS } from './src/utils/cheatsheetLayout';
 
 const HEAD_PLACEHOLDER = '<!--seo-head-->';
@@ -33,10 +34,23 @@ const readArticles = (): ArticleMeta[] =>
         })
     : [];
 
-const routes = () => staticRoutes(hasCheatSheetFile, readArticles());
+/** 技術まとめ（content/guides/{技術slug}.md）がある技術の slug */
+const GUIDES_DIR = path.resolve('content/guides');
+const guideSlugs = (): string[] =>
+  existsSync(GUIDES_DIR)
+    ? readdirSync(GUIDES_DIR)
+        .filter((f) => f.endsWith('.md'))
+        .map((f) => parseGuideSource(readFileSync(path.join(GUIDES_DIR, f), 'utf8'), f).meta.slug)
+    : [];
+
+const routes = () => staticRoutes(hasCheatSheetFile, readArticles(), guideSlugs());
+
+/** 技術まとめの H2 は項目名（基礎・環境構築…）から、技術ページのリンクと同じアンカーにする */
+const guideHeadingId = (text: string, index: number) =>
+  sections.find((s) => s.label === text)?.anchor ?? `sec-${index + 1}`;
 
 /**
- * 記事Markdownをモジュールに変換する。
+ * 記事・技術まとめの Markdown をモジュールに変換する。
  * - `xxx.md?meta` … front matter のみ（一覧用。全記事分をまとめて読み込む）
  * - `xxx.md` … 本文HTMLと目次（記事を開いたときだけ読み込む）
  */
@@ -52,9 +66,12 @@ const articles = (): Plugin => {
       const [file = '', query] = id.split('?');
       if (!file.endsWith('.md')) return null;
       this.addWatchFile(file);
-      const { meta, markdown } = parseArticleSource(await readFile(file, 'utf8'), file);
+      const raw = await readFile(file, 'utf8');
+      const isGuide = path.resolve(file).startsWith(GUIDES_DIR + path.sep);
+      const { meta, markdown } = isGuide ? parseGuideSource(raw, file) : parseArticleSource(raw, file);
       if (query === 'meta') return `export const meta = ${JSON.stringify(meta)};`;
-      const { html, headings } = renderArticle(markdown, (slug) => `${base}articles/${slug}/`);
+      const articleUrl = (slug: string) => `${base}articles/${slug}/`;
+      const { html, headings } = renderArticle(markdown, articleUrl, isGuide ? guideHeadingId : undefined);
       return `export const html = ${JSON.stringify(html)};\nexport const headings = ${JSON.stringify(headings)};`;
     },
   };

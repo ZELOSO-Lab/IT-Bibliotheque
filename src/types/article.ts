@@ -28,3 +28,13 @@ export type ArticleBody = {
   /** 目次（h2） */
   headings: ArticleHeading[];
 };
+
+/** 技術まとめ（content/guides/{技術slug}.md）の front matter */
+export type GuideMeta = {
+  /** 技術の slug（/technology/{slug}/guide） */
+  slug: string;
+  title: string;
+  excerpt: string;
+  /** 更新日（YYYY-MM-DD） */
+  updated: string;
+};

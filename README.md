@@ -33,6 +33,7 @@ npm run preview    # ビルド結果の確認
 | 「よく使う技術」と並び順            | 各技術の `featured` / `featuredOrder`                                                                  |
 | カテゴリ追加                        | `src/types/technology.ts` の `CategoryId` と `src/data/categories.ts`、色は `src/styles/variables.css` |
 | 技術ページの項目（基礎・環境構築…） | `src/data/sections.ts`                                                                                 |
+| 技術まとめをポータル内に書く        | `content/guides/{技術slug}.md` を置く（下記「技術まとめ」）                                            |
 | 記事を追加                          | `content/articles/{シリーズ}/{連番4桁}-{slug}.md` を置く（下記「記事」）                               |
 | ナビ・検索例                        | `src/data/navigation.ts`                                                                               |
 | アイコン追加                        | `src/utils/icons.ts`（Simple Icons から個別 import）                                                   |
@@ -47,6 +48,13 @@ npm run preview    # ビルド結果の確認
 - 本文は GitHub 互換の Markdown。ビルド時に HTML 化するのでブラウザに Markdown パーサーは載らない
 - 本文の先頭 H1 はタイトルと重複するため表示しない。H2 が目次になる
 - WordPress 用の記事間リンク `https://itbibliotheque.wordpress.com/?name={slug}` は、ポータルでは `/articles/{slug}/` に自動で置き換わる
+
+## 技術まとめ
+
+`content/guides/{技術slug}.md` を置くと `/technology/{slug}/guide/` に技術まとめページができ、技術ページの「項目から探す」・まとめリンク・関連リンク一覧がポータル内のページに切り替わる（置いていない技術は従来どおり WordPress へリンク）。
+
+- front matter: `title` `slug`（技術の slug）`excerpt` `updated` は必須
+- H2 を `基礎` `環境構築` `コマンド` `サンプル` `エラー対応` `実務Tips` `関連リンク` にすると、技術ページの各項目からその見出しへ直接移動できる（`src/data/sections.ts` の label と一致させる）
 
 ## 技術データの例
 

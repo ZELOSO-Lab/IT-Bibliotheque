@@ -46,6 +46,12 @@ export const pageMeta = {
     path: `/technology/${t.slug}`,
     ogType: 'article',
   }),
+  guide: (t: Technology): PageMeta => ({
+    title: withSiteName(`${t.name} 技術まとめ（基礎・環境構築・コマンド・エラー対応）`),
+    description: `${t.name}の基礎、環境構築、よく使うコマンド、サンプル、エラー対応、実務Tipsを1ページにまとめた技術まとめです。`,
+    path: `/technology/${t.slug}/guide`,
+    ogType: 'article',
+  }),
   cheatsheets: (): PageMeta => ({
     title: withSiteName('チートシート一覧'),
     description:
