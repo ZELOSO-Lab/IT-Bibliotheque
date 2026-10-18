@@ -1,4 +1,5 @@
 import { site } from '../config/site';
+import type { ArticleMeta } from '../types/article';
 import type { Technology } from '../types/technology';
 
 export type PageMeta = {
@@ -55,6 +56,18 @@ export const pageMeta = {
     title: withSiteName(`${t.name} チートシート（PDF）`),
     description: `${t.name}のよく使うコマンド・構文をA4 1枚にまとめたチートシート。カラー・列数・行数を選んでPDFでダウンロードできます。`,
     path: `/technology/${t.slug}/cheatsheet`,
+  }),
+  articles: (): PageMeta => ({
+    title: withSiteName('記事一覧'),
+    description:
+      '開発現場で実際に困った状況と、その解決手順をまとめた記事です。C言語・SQL・VB.NET・開発工程などを現場目線で解説します。',
+    path: '/articles',
+  }),
+  article: (a: ArticleMeta): PageMeta => ({
+    title: withSiteName(a.title),
+    description: a.excerpt,
+    path: `/articles/${a.slug}`,
+    ogType: 'article',
   }),
   search: (): PageMeta => ({
     title: withSiteName('技術検索'),

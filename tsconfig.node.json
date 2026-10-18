@@ -22,7 +22,8 @@
     "src/data",
     "src/types",
     "src/seo",
-    "src/utils/cheatsheetLayout.ts"
+    "src/utils/cheatsheetLayout.ts",
+    "src/utils/articleSource.ts"
   ],
-  "exclude": ["src/data/cheatsheets/index.ts"]
+  "exclude": ["src/data/cheatsheets/index.ts", "src/data/articles.ts"]
 }

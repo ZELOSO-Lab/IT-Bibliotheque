@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { ArticleCard } from '../components/ArticleCard';
 import { CategoryCard } from '../components/CategoryCard';
 import { CategoryNav } from '../components/CategoryNav';
 import { ExampleQueries } from '../components/ExampleQueries';
@@ -7,6 +8,7 @@ import { SearchBox } from '../components/SearchBox';
 import { SectionHeader } from '../components/SectionHeader';
 import { TechnologyGrid } from '../components/TechnologyGrid';
 import { site } from '../config/site';
+import { articles } from '../data/articles';
 import { sections } from '../data/sections';
 import { technologies } from '../data/technologies';
 import { usePageMeta } from '../hooks/usePageMeta';
@@ -18,6 +20,7 @@ import styles from './Home.module.css';
 
 const featured = getFeaturedTechnologies();
 const recent = getRecentTechnologies(6);
+const latestArticles = articles.slice(0, 3);
 const INSTANT_RESULTS = 8;
 const linkCount = technologies.length * (sections.length + 1);
 
@@ -96,6 +99,24 @@ export function Home() {
           <SectionHeader id="featured" title="よく使う技術" description="現場でよく使う技術にすぐアクセスできます。" />
           <TechnologyGrid technologies={featured} />
         </section>
+
+        {latestArticles.length > 0 && (
+          <section className={page.section} aria-labelledby="latest-articles">
+            <SectionHeader
+              id="latest-articles"
+              title="新着記事"
+              description="開発現場で実際に困ったことと、その解決手順をまとめています。"
+              more={{ to: '/articles', label: `記事一覧（${articles.length}件）` }}
+            />
+            <ul className={styles.articles}>
+              {latestArticles.map((a) => (
+                <li key={a.slug}>
+                  <ArticleCard article={a} />
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
 
         <section className={page.section} aria-labelledby="categories">
           <SectionHeader id="categories" title="カテゴリから探す" more={{ to: '/categories', label: 'カテゴリ一覧' }} />

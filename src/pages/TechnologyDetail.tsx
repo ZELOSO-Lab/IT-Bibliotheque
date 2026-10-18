@@ -1,4 +1,5 @@
 import { Link, useParams } from 'react-router-dom';
+import { ArticleCard } from '../components/ArticleCard';
 import { Breadcrumb } from '../components/Breadcrumb';
 import { CategoryBadge } from '../components/CategoryBadge';
 import { CheatSheetLink } from '../components/CheatSheetLink';
@@ -7,6 +8,7 @@ import { ExternalLink } from '../components/ExternalLink';
 import { SectionHeader } from '../components/SectionHeader';
 import { TechIcon } from '../components/TechIcon';
 import { TechnologyGrid } from '../components/TechnologyGrid';
+import { getArticlesByTechnology } from '../data/articles';
 import { getCategory } from '../data/categories';
 import { hasCheatSheet } from '../data/cheatsheets';
 import { technologyDetails } from '../data/details';
@@ -32,6 +34,7 @@ function TechnologyDetailContent({ technology }: { technology: Technology }) {
   usePageMeta(pageMeta.technology(technology));
   const category = getCategory(technology.category);
   const related = getRelatedTechnologies(technology, 3);
+  const articles = getArticlesByTechnology(technology);
   const detail = technologyDetails[technology.slug];
   const allCategories = [technology.category, ...(technology.subCategories ?? [])];
 
@@ -173,6 +176,23 @@ function TechnologyDetailContent({ technology }: { technology: Technology }) {
       </div>
 
       <div className="container">
+        {articles.length > 0 && (
+          <section className={page.section} aria-labelledby="articles">
+            <SectionHeader
+              id="articles"
+              title={`${technology.name}の記事`}
+              description="開発現場で実際に困ったことと、その解決手順"
+              more={{ to: '/articles', label: '記事一覧' }}
+            />
+            <ul className={styles.articles}>
+              {articles.map((a) => (
+                <li key={a.slug}>
+                  <ArticleCard article={a} />
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
         {related.length > 0 && (
           <section className={page.section} aria-labelledby="related">
             <SectionHeader

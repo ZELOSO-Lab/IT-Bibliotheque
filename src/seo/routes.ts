@@ -1,14 +1,17 @@
 import { technologies } from '../data/technologies';
+import type { ArticleMeta } from '../types/article';
 import { pageMeta, type PageMeta } from './meta';
 
 /** ビルド時に静的HTMLとsitemapを生成するルート */
-export const staticRoutes = (hasCheatSheet: (slug: string) => boolean): PageMeta[] => [
+export const staticRoutes = (hasCheatSheet: (slug: string) => boolean, articles: ArticleMeta[]): PageMeta[] => [
   pageMeta.home(),
   pageMeta.categories(),
   pageMeta.technologies(),
   ...technologies.map(pageMeta.technology),
   pageMeta.cheatsheets(),
   ...technologies.filter((t) => hasCheatSheet(t.slug)).map(pageMeta.cheatsheet),
+  pageMeta.articles(),
+  ...articles.map(pageMeta.article),
   pageMeta.search(),
   pageMeta.about(),
   pageMeta.links(),
