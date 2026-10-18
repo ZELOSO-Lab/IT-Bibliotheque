@@ -42,7 +42,7 @@ created: 2026-10-18
 4. 6回ループする（`month_offset` = 0〜5）
    - `FIRST_DAY` = 基準日の半年前の月の1日 ＋ `month_offset` か月
    - `END_DAY` = `FIRST_DAY` の月の末日
-   - 区分によって投入先テーブルを切り替える（0 → `TB6`、1 → `TB7`）
+   - `month_offset` によって投入先テーブルを切り替える（0 → `TB6`、1 → `TB5` … 5 → `TB1`。古い月ほど番号が大きいテーブル）
    - `FIRST_DAY` から `END_DAY` まで1日ずつ `./InsertData.sh No MAX_NUM 対象日 TABLE_NAME` を呼ぶ
 
 子シェル `InsertData.sh` では、ループカウンタ `i` を**左0埋め12桁**の連番（`000000000001`）にしてデータを作ります。この記事の例では、DB に入れる代わりに INSERT 文を出力しています。
@@ -198,13 +198,13 @@ fi
 
 ## ハマりどころ7：case に `*)` がなく、前のループのテーブル名が残る
 
-区分によって投入先のテーブルを切り替える case を、最初は次のように書いていました。
+`month_offset` によって投入先のテーブル（TB6〜TB1）を切り替える case を、最初は動作確認のつもりで2件だけ書き、残りを後回しにしていました。
 
 ```sh
 for month_offset in 0 1 2 3 4 5; do
   case "$month_offset" in
     0) TABLE_NAME=TB6 ;;
-    1) TABLE_NAME=TB7 ;;
+    1) TABLE_NAME=TB5 ;;
   esac
   echo "$month_offset -> $TABLE_NAME"
 done
@@ -212,28 +212,31 @@ done
 
 ```text
 0 -> TB6
-1 -> TB7
-2 -> TB7
-3 -> TB7
-4 -> TB7
-5 -> TB7
+1 -> TB5
+2 -> TB5
+3 -> TB5
+4 -> TB5
+5 -> TB5
 ```
 
-case の値が0と1以外のとき、どの分岐にも入らず、**変数には前のループの値（TB7）が残ったまま**になります。エラーにならないので、3か月目以降のデータがすべて TB7 に入っていました。
+case の値が0と1以外のとき、どの分岐にも入らず、**変数には前のループの値（TB5）が残ったまま**になります。エラーにならないので、残りの分岐を書き忘れたまま実行し、3か月目以降のデータがすべて TB5 に入っていました。
 
 **対処は3つです。**
 
 1. ループの先頭で変数を空にする（`TABLE_NAME=''`）
-2. case には必ず `*)` を書き、想定外の値ならエラーで止める
-3. case に渡す値を、分岐の数に合わせて作る（例: 月ごとに交互なら `$((month_offset % 2))`）
+2. ループで回す値（0〜5）のすべてに分岐を書く
+3. case には必ず `*)` を書き、想定外の値ならエラーで止める
 
 ```sh
-KBN=$((month_offset % 2))
 TABLE_NAME=''
-case "$KBN" in
+case "$month_offset" in
   0) TABLE_NAME=TB6 ;;
-  1) TABLE_NAME=TB7 ;;
-  *) echo "想定外の区分です: $KBN" >&2; exit 1 ;;
+  1) TABLE_NAME=TB5 ;;
+  2) TABLE_NAME=TB4 ;;
+  3) TABLE_NAME=TB3 ;;
+  4) TABLE_NAME=TB2 ;;
+  5) TABLE_NAME=TB1 ;;
+  *) echo "想定外の month_offset です: $month_offset" >&2; exit 1 ;;
 esac
 ```
 
@@ -303,12 +306,15 @@ for month_offset in 0 1 2 3 4 5; do
   FIRST_DAY=$(date -d "$BASE_MONTH -6 month +$month_offset month" +%Y%m%d)
   END_DAY=$(date -d "$FIRST_DAY +1 month -1 day" +%Y%m%d)
 
-  KBN=$((month_offset % 2))
   TABLE_NAME=''
-  case "$KBN" in
+  case "$month_offset" in
     0) TABLE_NAME=TB6 ;;
-    1) TABLE_NAME=TB7 ;;
-    *) echo "想定外の区分です: $KBN" >&2; exit 1 ;;
+    1) TABLE_NAME=TB5 ;;
+    2) TABLE_NAME=TB4 ;;
+    3) TABLE_NAME=TB3 ;;
+    4) TABLE_NAME=TB2 ;;
+    5) TABLE_NAME=TB1 ;;
+    *) echo "想定外の month_offset です: $month_offset" >&2; exit 1 ;;
   esac
 
   DAY=$FIRST_DAY
@@ -347,11 +353,11 @@ $ wc -l out.sql
 | 月 | 日数 | 件数 | テーブル |
 | --- | --- | --- | --- |
 | 2026/04 | 30 | 60 | TB6 |
-| 2026/05 | 31 | 62 | TB7 |
-| 2026/06 | 30 | 60 | TB6 |
-| 2026/07 | 31 | 62 | TB7 |
-| 2026/08 | 31 | 62 | TB6 |
-| 2026/09 | 30 | 60 | TB7 |
+| 2026/05 | 31 | 62 | TB5 |
+| 2026/06 | 30 | 60 | TB4 |
+| 2026/07 | 31 | 62 | TB3 |
+| 2026/08 | 31 | 62 | TB2 |
+| 2026/09 | 30 | 60 | TB1 |
 
 入力エラーの例です。
 
