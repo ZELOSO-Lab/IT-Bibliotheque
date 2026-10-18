@@ -61,6 +61,12 @@ export const parseArticleSource = (raw: string, filePath: string): { meta: Artic
   };
 };
 
+const ENTITIES: Record<string, string> = { '&lt;': '<', '&gt;': '>', '&quot;': '"', '&#39;': "'", '&amp;': '&' };
+
+/** 見出しのHTML（コード・強調を含む）から目次用のテキストを取り出す */
+const htmlToText = (html: string): string =>
+  html.replace(/<[^>]+>/g, '').replace(/&(?:lt|gt|quot|#39|amp);/g, (e) => ENTITIES[e] ?? e);
+
 /**
  * CommonMark の規則では「**」の直後・直前が括弧や句読点で、外側が日本語だと太字にならない
  * （例: **「境界値」**と）。コード以外に残った「**…**」を太字に変換する。
@@ -83,7 +89,7 @@ export const renderArticle = (markdown: string, articleUrl: (slug: string) => st
         const inner = this.parser.parseInline(token.tokens);
         if (token.depth !== 2) return `<h${token.depth}>${inner}</h${token.depth}>\n`;
         const id = `sec-${headings.length + 1}`;
-        headings.push({ id, text: token.text.replace(/[`*_]/g, '') });
+        headings.push({ id, text: htmlToText(inner) });
         return `<h2 id="${id}">${inner}</h2>\n`;
       },
       link(token: Tokens.Link) {
