@@ -1,0 +1,40 @@
+{
+  "groups": [
+    {
+      "title": "リポジトリ作成",
+      "items": [
+        { "label": "リポジトリを作る", "code": "svnadmin create /var/svn/repo" },
+        { "label": "標準構成を作る", "code": "svn mkdir URL/trunk URL/branches URL/tags -m \"init\"" },
+        { "label": "既存ソースを登録", "code": "svn import ./src URL/trunk -m \"import\"" },
+        { "label": "最新リビジョン番号", "code": "svnlook youngest /var/svn/repo" }
+      ]
+    },
+    {
+      "title": "公開・アクセス権",
+      "items": [
+        { "label": "svnserve 起動", "code": "svnserve -d -r /var/svn" },
+        { "label": "認証の設定", "code": "conf/svnserve.conf  conf/passwd" },
+        { "label": "パスごとの権限", "code": "conf/authz  [/trunk] user = rw" },
+        { "label": "Apache で公開", "code": "mod_dav_svn  <Location /svn> DAV svn" }
+      ]
+    },
+    {
+      "title": "バックアップ・移行",
+      "items": [
+        { "label": "ダンプ", "code": "svnadmin dump /var/svn/repo > repo.dump" },
+        { "label": "ロード", "code": "svnadmin load /var/svn/new < repo.dump" },
+        { "label": "ホットコピー", "code": "svnadmin hotcopy /var/svn/repo /backup/repo" },
+        { "label": "整合性チェック", "code": "svnadmin verify /var/svn/repo" }
+      ]
+    },
+    {
+      "title": "フック・調査",
+      "items": [
+        { "label": "コミット前チェック", "code": "hooks/pre-commit（終了コード0以外で拒否）" },
+        { "label": "コミット後通知", "code": "hooks/post-commit" },
+        { "label": "変更ファイル一覧", "code": "svnlook changed -r 120 /var/svn/repo" },
+        { "label": "ログメッセージ", "code": "svnlook log -r 120 /var/svn/repo" }
+      ]
+    }
+  ]
+}
