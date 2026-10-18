@@ -317,6 +317,38 @@ export const technologyDetails: Record<string, TechnologyDetail> = {
       { title: '変更の取り消し', code: 'svn revert file.txt' },
     ],
   },
+  subversion: {
+    officialUrl: 'https://svnbook.red-bean.com/',
+    useCases: ['リポジトリの構築', 'アクセス権の設定', 'バックアップ・移行', 'コミット時のチェック（フック）'],
+    quickRefs: [
+      {
+        title: 'リポジトリ作成と標準構成',
+        code: 'svnadmin create /var/svn/repo\nsvn mkdir file:///var/svn/repo/{trunk,branches,tags} -m "init"',
+      },
+      { title: 'svnserveで公開', code: 'svnserve -d -r /var/svn\n# 接続: svn://server/repo' },
+      {
+        title: 'バックアップと復元',
+        code: 'svnadmin dump /var/svn/repo > repo.dump\nsvnadmin load /var/svn/new < repo.dump',
+      },
+      { title: 'リポジトリの点検・情報', code: 'svnadmin verify /var/svn/repo\nsvnlook youngest /var/svn/repo' },
+    ],
+  },
+  tortoisesvn: {
+    officialUrl: 'https://tortoisesvn.net/docs/release/TortoiseSVN_ja/index.html',
+    useCases: ['エクスプローラーからのSVN操作', '差分・履歴の確認', '競合の解決', 'リリース前の変更確認'],
+    quickRefs: [
+      {
+        title: '基本の流れ（右クリック）',
+        code: 'SVN更新 → 修正 → SVNコミット\n（コミット前に「変更をチェック」で差分を確認）',
+      },
+      {
+        title: 'アイコンの意味',
+        code: '緑のチェック   変更なし\n赤の！        変更あり\n黄色の！      競合\n青の＋        追加予定',
+      },
+      { title: '変更を取り消す', code: '右クリック → TortoiseSVN → 元に戻す' },
+      { title: '履歴を見る', code: '右クリック → TortoiseSVN → ログを表示\n（2つのリビジョンを選んで差分を比較）' },
+    ],
+  },
   git: {
     officialUrl: 'https://git-scm.com/book/ja/v2',
     useCases: ['ソース管理', 'チーム開発', 'ブランチ運用', '変更履歴の調査'],
@@ -394,6 +426,25 @@ export const technologyDetails: Record<string, TechnologyDetail> = {
       { title: 'Windows: ファイルも表示', code: 'tree /F' },
       { title: 'Windows: テキストに出力', code: 'tree /F /A > tree.txt' },
       { title: 'Linux: 深さ指定・除外', code: "tree -L 2 -I 'node_modules|dist'" },
+    ],
+  },
+  sh: {
+    officialUrl: 'https://pubs.opengroup.org/onlinepubs/9799919799/utilities/V3_chap02.html',
+    useCases: ['バッチ処理の自動化', 'テストデータの投入', 'ログ・ファイルの整理', '定期実行（cron）'],
+    quickRefs: [
+      { title: 'システム日付・時刻', code: 'TODAY=$(date +%Y%m%d)   # 20261018\nNOW=$(date +%H%M%S)     # 141002' },
+      {
+        title: '半年前の1日と月末（GNU date）',
+        code: 'FIRST_DAY=$(date -d "$(echo $TARGET_DAY | cut -c1-6)01 -6 month" +%Y%m%d)\nEND_DAY=$(date -d "$FIRST_DAY +1 month -1 day" +%Y%m%d)',
+      },
+      {
+        title: '数字チェック',
+        code: 'case "$1" in\n  \'\' | *[!0-9]*) echo "数字で入力してください" >&2; exit 1 ;;\nesac',
+      },
+      {
+        title: '回数指定のループと終了コード',
+        code: 'i=1\nwhile [ "$i" -le 6 ]; do\n  ./InsertData.sh "$NO" "$MAX_NUM" || exit 1\n  i=$((i + 1))\ndone',
+      },
     ],
   },
   redmine: {

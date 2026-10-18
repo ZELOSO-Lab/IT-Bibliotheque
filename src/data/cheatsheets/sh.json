@@ -1,0 +1,40 @@
+{
+  "groups": [
+    {
+      "title": "変数・引数",
+      "items": [
+        { "label": "代入（= の前後に空白なし）", "code": "MAX_NUM=10" },
+        { "label": "引数 / 引数の数", "code": "$1 $2 … / $#" },
+        { "label": "コマンドの結果を代入", "code": "TODAY=$(date +%Y%m%d)" },
+        { "label": "未指定ならエラー終了", "code": ": \"${1:?No を指定してください}\"" }
+      ]
+    },
+    {
+      "title": "条件・入力チェック",
+      "items": [
+        { "label": "数値比較", "code": "[ \"$a\" -eq 1 ]  -ne -lt -le -gt -ge" },
+        { "label": "文字列比較 / 空文字", "code": "[ \"$s\" = \"x\" ]  [ -z \"$s\" ]" },
+        { "label": "数字だけかチェック", "code": "case \"$1\" in ''|*[!0-9]*) exit 1;; esac" },
+        { "label": "ファイルの存在", "code": "[ -f file ]  [ -d dir ]" }
+      ]
+    },
+    {
+      "title": "ループ・終了コード",
+      "items": [
+        { "label": "回数指定", "code": "i=1; while [ $i -le 6 ]; do …; i=$((i+1)); done" },
+        { "label": "一覧を順に処理", "code": "for f in *.csv; do echo \"$f\"; done" },
+        { "label": "直前の終了コード", "code": "echo $?   # 0 は成功" },
+        { "label": "失敗したら止める", "code": "./InsertData.sh \"$NO\" || exit 1" }
+      ]
+    },
+    {
+      "title": "日付（GNU date）",
+      "items": [
+        { "label": "システム日付 / 時刻", "code": "date +%Y%m%d / date +%H%M%S" },
+        { "label": "6か月前の1日", "code": "date -d \"${YM}01 -6 month\" +%Y%m%d" },
+        { "label": "月末日", "code": "date -d \"$FIRST +1 month -1 day\" +%Y%m%d" },
+        { "label": "翌日", "code": "date -d \"$DAY +1 day\" +%Y%m%d" }
+      ]
+    }
+  ]
+}

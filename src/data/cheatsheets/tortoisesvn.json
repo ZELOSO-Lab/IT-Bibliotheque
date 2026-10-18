@@ -1,0 +1,40 @@
+{
+  "groups": [
+    {
+      "title": "基本操作（右クリック）",
+      "items": [
+        { "label": "取得", "code": "SVNチェックアウト" },
+        { "label": "最新化", "code": "SVN更新" },
+        { "label": "反映", "code": "SVNコミット" },
+        { "label": "コミット前の確認", "code": "TortoiseSVN → 変更をチェック" }
+      ]
+    },
+    {
+      "title": "ファイル操作",
+      "items": [
+        { "label": "追加", "code": "TortoiseSVN → 追加" },
+        { "label": "削除（履歴を残す）", "code": "TortoiseSVN → 削除" },
+        { "label": "名前変更", "code": "TortoiseSVN → 名前の変更" },
+        { "label": "変更を取り消す", "code": "TortoiseSVN → 元に戻す" }
+      ]
+    },
+    {
+      "title": "履歴・差分",
+      "items": [
+        { "label": "履歴を見る", "code": "TortoiseSVN → ログを表示" },
+        { "label": "作業コピーとの差分", "code": "TortoiseSVN → 差分" },
+        { "label": "誰がいつ変えたか", "code": "TortoiseSVN → 注釈" },
+        { "label": "過去の版に戻す", "code": "ログ → 右クリック → このリビジョンに復元" }
+      ]
+    },
+    {
+      "title": "トラブル対応",
+      "items": [
+        { "label": "競合（黄色の！）", "code": "競合の編集 → 解決済み" },
+        { "label": "ロック・中断後", "code": "TortoiseSVN → クリーンアップ" },
+        { "label": "ブランチ切替", "code": "TortoiseSVN → 切り替え" },
+        { "label": "ブランチを取り込む", "code": "TortoiseSVN → マージ" }
+      ]
+    }
+  ]
+}

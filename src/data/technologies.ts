@@ -294,6 +294,28 @@ export const technologies: Technology[] = [
     createdAt: '2026-10-01',
   }),
   define({
+    name: 'Apache Subversion',
+    slug: 'subversion',
+    category: 'devtools',
+    summary: 'Apache Software Foundationの集中型バージョン管理システム。リポジトリの構築・運用側。',
+    description:
+      'Apache Subversionのリポジトリ作成、svnserve / Apacheでの公開、フック、バックアップ（dump / load）などサーバー運用の技術情報をまとめています。',
+    icon: 'svn',
+    keywords: ['apache subversion', 'subversion', 'svn', 'svnadmin', 'svnserve', 'リポジトリ', 'バージョン管理'],
+    createdAt: '2026-10-18',
+  }),
+  define({
+    name: 'TortoiseSVN',
+    slug: 'tortoisesvn',
+    category: 'devtools',
+    summary: 'エクスプローラーの右クリックからSVNを操作できるWindows用クライアント。',
+    description:
+      'TortoiseSVNのチェックアウト、更新、コミット、差分の確認、ログ表示、競合の解決などの技術情報をまとめています。',
+    icon: 'svn',
+    keywords: ['tortoisesvn', 'tortoise', 'トータス', 'トータスsvn', 'svn', 'subversion', 'バージョン管理'],
+    createdAt: '2026-10-18',
+  }),
+  define({
     name: 'Git',
     slug: 'git',
     category: 'devtools',
@@ -364,6 +386,18 @@ export const technologies: Technology[] = [
     description: 'treeコマンドのオプション、Windows / Linuxでの使い方、出力例などの技術情報をまとめています。',
     keywords: ['tree', 'ツリー', 'ディレクトリ', 'コマンド', 'command'],
     createdAt: '2026-10-01',
+  }),
+
+  define({
+    name: 'sh',
+    slug: 'sh',
+    category: 'terminal',
+    summary: 'UNIX / Linux標準のシェル。バッチ処理やデータ投入の自動化に使うシェルスクリプト。',
+    description:
+      'sh（シェルスクリプト）の変数、引数、条件分岐、ループ、日付計算、終了コードなどの技術情報をまとめています。',
+    icon: 'sh',
+    keywords: ['sh', 'shell', 'シェル', 'シェルスクリプト', 'shell script', 'bash', 'ksh', 'linux', 'unix', 'command'],
+    createdAt: '2026-10-18',
   }),
 
   // ── Project Management ────────────────────────
