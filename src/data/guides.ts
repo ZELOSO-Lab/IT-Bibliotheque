@@ -1,8 +1,8 @@
 import type { ArticleBody, GuideMeta } from '../types/article';
 
 /**
- * 技術まとめは content/guides/{技術slug}.md に置くだけで、技術ページの「項目から探す」とまとめリンクがポータル内のページに切り替わる。
- * 置いていない技術は、従来どおり外部の技術まとめページ（technology.url）へリンクする。
+ * 技術まとめは content/guides/{技術slug}.md で管理する。全技術に必須で、ない場合はビルドが止まる。
+ * 初版は npm run guides:generate で技術データから生成し、本文は .md を直接書き換えて充実させる。
  */
 const metaModules = import.meta.glob<GuideMeta>('/content/guides/*.md', {
   query: '?meta',
@@ -17,8 +17,6 @@ export const getGuide = (slug: string | undefined): GuideMeta | undefined => {
   const path = slug ? pathBySlug.get(slug) : undefined;
   return path ? metaModules[path] : undefined;
 };
-
-export const hasGuide = (slug: string): boolean => pathBySlug.has(slug);
 
 export const loadGuideBody = async (slug: string): Promise<ArticleBody | undefined> => {
   const path = pathBySlug.get(slug);

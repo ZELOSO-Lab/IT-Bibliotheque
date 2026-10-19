@@ -1,4 +1,4 @@
-import type { SectionKey, Technology } from '../types/technology';
+import type { SectionKey } from '../types/technology';
 
 export type Section = {
   key: SectionKey;
@@ -18,6 +18,3 @@ export const sections: Section[] = [
   { key: 'tips', label: '実務Tips', description: '現場で役立つノウハウ', anchor: 'tips' },
   { key: 'links', label: '関連リンク', description: '公式ドキュメント・参考資料', anchor: 'links' },
 ];
-
-export const sectionUrl = (technology: Technology, section: Section): string =>
-  technology.sectionUrls?.[section.key] ?? `${technology.url}#${section.anchor}`;
