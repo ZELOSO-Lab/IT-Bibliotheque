@@ -13,19 +13,11 @@ export const site = {
    * GitHub Pages（リポジトリ ZELOSO-Lab/IT-Bibliotheque）で公開。
    */
   url: 'https://zeloso-lab.github.io/IT-Bibliotheque',
-  /**
-   * 各技術まとめページ（別URL）のベースURL。WordPress.com の固定ページ（/{slug}/）。
-   * 技術ごとに個別URLを指定する場合は data/technologies.ts の url を直接書き換える。
-   */
-  summaryBaseUrl: 'https://itbibliotheque.wordpress.com',
   ogImage: '/ogp.png',
   locale: 'ja_JP',
   copyrightHolder: 'IT Bibliotheque!',
   startYear: 2026,
 } as const;
-
-/** 技術まとめページのURLを組み立てる */
-export const summaryUrl = (slug: string): string => `${site.summaryBaseUrl}/${slug}/`;
 
 /**
  * チートシート作成ツール（単体ツール）の設置パス。同一サイト内に置く（例: '/tools/cheatsheet/'）。

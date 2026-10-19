@@ -14,7 +14,7 @@ export type Category = {
   order: number;
 };
 
-/** 技術詳細ページに並べる項目。外部まとめページ内のアンカーへリンクする。 */
+/** 技術詳細ページに並べる項目。技術まとめページ（/technology/{slug}/guide）内のアンカーへリンクする。 */
 export type SectionKey = 'basics' | 'setup' | 'commands' | 'samples' | 'errors' | 'tips' | 'links';
 
 export type Technology = {
@@ -31,8 +31,6 @@ export type Technology = {
   description: string;
   /** カード用の短い説明 */
   summary: string;
-  /** 技術まとめページ（別URL） */
-  url: string;
   /** アイコンキー（utils/icons.ts に登録）。未登録・未指定なら汎用アイコン */
   icon?: string;
   /** 別名・表記ゆれ・検索用キーワード */
@@ -43,8 +41,6 @@ export type Technology = {
   featuredOrder?: number;
   /** 登録日（YYYY-MM-DD）。「最近追加された技術」に使用 */
   createdAt: string;
-  /** 項目ごとのリンクを個別に上書きする場合に指定 */
-  sectionUrls?: Partial<Record<SectionKey, string>>;
 };
 
 /** 技術ページに表示する補足情報（クイックリファレンス等）。技術まとめページへの導線を補う最小限の内容 */

@@ -1,17 +1,15 @@
-import { summaryUrl } from '../config/site';
 import type { Technology } from '../types/technology';
 
 /**
  * 技術データ。技術を追加するときはこの配列に1件追加するだけでサイト全体に反映される。
- * - url を省略すると config/site.ts の summaryBaseUrl + slug（仮URL）が使われる
+ * - 技術まとめ（content/guides/{slug}.md）も必要。npm run guides:generate で初版を生成できる
  * - id を省略すると slug が使われる
  */
-type TechnologyInput = Omit<Technology, 'id' | 'url'> & { id?: string; url?: string };
+type TechnologyInput = Omit<Technology, 'id'> & { id?: string };
 
 const define = (input: TechnologyInput): Technology => ({
   ...input,
   id: input.id ?? input.slug,
-  url: input.url ?? summaryUrl(input.slug),
 });
 
 export const technologies: Technology[] = [

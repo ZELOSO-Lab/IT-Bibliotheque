@@ -1,6 +1,6 @@
 # IT Bibliotheque!
 
-技術情報ポータル（React + TypeScript + Vite の静的サイト）。各技術の詳細は別URLの「技術まとめページ」で管理し、本サイトは入口に徹する。
+技術情報ポータル（React + TypeScript + Vite の静的サイト）。技術ページ・技術まとめ・記事まで、すべてこのリポジトリだけで完結する。
 
 ## コマンド
 
@@ -9,7 +9,7 @@ npm install
 npm run dev        # 開発サーバ
 npm run lint       # ESLint
 npm run format     # Prettier で整形
-npm run wp:generate # WordPress 用の技術まとめページ雛形を wordpress/ に生成
+npm run guides:generate # 技術まとめがない技術に、技術データから初版を生成（既存の .md は上書きしない）
 npm run build      # 型チェック + ビルド（dist/ に静的ファイル一式を出力）
 npm run preview    # ビルド結果の確認
 ```
@@ -17,8 +17,8 @@ npm run preview    # ビルド結果の確認
 ## 公開構成
 
 - ポータル（このリポジトリ）: GitHub Pages などの静的ホスティング。`.github/workflows/deploy.yml` で main への push 時に自動公開
-- 技術まとめページ: WordPress.com（https://itbibliotheque.wordpress.com/{slug}/）。雛形と手順は [`wordpress/`](wordpress/README.md)
-- 記事（シリーズ「現場の声」など）: ポータル内の `/articles/` と `/articles/{slug}/`。原稿は `content/articles/`。WordPress.com にも同じ原稿から投稿できる
+- 技術まとめページ: ポータル内の `/technology/{slug}/guide/`。原稿は `content/guides/`
+- 記事（シリーズ「現場の声」など）: ポータル内の `/articles/` と `/articles/{slug}/`。原稿は `content/articles/`
 - 公開URLが決まったら `src/config/site.ts` の `url` を更新する（canonical・OGP・sitemap に反映）
 
 サブパスで公開する場合（例: GitHub Pages のプロジェクトサイト）: `BASE_PATH=/repo-name/ npm run build`
@@ -28,12 +28,11 @@ npm run preview    # ビルド結果の確認
 | やりたいこと                        | 編集するファイル                                                                                       |
 | ----------------------------------- | ------------------------------------------------------------------------------------------------------ |
 | サイト名・URL・キャッチコピー       | `src/config/site.ts`                                                                                   |
-| 技術を追加                          | `src/data/technologies.ts` に `define({...})` を1件追加                                                |
-| 技術まとめページのURL変更           | `src/data/technologies.ts` の `url`（一括なら `site.summaryBaseUrl`）                                  |
+| 技術を追加                          | `src/data/technologies.ts` に `define({...})` を1件追加し、`npm run guides:generate`                   |
 | 「よく使う技術」と並び順            | 各技術の `featured` / `featuredOrder`                                                                  |
 | カテゴリ追加                        | `src/types/technology.ts` の `CategoryId` と `src/data/categories.ts`、色は `src/styles/variables.css` |
 | 技術ページの項目（基礎・環境構築…） | `src/data/sections.ts`                                                                                 |
-| 技術まとめをポータル内に書く        | `content/guides/{技術slug}.md` を置く（下記「技術まとめ」）                                            |
+| 技術まとめを書く                    | `content/guides/{技術slug}.md` を編集（下記「技術まとめ」）                                            |
 | 記事を追加                          | `content/articles/{シリーズ}/{連番4桁}-{slug}.md` を置く（下記「記事」）                               |
 | ナビ・検索例                        | `src/data/navigation.ts`                                                                               |
 | アイコン追加                        | `src/utils/icons.ts`（Simple Icons から個別 import）                                                   |
@@ -47,11 +46,11 @@ npm run preview    # ビルド結果の確認
 - 関連する技術は `category`・`tags` を技術名と照合して自動で決まる。明示する場合は `technologies: [c, oracle-database]`（技術の slug）
 - 本文は GitHub 互換の Markdown。ビルド時に HTML 化するのでブラウザに Markdown パーサーは載らない
 - 本文の先頭 H1 はタイトルと重複するため表示しない。H2 が目次になる
-- WordPress 用の記事間リンク `https://itbibliotheque.wordpress.com/?name={slug}` は、ポータルでは `/articles/{slug}/` に自動で置き換わる
+- 旧 WordPress 用の記事間リンク `https://itbibliotheque.wordpress.com/?name={slug}` は、`/articles/{slug}/` に自動で置き換わる
 
 ## 技術まとめ
 
-`content/guides/{技術slug}.md` を置くと `/technology/{slug}/guide/` に技術まとめページができ、技術ページの「項目から探す」・まとめリンク・関連リンク一覧がポータル内のページに切り替わる（置いていない技術は従来どおり WordPress へリンク）。
+`content/guides/{技術slug}.md` が `/technology/{slug}/guide/` の技術まとめページになり、技術ページの「項目から探す」・まとめリンク・関連リンク一覧の遷移先になる。全技術に必須で、欠けているとビルドが止まる（新しい技術は `npm run guides:generate` で初版を作る）。
 
 - front matter: `title` `slug`（技術の slug）`excerpt` `updated` は必須
 - H2 を `基礎` `環境構築` `コマンド` `サンプル` `エラー対応` `実務Tips` `関連リンク` にすると、技術ページの各項目からその見出しへ直接移動できる（`src/data/sections.ts` の label と一致させる）
@@ -65,7 +64,6 @@ define({
   category: 'database',
   summary: 'カード用の短い説明',
   description: '技術ページ・SEO用の説明',
-  url: 'https://example.com/oracle', // 省略時は summaryBaseUrl/slug/
   icon: 'oracle',                    // 未登録なら頭文字アイコン
   keywords: ['oracle', 'オラクル', 'sql', 'database'],
   featured: true,

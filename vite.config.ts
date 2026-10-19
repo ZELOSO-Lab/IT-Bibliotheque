@@ -34,16 +34,24 @@ const readArticles = (): ArticleMeta[] =>
         })
     : [];
 
-/** 技術まとめ（content/guides/{技術slug}.md）がある技術の slug */
+/** 技術まとめ（content/guides/{技術slug}.md）。全技術に必須（技術ページの項目リンクの遷移先になるため） */
 const GUIDES_DIR = path.resolve('content/guides');
-const guideSlugs = (): string[] =>
-  existsSync(GUIDES_DIR)
+const assertGuides = () => {
+  const slugs = existsSync(GUIDES_DIR)
     ? readdirSync(GUIDES_DIR)
         .filter((f) => f.endsWith('.md'))
         .map((f) => parseGuideSource(readFileSync(path.join(GUIDES_DIR, f), 'utf8'), f).meta.slug)
     : [];
+  const missing = technologies.filter((t) => !slugs.includes(t.slug)).map((t) => t.slug);
+  if (missing.length > 0) {
+    throw new Error(`技術まとめがありません: ${missing.join(', ')}（npm run guides:generate で初版を生成できます）`);
+  }
+};
 
-const routes = () => staticRoutes(hasCheatSheetFile, readArticles(), guideSlugs());
+const routes = () => {
+  assertGuides();
+  return staticRoutes(hasCheatSheetFile, readArticles());
+};
 
 /** 技術まとめの H2 は項目名（基礎・環境構築…）から、技術ページのリンクと同じアンカーにする */
 const guideHeadingId = (text: string, index: number) =>

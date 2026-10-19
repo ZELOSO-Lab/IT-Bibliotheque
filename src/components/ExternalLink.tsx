@@ -6,7 +6,7 @@ type Props = {
   children: ReactNode;
 };
 
-/** 外部サイト（技術まとめページ）へのリンク。新しいタブで開くことを支援技術にも伝える */
+/** 外部サイト（公式ドキュメント等）へのリンク。新しいタブで開くことを支援技術にも伝える */
 export function ExternalLink({ href, className, children }: Props) {
   return (
     <a href={href} className={className} target="_blank" rel="noopener noreferrer">
