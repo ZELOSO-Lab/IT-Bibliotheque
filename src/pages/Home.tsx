@@ -8,7 +8,7 @@ import { SearchBox } from '../components/SearchBox';
 import { SectionHeader } from '../components/SectionHeader';
 import { TechnologyGrid } from '../components/TechnologyGrid';
 import { site } from '../config/site';
-import { articles } from '../data/articles';
+import { careerArticles, techArticles } from '../data/articles';
 import { sections } from '../data/sections';
 import { technologies } from '../data/technologies';
 import { usePageMeta } from '../hooks/usePageMeta';
@@ -20,7 +20,8 @@ import styles from './Home.module.css';
 
 const featured = getFeaturedTechnologies();
 const recent = getRecentTechnologies(6);
-const latestArticles = articles.slice(0, 3);
+const latestArticles = techArticles.slice(0, 3);
+const careerPicks = careerArticles.slice(0, 3);
 const INSTANT_RESULTS = 8;
 const linkCount = technologies.length * (sections.length + 1);
 
@@ -106,10 +107,28 @@ export function Home() {
               id="latest-articles"
               title="新着記事"
               description="開発現場で実際に困ったことと、その解決手順をまとめています。"
-              more={{ to: '/articles', label: `記事一覧（${articles.length}件）` }}
+              more={{ to: '/articles', label: `記事一覧（${techArticles.length}件）` }}
             />
             <ul className={styles.articles}>
               {latestArticles.map((a) => (
+                <li key={a.slug}>
+                  <ArticleCard article={a} />
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        {careerPicks.length > 0 && (
+          <section className={page.section} aria-labelledby="career">
+            <SectionHeader
+              id="career"
+              title="キャリア・働き方"
+              description="残業の上限・休日・割増賃金の決まりと、資格の取り方・勉強法をまとめています。"
+              more={{ to: '/career', label: `すべて見る（${careerArticles.length}件）` }}
+            />
+            <ul className={styles.articles}>
+              {careerPicks.map((a) => (
                 <li key={a.slug}>
                   <ArticleCard article={a} />
                 </li>

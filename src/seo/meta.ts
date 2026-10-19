@@ -75,6 +75,12 @@ export const pageMeta = {
     path: `/articles/${a.slug}`,
     ogType: 'article',
   }),
+  career: (): PageMeta => ({
+    title: withSiteName('キャリア・働き方'),
+    description:
+      '36協定の上限時間・法定休日・連勤・割増賃金など、エンジニアが現場で困る労務の決まりを根拠条文つきで解説。IT資格の選び方・取り方・勉強法・おすすめの本とサイトもまとめています。',
+    path: '/career',
+  }),
   search: (): PageMeta => ({
     title: withSiteName('技術検索'),
     description: '技術名・別名・キーワード・カテゴリから技術情報を検索できます。',

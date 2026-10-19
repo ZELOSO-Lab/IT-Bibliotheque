@@ -13,6 +13,7 @@ export const staticRoutes = (hasCheatSheet: (slug: string) => boolean, articles:
   ...technologies.filter((t) => hasCheatSheet(t.slug)).map(pageMeta.cheatsheet),
   pageMeta.articles(),
   ...articles.map(pageMeta.article),
+  pageMeta.career(),
   pageMeta.search(),
   pageMeta.about(),
   pageMeta.links(),
