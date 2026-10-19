@@ -5,6 +5,7 @@ export const mainNav = [
   { to: '/technologies', label: '技術一覧' },
   { to: '/cheatsheets', label: 'チートシート' },
   { to: '/articles', label: '記事' },
+  { to: '/career', label: 'キャリア' },
   { to: '/about', label: 'About' },
 ] as const;
 
@@ -14,6 +15,7 @@ export const footerNav = [
   { to: '/categories', label: 'カテゴリ' },
   { to: '/cheatsheets', label: 'チートシート' },
   { to: '/articles', label: '記事' },
+  { to: '/career', label: 'キャリア・働き方' },
   { to: '/links', label: '関連リンク' },
   { to: '/privacy', label: 'プライバシーポリシー' },
   { to: '/terms', label: '利用規約' },

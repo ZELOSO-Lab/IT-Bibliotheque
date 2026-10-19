@@ -3,6 +3,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { Layout } from './components/Layout';
 import { About } from './pages/About';
 import { Articles } from './pages/Articles';
+import { Career } from './pages/Career';
 import { Categories } from './pages/Categories';
 import { CheatSheets } from './pages/CheatSheets';
 import { Home } from './pages/Home';
@@ -39,6 +40,7 @@ export function App() {
           <Route path="cheatsheets" element={<CheatSheets />} />
           <Route path="articles" element={<Articles />} />
           <Route path="articles/:slug" element={<ArticleDetail />} />
+          <Route path="career" element={<Career />} />
           <Route path="search" element={<Search />} />
           <Route path="about" element={<About />} />
           <Route path="links" element={<Links />} />

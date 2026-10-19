@@ -78,8 +78,7 @@ const articles = (): Plugin => {
       const isGuide = path.resolve(file).startsWith(GUIDES_DIR + path.sep);
       const { meta, markdown } = isGuide ? parseGuideSource(raw, file) : parseArticleSource(raw, file);
       if (query === 'meta') return `export const meta = ${JSON.stringify(meta)};`;
-      const articleUrl = (slug: string) => `${base}articles/${slug}/`;
-      const { html, headings } = renderArticle(markdown, articleUrl, isGuide ? guideHeadingId : undefined);
+      const { html, headings } = renderArticle(markdown, base, isGuide ? guideHeadingId : undefined);
       return `export const html = ${JSON.stringify(html)};\nexport const headings = ${JSON.stringify(headings)};`;
     },
   };

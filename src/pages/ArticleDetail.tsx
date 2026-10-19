@@ -4,7 +4,7 @@ import { ArticleCard } from '../components/ArticleCard';
 import { Breadcrumb } from '../components/Breadcrumb';
 import { SectionHeader } from '../components/SectionHeader';
 import { TechIcon } from '../components/TechIcon';
-import { articles, getArticleBySlug, getArticleTechnologies, loadArticleBody } from '../data/articles';
+import { articles, getArticleArea, getArticleBySlug, getArticleTechnologies, loadArticleBody } from '../data/articles';
 import { usePageMeta } from '../hooks/usePageMeta';
 import { pageMeta } from '../seo/meta';
 import type { ArticleBody, ArticleMeta } from '../types/article';
@@ -31,6 +31,8 @@ function ArticleDetailContent({ article }: { article: ArticleMeta }) {
   usePageMeta(pageMeta.article(article));
   const navigate = useNavigate();
   const [body, setBody] = useState<ArticleBody | null>(null);
+  const area = getArticleArea(article);
+  const categoryPath = `${area.path}?category=${encodeURIComponent(article.category)}`;
   const technologies = getArticleTechnologies(article);
   const related = articles.filter((a) => a.category === article.category && a.slug !== article.slug).slice(0, 3);
   const { prev, next } = getSiblings(article);
@@ -45,14 +47,13 @@ function ArticleDetailContent({ article }: { article: ArticleMeta }) {
     };
   }, [article.slug]);
 
-  // 本文中の記事間リンクはページを再読み込みせずに遷移する
+  // 本文中のポータル内リンク（記事・技術まとめなど）はページを再読み込みせずに遷移する
   const handleBodyClick = (e: MouseEvent<HTMLDivElement>) => {
-    const link = (e.target as HTMLElement).closest<HTMLAnchorElement>('a[data-article-link]');
-    if (!link || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
-    const slug = link.pathname.replace(/\/$/, '').split('/').pop();
-    if (!slug) return;
+    const link = (e.target as HTMLElement).closest<HTMLAnchorElement>('a[data-portal-link]');
+    const to = link?.dataset.portalLink;
+    if (!to || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
     e.preventDefault();
-    navigate(`/articles/${slug}`);
+    navigate(to);
     window.scrollTo(0, 0);
   };
 
@@ -61,10 +62,10 @@ function ArticleDetailContent({ article }: { article: ArticleMeta }) {
       <div className={styles.hero}>
         <div className="container">
           <Breadcrumb
-            items={[{ label: 'ホーム', to: '/' }, { label: '記事', to: '/articles' }, { label: article.title }]}
+            items={[{ label: 'ホーム', to: '/' }, { label: area.label, to: area.path }, { label: article.title }]}
           />
           <p className={styles.series}>
-            <Link to={`/articles?category=${encodeURIComponent(article.category)}`} className={styles.category}>
+            <Link to={categoryPath} className={styles.category}>
               {article.category}
             </Link>
             <span>
@@ -151,7 +152,7 @@ function ArticleDetailContent({ article }: { article: ArticleMeta }) {
             <SectionHeader
               id="related-articles"
               title={`${article.category}の他の記事`}
-              more={{ to: `/articles?category=${encodeURIComponent(article.category)}`, label: 'すべて見る' }}
+              more={{ to: categoryPath, label: 'すべて見る' }}
             />
             <ul className={styles.related}>
               {related.map((a) => (

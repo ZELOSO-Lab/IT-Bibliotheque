@@ -29,12 +29,32 @@ export const loadArticleBody = async (slug: string): Promise<ArticleBody | undef
   return load ? await load() : undefined;
 };
 
-/** 記事カテゴリの一覧（記事数の多い順） */
-export const articleCategories: { name: string; count: number }[] = [
-  ...articles.reduce((m, a) => m.set(a.category, (m.get(a.category) ?? 0) + 1), new Map<string, number>()),
-]
-  .map(([name, count]) => ({ name, count }))
-  .sort((a, b) => b.count - a.count);
+export type ArticleArea = { key: 'tech' | 'career'; label: string; path: string };
+
+/** 記事の掲載先。キャリア・働き方のシリーズは /career、それ以外（技術記事）は /articles に並べる */
+export const articleAreas = {
+  tech: { key: 'tech', label: '記事', path: '/articles' },
+  career: { key: 'career', label: 'キャリア・働き方', path: '/career' },
+} as const satisfies Record<ArticleArea['key'], ArticleArea>;
+
+/** キャリア・働き方に載せるシリーズ（content/articles/{フォルダ名}） */
+const CAREER_SERIES = ['career'];
+
+export const getArticleArea = (article: ArticleMeta): ArticleArea =>
+  CAREER_SERIES.includes(article.seriesSlug) ? articleAreas.career : articleAreas.tech;
+
+export const techArticles = articles.filter((a) => getArticleArea(a).key === 'tech');
+
+/** キャリア・働き方は読む順に並べたいので連番順 */
+export const careerArticles = articles
+  .filter((a) => getArticleArea(a).key === 'career')
+  .sort((a, b) => a.no.localeCompare(b.no));
+
+/** 記事カテゴリの一覧（記事数の多い順。同数なら先に出てくるカテゴリが先） */
+export const countCategories = (list: ArticleMeta[]): { name: string; count: number }[] =>
+  [...list.reduce((m, a) => m.set(a.category, (m.get(a.category) ?? 0) + 1), new Map<string, number>())]
+    .map(([name, count]) => ({ name, count }))
+    .sort((a, b) => b.count - a.count);
 
 const normalize = (s: string) => s.trim().toLowerCase();
 const matches = (t: Technology, term: string) => normalize(t.name) === term || t.slug === term;

@@ -95,10 +95,14 @@ const fixCjkStrong = (html: string): string => {
     .replace(/\uE000(\d+)\uE000/g, (_, i: string) => codes[Number(i)] ?? '');
 };
 
-/** Markdown を本文HTMLに変換する（ビルド時のみ実行。ブラウザにパーサーを載せない） */
+/**
+ * Markdown を本文HTMLに変換する（ビルド時のみ実行。ブラウザにパーサーを載せない）
+ * ポータル内リンク（記事間リンクと「/technology/aws/guide/」のようなサイトルートからのパス）は
+ * 配信パス（base）を付け、data-portal-link に遷移先のパスを持たせる。
+ */
 export const renderArticle = (
   markdown: string,
-  articleUrl: (slug: string) => string,
+  base: string,
   /** H2 の id。省略時は sec-1, sec-2 … */
   headingId: (text: string, index: number) => string = (_, i) => `sec-${i + 1}`,
 ): ArticleBody => {
@@ -116,8 +120,9 @@ export const renderArticle = (
       },
       link(token: Tokens.Link) {
         const inner = this.parser.parseInline(token.tokens);
-        const internal = WORDPRESS_ARTICLE_LINK.exec(token.href);
-        if (internal?.[1]) return `<a href="${articleUrl(internal[1])}" data-article-link>${inner}</a>`;
+        const article = WORDPRESS_ARTICLE_LINK.exec(token.href);
+        const portalPath = article?.[1] ? `/articles/${article[1]}/` : /^\/(?!\/)/.test(token.href) ? token.href : null;
+        if (portalPath) return `<a href="${base}${portalPath.slice(1)}" data-portal-link="${portalPath}">${inner}</a>`;
         const external = /^https?:\/\//.test(token.href);
         const attrs = external ? ' target="_blank" rel="noopener noreferrer"' : '';
         return `<a href="${token.href}"${attrs}>${inner}</a>`;

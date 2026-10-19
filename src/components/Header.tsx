@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { getArticleArea, getArticleBySlug } from '../data/articles';
 import { mainNav } from '../data/navigation';
 import { Logo } from './Logo';
 import { SearchBox } from './SearchBox';
@@ -33,6 +34,10 @@ export function Header() {
     setQuery('');
   };
 
+  // 記事ページでは、掲載先（記事 / キャリア・働き方）のメニューを選択状態にする
+  const article = getArticleBySlug(/^\/articles\/([^/]+)/.exec(location.pathname)?.[1]);
+  const articleAreaPath = article ? getArticleArea(article).path : null;
+
   // トップ・検索ページは本文に大きな検索欄があるため、ヘッダー検索は出さない
   const showHeaderSearch = location.pathname !== '/' && location.pathname !== '/search';
 
@@ -64,7 +69,9 @@ export function Header() {
               <li key={item.to}>
                 <NavLink
                   to={item.to}
-                  className={({ isActive }) => `${styles.navLink} ${isActive ? styles.active : ''}`}
+                  className={({ isActive }) =>
+                    `${styles.navLink} ${(articleAreaPath ? item.to === articleAreaPath : isActive) ? styles.active : ''}`
+                  }
                 >
                   {item.label}
                 </NavLink>
