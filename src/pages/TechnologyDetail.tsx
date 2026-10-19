@@ -6,13 +6,14 @@ import { CheatSheetLink } from '../components/CheatSheetLink';
 import { CodeBlock } from '../components/CodeBlock';
 import { ExternalLink } from '../components/ExternalLink';
 import { SectionHeader } from '../components/SectionHeader';
+import { SummaryLink } from '../components/SummaryLink';
 import { TechIcon } from '../components/TechIcon';
 import { TechnologyGrid } from '../components/TechnologyGrid';
 import { getArticlesByTechnology } from '../data/articles';
 import { getCategory } from '../data/categories';
 import { hasCheatSheet } from '../data/cheatsheets';
 import { technologyDetails } from '../data/details';
-import { sectionUrl, sections } from '../data/sections';
+import { sections } from '../data/sections';
 import { getTechnologyBySlug } from '../data/technologies';
 import { usePageMeta } from '../hooks/usePageMeta';
 import { pageMeta } from '../seo/meta';
@@ -58,9 +59,9 @@ function TechnologyDetailContent({ technology }: { technology: Technology }) {
           </div>
           <p className={styles.description}>{technology.description}</p>
           <div className={styles.actions}>
-            <ExternalLink href={technology.url} className={styles.cta}>
+            <SummaryLink technology={technology} className={styles.cta}>
               {technology.name}技術まとめはこちら
-            </ExternalLink>
+            </SummaryLink>
             {hasCheatSheet(technology.slug) && (
               <CheatSheetLink slug={technology.slug} className={styles.ctaSecondary}>
                 チートシートをPDFで作成
@@ -86,10 +87,10 @@ function TechnologyDetailContent({ technology }: { technology: Technology }) {
             <ul className={styles.sections}>
               {sections.map((section) => (
                 <li key={section.key}>
-                  <ExternalLink href={sectionUrl(technology, section)} className={styles.sectionLink}>
+                  <SummaryLink technology={technology} section={section} className={styles.sectionLink}>
                     <span className={styles.sectionLabel}>{section.label}</span>
                     <span className={styles.sectionDesc}>{section.description}</span>
-                  </ExternalLink>
+                  </SummaryLink>
                 </li>
               ))}
             </ul>
@@ -150,9 +151,9 @@ function TechnologyDetailContent({ technology }: { technology: Technology }) {
             <div>
               <dt>技術まとめ</dt>
               <dd>
-                <ExternalLink href={technology.url} className={styles.infoLink}>
+                <SummaryLink technology={technology} className={styles.infoLink}>
                   {technology.name}技術まとめ
-                </ExternalLink>
+                </SummaryLink>
               </dd>
             </div>
             {detail?.officialUrl && (

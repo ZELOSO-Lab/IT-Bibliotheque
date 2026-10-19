@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { ExternalLink } from '../components/ExternalLink';
 import { PageHeader } from '../components/PageHeader';
+import { SummaryLink } from '../components/SummaryLink';
 import { usePageMeta } from '../hooks/usePageMeta';
 import { pageMeta } from '../seo/meta';
 import { getTechnologiesByCategory, sortedCategories } from '../utils/technologies';
@@ -11,7 +11,7 @@ export function Links() {
   usePageMeta(pageMeta.links());
   return (
     <>
-      <PageHeader title="関連リンク" lead="各技術の技術まとめページ（外部URL）への一覧です。" />
+      <PageHeader title="関連リンク" lead="各技術の技術まとめページへの一覧です。" />
       <div className="container">
         <div className={`${page.sectionTight} ${styles.columns}`}>
           {sortedCategories.map((c) => (
@@ -23,9 +23,9 @@ export function Links() {
                 {getTechnologiesByCategory(c.id).map((t) => (
                   <li key={t.id}>
                     <Link to={`/technology/${t.slug}`}>{t.name}</Link>
-                    <ExternalLink href={t.url} className={styles.external}>
+                    <SummaryLink technology={t} className={styles.external}>
                       まとめ
-                    </ExternalLink>
+                    </SummaryLink>
                   </li>
                 ))}
               </ul>
