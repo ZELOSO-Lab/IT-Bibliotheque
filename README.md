@@ -48,7 +48,7 @@ npm run preview    # ビルド結果の確認
 - 本文の先頭 H1 はタイトルと重複するため表示しない。H2 が目次になる
 - 旧 WordPress 用の記事間リンク `https://itbibliotheque.wordpress.com/?name={slug}` は、`/articles/{slug}/` に自動で置き換わる
 - `/technology/aws/guide/` のようにサイトルートから書いたリンクは、配信パス付きのポータル内リンクになる
-- シリーズ `career`（キャリア・働き方）の記事は `/articles/` ではなく `/career/` に並ぶ（カテゴリ「労務」「資格・学習」）。掲載先の振り分けは `src/data/articles.ts` の `CAREER_SERIES`
+- シリーズ `career`（キャリア・働き方）の記事は `/articles/` ではなく `/career/` に並ぶ（カテゴリ「労務」「資格・学習」「メンタルヘルス」「人間関係」「働き方」）。掲載先の振り分けは `src/data/articles.ts` の `CAREER_SERIES`
 - 労務の記事は、冒頭に「最終確認日」、末尾に「根拠条文・参考」を必ず書く（法改正で内容が変わるため）
 
 ## 技術まとめ
