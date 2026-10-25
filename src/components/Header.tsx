@@ -5,6 +5,7 @@ import { mainNav } from '../data/navigation';
 import { Logo } from './Logo';
 import { SearchBox } from './SearchBox';
 import { ThemeToggle } from './ThemeToggle';
+import { XFollowLink } from './XFollowLink';
 import styles from './Header.module.css';
 
 export function Header() {
@@ -78,7 +79,10 @@ export function Header() {
               </li>
             ))}
           </ul>
-          <ThemeToggle />
+          <div className={styles.actions}>
+            <XFollowLink />
+            <ThemeToggle />
+          </div>
         </nav>
       </div>
     </header>

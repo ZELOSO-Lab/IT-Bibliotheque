@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { ArticleCard } from '../components/ArticleCard';
 import { Breadcrumb } from '../components/Breadcrumb';
 import { SectionHeader } from '../components/SectionHeader';
+import { ShareOnX } from '../components/ShareOnX';
 import { TechIcon } from '../components/TechIcon';
 import { articles, getArticleArea, getArticleBySlug, getArticleTechnologies, loadArticleBody } from '../data/articles';
 import { usePageMeta } from '../hooks/usePageMeta';
@@ -92,6 +93,8 @@ function ArticleDetailContent({ article }: { article: ArticleMeta }) {
           ) : (
             <p className={styles.loading}>読み込み中…</p>
           )}
+
+          <ShareOnX title={article.title} path={`/articles/${article.slug}`} />
 
           {(prev || next) && (
             <nav className={styles.pager} aria-label={`${article.series}の前後の記事`}>

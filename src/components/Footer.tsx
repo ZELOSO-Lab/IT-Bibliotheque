@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { site } from '../config/site';
 import { footerNav } from '../data/navigation';
 import { sortedCategories } from '../utils/technologies';
+import { XFollowLink } from './XFollowLink';
 import styles from './Footer.module.css';
 
 export function Footer() {
@@ -13,6 +14,9 @@ export function Footer() {
         <div>
           <p className={styles.name}>{site.name}</p>
           <p className={styles.lead}>{site.description}</p>
+          <p className={styles.social}>
+            <XFollowLink showName />
+          </p>
         </div>
         <nav aria-label="カテゴリ">
           <h2 className={styles.heading}>カテゴリ</h2>

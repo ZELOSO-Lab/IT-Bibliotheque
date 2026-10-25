@@ -3,6 +3,7 @@ import { Link, useLocation, useParams } from 'react-router-dom';
 import { Breadcrumb } from '../components/Breadcrumb';
 import { CheatSheetLink } from '../components/CheatSheetLink';
 import { ExternalLink } from '../components/ExternalLink';
+import { ShareOnX } from '../components/ShareOnX';
 import { TechIcon } from '../components/TechIcon';
 import { getCategory } from '../data/categories';
 import { hasCheatSheet } from '../data/cheatsheets';
@@ -78,6 +79,8 @@ function GuideDetailContent({ technology, guide }: { technology: Technology; gui
           ) : (
             <p className={styles.loading}>読み込み中…</p>
           )}
+
+          <ShareOnX title={guide.title} path={`/technology/${technology.slug}/guide`} />
         </article>
 
         <aside className={styles.aside} aria-label="技術まとめの補足情報">

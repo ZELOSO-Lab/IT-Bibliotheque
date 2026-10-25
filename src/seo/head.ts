@@ -20,6 +20,8 @@ export const headTags = (meta: PageMeta): HeadTag[] => {
     { kind: 'meta', attr: 'property', key: 'og:site_name', content: site.name },
     { kind: 'meta', attr: 'property', key: 'og:locale', content: site.locale },
     { kind: 'meta', attr: 'name', key: 'twitter:card', content: 'summary_large_image' },
+    { kind: 'meta', attr: 'name', key: 'twitter:site', content: `@${site.x.username}` },
+    { kind: 'meta', attr: 'name', key: 'twitter:creator', content: `@${site.x.username}` },
     { kind: 'link', rel: 'canonical', href: url },
   ];
 };
