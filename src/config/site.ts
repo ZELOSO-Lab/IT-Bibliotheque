@@ -17,6 +17,11 @@ export const site = {
   locale: 'ja_JP',
   copyrightHolder: 'IT Bibliotheque!',
   startYear: 2026,
+  /** 公式Xアカウント。Twitter Card（twitter:site / twitter:creator）、フォローリンク、シェアボタンの via に使用 */
+  x: {
+    username: 'ZELOSOLab',
+    url: 'https://x.com/ZELOSOLab',
+  },
 } as const;
 
 /**

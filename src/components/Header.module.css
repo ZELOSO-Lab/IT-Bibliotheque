@@ -27,6 +27,12 @@
   margin-left: auto;
 }
 
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .navList {
   display: flex;
   gap: 4px;
@@ -153,5 +159,10 @@
 @media (max-width: 520px) {
   .search {
     display: none;
+  }
+
+  /* 検索欄を隠したときもメニューボタンを右端に寄せる */
+  .search + .menuButton {
+    margin-left: auto;
   }
 }
