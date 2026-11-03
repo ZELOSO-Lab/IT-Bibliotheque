@@ -11,7 +11,15 @@ export function Links() {
   usePageMeta(pageMeta.links());
   return (
     <>
-      <PageHeader title="関連リンク" lead="各技術の技術まとめページへの一覧です。" />
+      <PageHeader
+        title="関連リンク"
+        lead={
+          <>
+            各技術の技術まとめページへの一覧です。ブラウザでコードを実行できる外部サイトは
+            <Link to="/playgrounds">コードを試せるサイト</Link>にまとめています。
+          </>
+        }
+      />
       <div className="container">
         <div className={`${page.sectionTight} ${styles.columns}`}>
           {sortedCategories.map((c) => (

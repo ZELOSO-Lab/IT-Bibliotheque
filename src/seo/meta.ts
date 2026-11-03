@@ -91,6 +91,12 @@ export const pageMeta = {
     description: `${site.name}の目的と使い方について。`,
     path: '/about',
   }),
+  playgrounds: (): PageMeta => ({
+    title: withSiteName('コードを試せるサイト'),
+    description:
+      'C・Java・Python・VB.NET・SQL（Oracle/MySQL/SQL Server）などを、インストール不要でブラウザから実行できる外部サイトのまとめ。無料で使えるオンラインコンパイラとローカル開発環境を用途別に紹介します。',
+    path: '/playgrounds',
+  }),
   links: (): PageMeta => ({
     title: withSiteName('関連リンク'),
     description: '各技術の技術まとめページへのリンク集です。',
