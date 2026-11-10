@@ -191,7 +191,7 @@ int  *nums = malloc(n * sizeof *nums);
 struct Item *item = malloc(sizeof *item);
 ```
 
-`sizeof *nums` は「`nums` が指す先の型のサイズ」です。後から型を変えてもサイズ計算がずれません。
+`sizeof *nums` は「`nums` が指す先の型のサイズ」です。後から型を変えてもサイズ計算がずれません。`sizeof` の使い方と勘違いしやすい点は「[変数のサイズを知りたいときは sizeof におまかせ](/articles/c-sizeof-variable-size)」にまとめています。
 
 ## ハマりどころ5：ローカル変数のアドレスを返す
 

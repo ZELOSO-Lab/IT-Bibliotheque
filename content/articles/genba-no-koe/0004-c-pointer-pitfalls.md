@@ -147,7 +147,7 @@ printf("%zu\n", sizeof(data));    /* 40（int が4バイトの場合） */
 print_size(data);                 /* 8 */
 ```
 
-gcc はこのミスを既定で警告してくれます（`warning: 'sizeof' on array function parameter 'arr' will return size of 'int *'`）。
+gcc はこのミスを既定で警告してくれます（`warning: 'sizeof' on array function parameter 'arr' will return size of 'int *'`）。`sizeof` で型・配列・構造体のサイズを調べる方法は「[変数のサイズを知りたいときは sizeof におまかせ](/articles/c-sizeof-variable-size)」を参照してください。
 
 **対処：配列を渡すときは、要素数も一緒に渡す。**
 
