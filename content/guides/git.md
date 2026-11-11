@@ -1,8 +1,8 @@
 ---
 title: Git 技術まとめ
 slug: git
-excerpt: Gitの基本用語と仕組み、Windowsでのインストールと初期設定（改行コード・日本語ファイル名・認証）、日常で使うコマンド、ブランチ運用やコンフリクト解消のサンプル、よくあるエラーの対処、事故を防ぐ実務TipsとSVNからの移行の要点までを1ページにまとめました。
-updated: 2026-10-19
+excerpt: Gitの基本用語と仕組み、Windowsでのインストールと初期設定（改行コード・日本語ファイル名・認証）、目的別の基本操作コマンド早見表と日常で使うコマンド、履歴の書き換え（過去のコミットメッセージの修正）、ブランチ運用やコンフリクト解消のサンプル、よくあるエラーの対処、事故を防ぐ実務TipsとSVNからの移行の要点までを1ページにまとめました。
+updated: 2026-11-11
 ---
 
 # Git 技術まとめ
@@ -76,6 +76,7 @@ git config --global user.email "taro.yamada@example.co.jp"
 git config --global init.defaultBranch main
 git config --global core.quotepath false      # 日本語ファイル名を \346\227... と表示させない
 git config --global pull.rebase false         # pull はマージで統合（チームの方針に合わせる）
+git config --global pull.ff only              # 早送りできないときは pull を止める（知らぬ間のマージを防ぐ）
 git config --global core.editor "code --wait" # コミットメッセージを VS Code で書く
 git config --global --list                    # 設定の確認
 ```
@@ -120,6 +121,35 @@ git log --oneline -5
 
 ## コマンド
 
+### 目的別の基本操作コマンド早見表
+
+迷ったら、まずこの表から探してください。各コマンドの詳しい使い方は下の各節にあります。
+
+| やりたいこと | コマンド | ひとこと |
+| --- | --- | --- |
+| リポジトリを手元に複製 | `git clone URL` | フォルダ名を変えるなら `git clone URL 名前` |
+| 新しくリポジトリを作る | `git init` | 既存フォルダを Git 管理にする |
+| 今の状態を確認 | `git status` | 迷ったらまずこれ。`-sb` で短く表示 |
+| 変更内容を見る | `git diff` / `git diff --staged` | ステージ前 / ステージ後 |
+| コミットに含める | `git add ファイル` / `git add -p` | `-p` は変更の塊ごとに選べる |
+| コミットする | `git commit -m "メッセージ"` | 1コミット1目的 |
+| 履歴を見る | `git log --oneline --graph -20` | 全ブランチは `--all` |
+| リモートの変更を取得（作業は変えない） | `git fetch` | 取り込む前に中身を確認できる |
+| リモートの変更を取り込む | `git pull` | fetch + merge（または rebase） |
+| リモートに送る | `git push` | 初回は `git push -u origin ブランチ名` |
+| ブランチを作って切り替え | `git switch -c feature/x` | 元にした地点は今いるコミット |
+| ブランチを切り替え | `git switch main` | 未コミットの変更は持ち越される |
+| ブランチを統合 | `git merge feature/x` | 今いるブランチに取り込む |
+| 作業中の変更を一時退避 | `git stash` / `git stash pop` | 急な割り込み対応に |
+| 変更を破棄 | `git restore ファイル` | 元に戻せない |
+| ステージを解除 | `git restore --staged ファイル` | 変更は残る |
+| 直前のコミットを修正 | `git commit --amend` | push 前だけ |
+| 古いコミットのメッセージを修正 | `git rebase -i -r ハッシュ^` → `reword` | push 済みなら force push が必要 |
+| push 済みのコミットを打ち消す | `git revert ハッシュ` | 履歴を書き換えないので安全 |
+| 誤操作の前に戻す | `git reflog` → `git reset --hard HEAD@{n}` | コミットしたものはほぼ取り戻せる |
+| 誰がその行を変えたか | `git blame ファイル` | `-L 10,20` で行範囲を指定 |
+| 特定のコミットだけ取り込む | `git cherry-pick ハッシュ` | 別ブランチの修正を移す |
+
 ### 基本の流れ
 
 ```sh
@@ -147,6 +177,24 @@ git push -u origin feature/login   # 初回 push と追跡設定
 git push origin --delete feature/login   # リモートブランチを削除
 git fetch --prune                  # 消えたリモートブランチの追跡を掃除
 ```
+
+### リモートとの同期（fetch / pull / push）
+
+```sh
+git remote -v                      # リモートの URL を確認
+git fetch                          # リモートの最新を取得（作業ブランチは変わらない）
+git status                         # 「ahead N」= 未 push、「behind N」= 未取り込み
+git log --oneline HEAD..origin/main   # リモートにあって手元にないコミット
+git log --oneline origin/main..HEAD   # 手元にあってリモートにないコミット（未 push）
+git merge origin/main              # 確認してから取り込む（マージ）
+git rebase origin/main             # 確認してから取り込む（自分のコミットを付け直す。未 push のときだけ）
+git pull --ff-only                 # 早送りできるときだけ取り込む
+git pull --rebase                  # 未 push の自分のコミットを最新の上に付け直す
+git push -u origin feature/x       # 初回 push と追跡設定
+git push --force-with-lease --force-if-includes   # 履歴を書き換えたあとの上書き（自分のブランチだけ）
+```
+
+`git pull` は fetch と merge を一度に行うため、**ローカルとリモートが分岐していると、知らないうちにマージコミットができます**。`git fetch` → 確認 → `merge` / `rebase` の順に分けるか、`pull.ff only` を設定しておくと事故が減ります。
 
 ### 履歴・差分
 
@@ -176,6 +224,32 @@ git grep "TODO"                       # 管理下のファイルを検索
 | 管理外のファイルを削除 | `git clean -n`（確認）→ `git clean -fd` | `-n` で必ず先に確認 |
 | 消したコミットを探す | `git reflog` | 約90日分の HEAD の移動履歴 |
 
+### 履歴を整える（push 前の自分のブランチ）
+
+`git rebase -i` は、コミットの並び（ToDo リスト）をエディターで編集して履歴を作り直します。**push 前の自分のブランチ**に使うのが原則です。
+
+```sh
+git rebase -i HEAD~3               # 直近3コミットを編集
+git rebase -i -r a1b2c3d^          # a1b2c3d から後を編集（途中のマージを残す）
+git rebase --continue              # 止まった（コンフリクト・メッセージ編集）ところから再開
+git rebase --abort                 # 開始前に戻す
+git reset --hard ORIG_HEAD         # 完了した rebase を取り消す
+```
+
+| ToDo の命令 | 略記 | 意味 |
+| --- | --- | --- |
+| `pick` | `p` | そのまま使う |
+| `reword` | `r` | 中身はそのまま、**メッセージだけ直す** |
+| `edit` | `e` | そこで止めて、中身を修正（`git commit --amend` → `--continue`） |
+| `squash` | `s` | 1つ前のコミットにまとめ、メッセージも合わせて編集 |
+| `fixup` | `f` | 1つ前のコミットにまとめ、メッセージは捨てる |
+| `drop` | `d` | コミットを削除 |
+| `merge -C` / `merge -c` | | `-r` のときのマージ。`-c` にするとマージのメッセージを編集できる |
+
+- 途中にマージコミットがあるときは **`-r`（`--rebase-merges`）を付けます**。付けないとマージが消え、取り込んだ他人のコミットまで作り直されます
+- 起点はマージがあると `HEAD~N` で数えにくいので、`git log --oneline --graph` でハッシュを確認し `ハッシュ^` で指定します
+- エディターで書くメッセージは、`#` で始まる行がコメントとして捨てられます。チケット番号は `(#120)` のように末尾に書くか、`git config --global core.commentChar ";"` にします
+
 ### 一時退避・タグ・その他
 
 ```sh
@@ -187,6 +261,9 @@ git tag -a v1.0.0 -m "リリース 1.0.0"
 git push origin v1.0.0
 git remote -v                      # リモートの URL
 git remote set-url origin https://git.example.co.jp/team/project.git
+git config --global --list         # 設定の一覧
+git config --show-origin pull.ff   # その設定がどのファイルに書かれているか
+git config --global alias.lg "log --oneline --graph --all -20"   # エイリアス（git lg）
 ```
 
 ## サンプル
@@ -271,6 +348,20 @@ git switch main
 git reset --hard origin/main     # main をリモートと同じ状態に戻す
 ```
 
+### 10個以上前のコミットメッセージを直す（push 済みの自分のブランチ）
+
+```sh
+git branch backup/feature-120           # 失敗しても戻れるように保存
+git log --oneline --graph -15           # 直したいコミットのハッシュ（例: 1107db0）を確認
+git rebase -i -r 1107db0^               # その親から rebase。マージがあっても -r で残す
+# エディターで  pick 1107db0 あ  →  reword 1107db0 あ  に変えて保存
+# 次の画面で新しいメッセージを書いて保存（先頭を # にしない）
+git diff backup/feature-120             # 何も出なければ中身は変わっていない
+git push --force-with-lease --force-if-includes
+```
+
+main など共有ブランチに入ったコミットは書き換えません。原因の調べ方（知らぬ間の pull）、8つのハマりどころ、チームへの連絡方法は記事「[Git Bash で知らぬ間に pull していた？ 10個以上前の雑なコミットメッセージを直す手順](/articles/git-unexpected-pull-reword-old-commit/)」にまとめています。
+
 ### SVN リポジトリを Git に移行する
 
 ```sh
@@ -293,6 +384,11 @@ git push -u origin main
 | `! [rejected] main -> main (fetch first)` / `error: failed to push some refs to` | リモートに自分が持っていないコミットがある | `git pull` で取り込んでから再 push |
 | `! [rejected] main -> main (non-fast-forward)` | amend や reset でローカル履歴を書き換えた | 共有ブランチなら `git pull` で統合。自分専用ブランチなら `git push --force-with-lease` |
 | `fatal: Need to specify how to reconcile divergent branches.` | pull の統合方法が未設定でローカルとリモートが分岐 | `git pull --no-rebase`（マージ）か `--rebase`。恒久的には `git config --global pull.rebase false` |
+| `fatal: Not possible to fast-forward, aborting.` | `pull.ff only` の設定で、分岐したブランチの pull を止めた（正常な動作） | `git fetch` で状況を確認し、`git merge origin/main` か `git rebase origin/main` を選ぶ |
+| `! [rejected] ... (stale info)` | `--force-with-lease` で push したが、最後に fetch した後に誰かが push していた | 上書きせず `git fetch`。同僚のコミットを取り込んでから書き換えをやり直す |
+| `! [rejected] ... (remote ref updated since checkout)` | `--force-if-includes` が、fetch しただけで取り込んでいないコミットを検知 | 同上。自動 fetch する IDE で起きやすい |
+| `Aborting commit due to empty commit message.` | メッセージが空。エディターで `#` から書き始めた行はコメントとして捨てられる | `git commit --amend -m "メッセージ"`（rebase 中なら続けて `git rebase --continue`） |
+| `error: There was a problem with the editor 'vi'.` | エディターを `:cq` などエラーで閉じた | マージ中なら `git merge --abort`、rebase 中なら `git rebase --abort` で戻す |
 | `fatal: refusing to merge unrelated histories` | 履歴が無関係なリポジトリ同士（README 付きで作ったリモートなど）を統合 | 意図どおりなら `git pull origin main --allow-unrelated-histories` |
 | `CONFLICT (content): Merge conflict in ...` | 同じ箇所を双方で変更 | 上記「コンフリクトを解消する」の手順 |
 | `error: Your local changes to the following files would be overwritten by merge:` | 未コミットの変更があるファイルを pull が書き換えようとした | `git stash` → `git pull` → `git stash pop`、またはコミットしてから pull |
@@ -319,6 +415,7 @@ git push -u origin main
 - 作業前に `git status` と `git branch` で**今どのブランチにいるか**を確認する。プロンプトにブランチ名を表示すると取り違えが減る
 - コミット前に `git diff --staged` を見る。`git add .` で不要ファイル（`.env`・ログ・個人設定）を混ぜない
 - **push 済みのコミットは書き換えない**（amend・rebase・reset しない）。取り消しは `git revert`
+- `git pull` でエディター（Git Bash では vim）が開いたら、それはマージコミットのメッセージ入力。`:wq` でも `:q` でもマージが確定する。やめるなら `:cq` → `git merge --abort`
 - 失敗したと思ったら、慌てて操作を重ねる前に `git reflog` を見る。コミットしたものはほぼ確実に取り戻せる
 - パスワード・APIキーを誤ってコミットしたら、履歴から消すより先に**キーを無効化（ローテーション）**する。push 済みなら複製されている前提で動く
 

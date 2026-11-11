@@ -357,6 +357,16 @@ export const technologyDetails: Record<string, TechnologyDetail> = {
       { title: 'ブランチ作成と切り替え', code: 'git switch -c feature/login\ngit switch main' },
       { title: '直前のコミットを修正', code: 'git commit --amend' },
       { title: '作業中の変更を退避', code: 'git stash\ngit stash pop' },
+      {
+        title: 'リモートを確認してから取り込む',
+        code: 'git fetch\ngit log --oneline HEAD..origin/main\ngit merge origin/main',
+      },
+      {
+        title: '古いコミットのメッセージを修正',
+        code: 'git rebase -i -r <ハッシュ>^\n# pick → reword にして保存\ngit push --force-with-lease --force-if-includes',
+      },
+      { title: 'push 済みのコミットを打ち消す', code: 'git revert <ハッシュ>' },
+      { title: '誤操作の前に戻す', code: 'git reflog\ngit reset --hard HEAD@{1}' },
     ],
   },
   gitlab: {
