@@ -16,6 +16,7 @@ export const footerNav = [
   { to: '/cheatsheets', label: 'チートシート' },
   { to: '/articles', label: '記事' },
   { to: '/career', label: 'キャリア・働き方' },
+  { to: '/playgrounds', label: 'コードを試せるサイト' },
   { to: '/links', label: '関連リンク' },
   { to: '/privacy', label: 'プライバシーポリシー' },
   { to: '/terms', label: '利用規約' },

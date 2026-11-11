@@ -5,6 +5,7 @@ import { CategoryBadge } from '../components/CategoryBadge';
 import { CheatSheetLink } from '../components/CheatSheetLink';
 import { CodeBlock } from '../components/CodeBlock';
 import { ExternalLink } from '../components/ExternalLink';
+import { PlaygroundList } from '../components/PlaygroundList';
 import { SectionHeader } from '../components/SectionHeader';
 import { SummaryLink } from '../components/SummaryLink';
 import { TechIcon } from '../components/TechIcon';
@@ -13,6 +14,7 @@ import { getArticlesByTechnology } from '../data/articles';
 import { getCategory } from '../data/categories';
 import { hasCheatSheet } from '../data/cheatsheets';
 import { technologyDetails } from '../data/details';
+import { getPlaygroundsByTechnology } from '../data/playgrounds';
 import { sections } from '../data/sections';
 import { getTechnologyBySlug } from '../data/technologies';
 import { usePageMeta } from '../hooks/usePageMeta';
@@ -37,6 +39,7 @@ function TechnologyDetailContent({ technology }: { technology: Technology }) {
   const related = getRelatedTechnologies(technology, 3);
   const articles = getArticlesByTechnology(technology);
   const detail = technologyDetails[technology.slug];
+  const playgrounds = getPlaygroundsByTechnology(technology.slug);
   const allCategories = [technology.category, ...(technology.subCategories ?? [])];
 
   return (
@@ -121,6 +124,18 @@ function TechnologyDetailContent({ technology }: { technology: Technology }) {
                   <CodeBlock key={q.title} title={q.title} code={q.code} />
                 ))}
               </div>
+            </section>
+          )}
+
+          {playgrounds.length > 0 && (
+            <section className={page.section} aria-labelledby="playgrounds">
+              <SectionHeader
+                id="playgrounds"
+                title={`${technology.name}を試せるサイト`}
+                description="環境構築なしで、ブラウザからコードを実行・確認できます。"
+                more={{ to: '/playgrounds', label: 'すべて見る' }}
+              />
+              <PlaygroundList items={playgrounds} />
             </section>
           )}
 

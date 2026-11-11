@@ -1,0 +1,30 @@
+.heading {
+  margin-bottom: 4px;
+  font-size: 20px;
+}
+
+.lead {
+  margin: 0 0 14px;
+  color: var(--color-text-muted);
+  font-size: 14px;
+}
+
+.notes {
+  margin-top: 48px;
+  padding: 20px 22px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-bg-subtle);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.notesHeading {
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+
+.notes ul {
+  margin: 0;
+  padding-left: 1.2em;
+}

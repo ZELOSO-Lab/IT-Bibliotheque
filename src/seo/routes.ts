@@ -16,6 +16,7 @@ export const staticRoutes = (hasCheatSheet: (slug: string) => boolean, articles:
   pageMeta.career(),
   pageMeta.search(),
   pageMeta.about(),
+  pageMeta.playgrounds(),
   pageMeta.links(),
   pageMeta.privacy(),
   pageMeta.terms(),

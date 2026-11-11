@@ -9,6 +9,7 @@ import { CheatSheets } from './pages/CheatSheets';
 import { Home } from './pages/Home';
 import { Links } from './pages/Links';
 import { NotFound } from './pages/NotFound';
+import { Playgrounds } from './pages/Playgrounds';
 import { Privacy } from './pages/Privacy';
 import { Search } from './pages/Search';
 import { Technologies } from './pages/Technologies';
@@ -43,6 +44,7 @@ export function App() {
           <Route path="career" element={<Career />} />
           <Route path="search" element={<Search />} />
           <Route path="about" element={<About />} />
+          <Route path="playgrounds" element={<Playgrounds />} />
           <Route path="links" element={<Links />} />
           <Route path="privacy" element={<Privacy />} />
           <Route path="terms" element={<Terms />} />
