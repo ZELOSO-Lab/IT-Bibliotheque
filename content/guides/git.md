@@ -1,8 +1,8 @@
 ---
 title: Git 技術まとめ
 slug: git
-excerpt: Gitの基本用語と仕組み、Windowsでのインストールと初期設定（改行コード・日本語ファイル名・認証）、目的別の基本操作コマンド早見表と日常で使うコマンド、履歴の書き換え（過去のコミットメッセージの修正）、ブランチ運用やコンフリクト解消のサンプル、よくあるエラーの対処、事故を防ぐ実務TipsとSVNからの移行の要点までを1ページにまとめました。
-updated: 2026-11-11
+excerpt: Gitの基本用語と仕組み、Windowsでのインストールと初期設定（改行コード・日本語ファイル名・認証）、目的別の基本操作コマンド早見表と日常で使うコマンド、履歴の書き換え（過去のコミットメッセージの修正、他人名義になったコミットの修正）、ブランチ運用やコンフリクト解消のサンプル、よくあるエラーの対処、事故を防ぐ実務TipsとSVNからの移行の要点までを1ページにまとめました。
+updated: 2026-11-14
 ---
 
 # Git 技術まとめ
@@ -79,7 +79,10 @@ git config --global pull.rebase false         # pull はマージで統合（チ
 git config --global pull.ff only              # 早送りできないときは pull を止める（知らぬ間のマージを防ぐ）
 git config --global core.editor "code --wait" # コミットメッセージを VS Code で書く
 git config --global --list                    # 設定の確認
+git var GIT_AUTHOR_IDENT                      # 次にコミットしたときの作者（名前 <メール>）
 ```
+
+`user.name` / `user.email` はコミットの作者として記録されます。**他人の `.gitconfig` を丸ごとコピー・マージしない**でください（コミットが他人名義になります）。比べるときは `git config --global --list` の一覧で比べ、必要な項目だけを `git config` で設定します。`git config --global user.useConfigOnly true` にすると、名前が未設定のときに PC 名から推測せずコミットを止めます。
 
 Windows 環境で追加しておくと良い設定:
 
@@ -218,7 +221,9 @@ git grep "TODO"                       # 管理下のファイルを検索
 | 作業ツリーの変更を破棄 | `git restore file.txt` | 元に戻せない |
 | ステージを解除 | `git restore --staged file.txt` | 変更自体は残る |
 | ファイルを過去の版に戻す | `git restore --source=HEAD~1 file.txt` | |
-| 直前のコミットを修正 | `git commit --amend` | **push 前だけ** |
+| 直前のコミットを修正 | `git commit --amend` | **push 前だけ**。作者と作者日時は元のまま |
+| 直前のコミットの作者を自分にする | `git commit --amend --reset-author --no-edit` | 自分が書いたコミットだけに使う |
+| 間違えた amend を取り消す | `git reset --soft HEAD@{1}` | 自分の変更はステージに残る |
 | 直前のコミットを取り消して変更は残す | `git reset --soft HEAD~1` | push 前だけ |
 | push 済みのコミットを打ち消す | `git revert a1b2c3d` | 打ち消しコミットを作るので安全 |
 | 管理外のファイルを削除 | `git clean -n`（確認）→ `git clean -fd` | `-n` で必ず先に確認 |
@@ -263,6 +268,7 @@ git remote -v                      # リモートの URL
 git remote set-url origin https://git.example.co.jp/team/project.git
 git config --global --list         # 設定の一覧
 git config --show-origin pull.ff   # その設定がどのファイルに書かれているか
+git config --show-origin --show-scope --get-all user.name   # global / local のどちらに書かれているか
 git config --global alias.lg "log --oneline --graph --all -20"   # エイリアス（git lg）
 ```
 
@@ -362,6 +368,22 @@ git push --force-with-lease --force-if-includes
 
 main など共有ブランチに入ったコミットは書き換えません。原因の調べ方（知らぬ間の pull）、8つのハマりどころ、チームへの連絡方法は記事「[Git Bash で知らぬ間に pull していた？ 10個以上前の雑なコミットメッセージを直す手順](/articles/git-unexpected-pull-reword-old-commit/)」にまとめています。
 
+### コミットが同僚の名前・同じ日時になった（push 前）
+
+同僚の git config を自分の設定にマージしたあと、Git GUI でコミットしたら作者が同僚になった、というケースです。作者が他人なら `user.name` / `user.email` の上書き、**日時まで同僚のコミットと同じなら「最新コミットを訂正」（Amend）**で同僚のコミットを作り直しています。
+
+```sh
+git log -3 --format='%h 作者=%an %ad コミッター=%cn %cd %s'   # 作者日時が元のコミットと同じなら Amend
+git reflog -3                                    # commit (amend) の1つ下が Amend 前
+git config --global user.name "Yamada Taro"      # 先に自分の名前に戻す（local にもあれば --unset）
+git config --global user.email "taro.yamada@example.co.jp"
+git branch backup/before-fix
+git reset --soft HEAD@{1}                        # Amend を取り消す（変更はステージに残る）
+git commit -m "#215 受注一覧に件数表示を追加"     # 新規コミットとしてやり直す
+```
+
+Git GUI では、コミット欄右上の「最新コミットを訂正」のチェック（Ctrl+E）を外し、見出しが「コミットメッセージ:」になっていることを確認してからコミットします。push を断られて pull した場合、作者だけが違う場合、push 済みの場合の直し方と、他人の設定から持ち込んではいけない項目は記事「[同僚の git config をマージしたら、コミットが同僚の名前・同じ日時になった](/articles/git-config-merge-commit-as-coworker/)」にまとめています。
+
 ### SVN リポジトリを Git に移行する
 
 ```sh
@@ -399,6 +421,7 @@ git push -u origin main
 | `fatal: Unable to create '.../.git/index.lock': File exists.` | 別の Git 処理が実行中、または異常終了の残骸 | Git を使うツール（IDE など）を閉じ、残っていれば `.git/index.lock` を削除 |
 | `You are in 'detached HEAD' state.` | タグや過去のコミットを直接チェックアウトした | 戻るなら `git switch main`。作業を残すなら `git switch -c 新ブランチ` |
 | `Author identity unknown` / `*** Please tell me who you are.` | `user.name` / `user.email` が未設定 | 「初期設定」の `git config` を実行 |
+| エラーは出ないが、コミットの作者が他人になる | 他人の `.gitconfig` の `[user]` をコピーした、Git GUI の「最新コミットを訂正」で他人のコミットを作り直した | `git config --show-origin --show-scope --get-all user.name` で確認。直し方は上記サンプル |
 | `fatal: Authentication failed for 'https://...'` | パスワード認証（GitHub は不可）、トークンの期限切れ | 個人アクセストークンを使う。Windows は「資格情報マネージャー」の古い情報を削除 |
 | `Permission denied (publickey).` | SSH 公開鍵が未登録、別の鍵を使っている | `ssh -T git@github.com` で確認、`~/.ssh/config` で鍵を指定 |
 | `SSL certificate problem: unable to get local issuer certificate` | 社内プロキシによる SSL 検査、社内CA | Windows は `git config --global http.sslBackend schannel`。それ以外は `http.sslCAInfo` に社内CA証明書を指定 |
@@ -416,6 +439,7 @@ git push -u origin main
 - コミット前に `git diff --staged` を見る。`git add .` で不要ファイル（`.env`・ログ・個人設定）を混ぜない
 - **push 済みのコミットは書き換えない**（amend・rebase・reset しない）。取り消しは `git revert`
 - `git pull` でエディター（Git Bash では vim）が開いたら、それはマージコミットのメッセージ入力。`:wq` でも `:q` でもマージが確定する。やめるなら `:cq` → `git merge --abort`
+- 動いている人の設定を参考にするときは、`.gitconfig` を丸ごとコピーしない。`user.*`・認証情報（`credential.*`、ID・パスワード入りの URL やプロキシ）は写さず、必要な項目だけ `git config` で設定する
 - 失敗したと思ったら、慌てて操作を重ねる前に `git reflog` を見る。コミットしたものはほぼ確実に取り戻せる
 - パスワード・APIキーを誤ってコミットしたら、履歴から消すより先に**キーを無効化（ローテーション）**する。push 済みなら複製されている前提で動く
 

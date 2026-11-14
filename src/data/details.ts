@@ -367,6 +367,10 @@ export const technologyDetails: Record<string, TechnologyDetail> = {
       },
       { title: 'push 済みのコミットを打ち消す', code: 'git revert <ハッシュ>' },
       { title: '誤操作の前に戻す', code: 'git reflog\ngit reset --hard HEAD@{1}' },
+      {
+        title: 'コミットの作者を確認・直す',
+        code: 'git var GIT_AUTHOR_IDENT\ngit config --show-origin --get-all user.name\ngit commit --amend --reset-author --no-edit',
+      },
     ],
   },
   gitlab: {

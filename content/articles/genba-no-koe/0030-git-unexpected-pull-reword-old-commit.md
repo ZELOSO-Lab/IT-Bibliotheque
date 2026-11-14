@@ -582,4 +582,4 @@ $ git log --oneline -1
 - **push 済みなら `--force-with-lease --force-if-includes`。** 断られても `git pull` せず、同僚の push があったら最新に合わせてから reword をやり直します。
 - 書き換えてよいのは**自分の作業ブランチだけ**です。force push したら、受け取り側の手順を添えてチームに連絡しましょう。
 
-Git の基本コマンド・取り消し方・エラー対応は、[Git 技術まとめ](/technology/git/guide/)にまとめています。
+Git の基本コマンド・取り消し方・エラー対応は、[Git 技術まとめ](/technology/git/guide/)にまとめています。同僚の設定をマージしたらコミットが同僚名義になったときの直し方は「[同僚の git config をマージしたら、コミットが同僚の名前・同じ日時になった](/articles/git-config-merge-commit-as-coworker/)」を参照してください。
